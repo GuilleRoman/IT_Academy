@@ -1,0 +1,58 @@
+<!-- 
+    Fonaments de la programació
+    M2 Exercici 1
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>M2 exercici 1</h1>
+    <h2>Enunciat: </h2>
+    <p> 
+        Fer un programa que li demani a l’usuari mitjançant el prompt: 
+        El nom, el cognom i l’edat de l’usuari. Un cop l’usuari hagi acabat d’introduir les dades,
+        aquestes s’han de mostrar per consola, amb un popup i mitjançant getElementById().
+    </p>
+    <br>
+    <hr>
+    
+    <input type="text" id="nom" name="nom" value="Nom" >
+    <input type="text" id="cognom" name="cognom" value="Cognom">
+    <input type="text" id="edat" name="edat" value="edat">
+    <br><br>
+
+    <p id="dadesSenceres">dades senceres ordenades</p>
+
+    <script>
+        var nouNom = prompt("Nom: ");
+        var nouCognom= prompt("Cognom: ");
+        var novaEdat=prompt("Edat: ");
+        
+        //Mostrem els valors recollits via console
+        console.log ("Nom: "+nouNom);
+        console.log("Cognoms: "+nouCognom);
+        console.log("Edat: "+novaEdat);
+
+        //Mostrem a un alert el valor dels valors recollits via prompt
+        alert ("Nom: "+nouNom+"\n Cognom: "+nouCognom+"\n Edat: "+novaEdat);
+
+
+        // Mostrem a les caixes de text els valors recollits via prompt
+        document.getElementById("nom").value = nouNom;
+        document.getElementById("cognom").value = nouCognom;
+        document.getElementById("edat").value = novaEdat;
+
+        // Mostrem cognom, nom i edat tots junts.
+        document.getElementById("dadesSenceres").innerHTML=nouNom+" "+nouCognom+" en té "+novaEdat+" anys";
+    </script>
+</body>
+</html>

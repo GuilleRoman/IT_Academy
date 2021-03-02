@@ -1,0 +1,78 @@
+<!-- 
+    Fonaments de la programació
+    M2 Exercici 2
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>M2 exercici 2</h1>
+    <h2>Enunciat: </h2>
+    <p> 
+        Fer un programa que li demani dos números a l’usuari. 
+        Al final, el programa imprimeix per pantalla el següent missatge: 
+        El resultat de la suma és: “valor”, el resultat de la resta és: “valor”, 
+        el resultat de la multiplicació és: “valor” i el resultat de la divisió és: “valor”.
+
+    </p>
+    <br>
+    <hr>
+
+    <p id="valorSuma">valor suma </p>
+    <p id="valorResta">valor resta </p>
+    <p id="valorProducte">valor multiplicació</p> 
+    <p id="valorDivisio">valor divisió </p>
+    <p id="error"></p>
+    <br><br>
+
+    <script>
+        // Recollim els valors via prompt (tipus String ) i els convertim a number amb la funció Number
+        var primerNumero = Number(prompt("primer dígit "));
+        var segonNumero= Number(prompt("segon dígit "));
+       
+        //Determinem si les entrades via prompt son valors numérics
+        if(isNaN(primerNumero)){
+            alert("El primer valor introduit no és un número")
+        }else if(isNaN(segonNumero)){
+            alert("El segon valor introduit no és un número")
+        }else{
+
+            // Si son valors numérics llavors els mostrem via console i a les etiquetes <p> corresponents.
+            console.log ("Primer operador: "+primerNumero);
+            console.log ("segon operador: "+segonNumero);
+            
+            var resultatSuma=primerNumero+segonNumero;
+            document.getElementById("valorSuma").innerHTML="El resultat de la suma és : "+resultatSuma;
+            console.log ("Resultat de la suma: "+resultatSuma);   
+
+            var resultatResta=primerNumero-segonNumero;
+            document.getElementById("valorResta").innerHTML="El resultat de la resta és : "+resultatResta;
+            console.log ("Resultat de la resta: "+resultatResta);
+
+            var resultatProducte=primerNumero*segonNumero;
+            document.getElementById("valorProducte").innerHTML="El resultat del producte és: "+resultatProducte;
+            console.log ("Resultat del producte : "+resultatProducte);
+            
+            //Determinem que no ens trobem amb una division per zero.
+            if(segonNumero==0){
+                document.getElementById("valorDivisio").innerHTML="Divisió per zero, valor indeterminat";
+                console.log ("Resultat de la divisió : Divisió per zero, resultat indeterminat ");
+            }else{
+                var resultatDivisio=primerNumero/segonNumero;
+                document.getElementById("valorDivisio").innerHTML="El resultat de la divisió és: "+resultatDivisio;
+                console.log ("Resultat de la divisió : "+resultatDivisio);
+            }
+            
+        }    
+    </script>
+</body>
+</html>
