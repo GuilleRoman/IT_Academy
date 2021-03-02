@@ -1,0 +1,87 @@
+<!-- 
+    Fonaments de la programació
+    M3 Exercici 2
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M3 exercici 2</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Aquest programa li demana l’edat a l’usuari, en funció d’aquesta, 
+            mostrarem un dels següents missatges per pantalla:<br><br>
+
+            Si té 5 anys o menys: preescolar<br>
+            Si té entre 6 i 11 anys: primària<br>
+            Si té entre 12 i 15: ESO<br>
+            Si té entre 16 i 18: Batxillerat<br>
+            Si té més de 18: FP o Universitat<br> 
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        <!-- paràgraf on mostrarem els estudis corresponents segons la edat indicada-->
+        <p id="missatge">Aquí mostrarem el nivell d'estudis corresponent a l'edat indicada</p> 
+
+        <script>
+            // recollim l'edat via prompt
+            var edat=prompt("Edat de l'usuari: ");
+
+            // Determinem si l'entrada es correspon a un número i també que és positiu
+            if((isNaN(edat)) || (edat<1)){
+                document.getElementById("missatge").innerHTML="No has introduït un valor numèric, o bé és un número negatiu";
+            
+            // Determinem el curs corresponent a l'edat
+            }else{
+                if(edat<=5){    
+                    document.getElementById("missatge").innerHTML="Preescolar";                    
+                }else if(edat>=6 && edat<=11){
+                    document.getElementById("missatge").innerHTML="Primària";
+                }else if(edat>=12 && edat<=15){
+                    document.getElementById("missatge").innerHTML="ESO";        
+                }else if(edat>=16 && edat<=18){
+                    document.getElementById("missatge").innerHTML="Batxillerat";            
+                }else if(edat>18){
+                    document.getElementById("missatge").innerHTML="Universitat ";
+                }
+            }
+
+
+       </script>   
+
+
+    </div>    
+</body>
+</html>

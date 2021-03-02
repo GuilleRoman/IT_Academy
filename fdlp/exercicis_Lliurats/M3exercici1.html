@@ -1,0 +1,79 @@
+<!-- 
+    Fonaments de la programació
+    M3 Exercici 1
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M3 exercici 1</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+           Imagina que estàs fent un SW per a la gestió de cotxes d’una empresa de lloguer de vehicles. 
+           Una de les característiques a tenir en compte, és el nombre de portes.<br> 
+           Demana a l’usuari quantes portes ha de tenir el cotxe. <br>
+           Si l’usuari ha introduït un 3, el programa ha de mostrar per pantalla: “És un cotxe esportiu”, <br>
+           si l’usuari ha introduït un 5, el programa ha de mostrar: “És un cotxe familiar”. <br>
+           Si l’usuari ha introduït un nombre diferent de portes, el programa ha de mostrar: Segur que el cotxe té “X” portes?<br>
+
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+       <h1>Concessionari de cotxes</h1>
+       <p id="missatge"></p> 
+
+       <script>
+            var numPortes=prompt("Número de portes del vehicle");
+
+            if(isNaN(numPortes)){
+                document.getElementById("missatge").innerHTML="No has introduit un valor numèric";
+            }else{
+                if(numPortes==3){
+                    document.getElementById("missatge").innerHTML="Es un cotxe esportiu";                    
+                }else if(numPortes==5){
+                    document.getElementById("missatge").innerHTML="Es un cotxe familiar";    
+                }else{
+                    document.getElementById("missatge").innerHTML="Estas segur que el cotxe té "+numPortes+" portes ?";
+                }
+            }
+
+
+       </script>
+
+
+
+    </div>    
+</body>
+</html>
