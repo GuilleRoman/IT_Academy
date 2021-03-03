@@ -57,11 +57,11 @@
 
         <script>
             // recollim l'edat via prompt
-            var edat=prompt("Edat de l'usuari: ");
+            var edat=Number(prompt("Edat de l'usuari: "));
 
             // Determinem si l'entrada es correspon a un número i també que és positiu
             if((isNaN(edat)) || (edat<1)){
-                document.getElementById("missatge").innerHTML="No has introduït un valor numèric, o bé és un número negatiu";
+                document.getElementById("missatge").innerHTML="Has introduït un valor no numèric, o bé és un número negatiu";
             
             // Determinem el curs corresponent a l'edat
             }else{

@@ -1,0 +1,118 @@
+<!-- 
+    Fonaments de la programació
+    M3 Exercici 4
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M3 exercici 4</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+           L’usuari introdueix un mes per pantalla i mitjançant un switch amb els 12 mesos de l’any el programa calcula els dies del mes i mostra el següent:<br><br> 
+           Exemple:<br> Si el número introduït és 1, llavors ha d'aparèixer per pantalla: “El mes de gener té 31 dies”
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        
+        <!-- paràgraf on mostrarem els estudis corresponents segons la edat indicada-->
+        <p id="missatge">Aquí mostrarem el mes </p> 
+
+         <script>
+            var text;   //variable on inserirem el missatge
+
+            // recollim el mes  via prompt
+            var mes=Number(prompt("Indica el mes: "));
+
+
+            // Determinem si l'entrada es correspon a un valor numèric. 
+            if(isNaN(mes)){
+                document.getElementById("missatge").innerHTML="Has introduït un valor no numèric";
+            
+            // Determinem el nombre de dies del mes inserit
+            }else{
+                switch (mes) {
+                    case 1:
+                        text = "El mes de gener té  31 dies";
+                        break;
+                    case 2:
+                        text = "El mes de febrer té  28 o 29 dies";
+                        break;
+                    case 3:
+                        text = "El mes de març té 31  dies";
+                        break;
+                    case 4:
+                        text = "El mes de abril té 30  dies";
+                        break;
+                    case 5:
+                        text = "El mes de maig té 31  dies";
+                        break;
+                    case 6:
+                        text = "El mes de juny té 30 dies";
+                        break;
+                    case 7:
+                        text = "El mes de juliol té 31  dies";
+                        break;
+                    case 8:
+                        text = "El mes de agost té 31  dies";
+                        break;
+                    case 9:
+                        text = "El mes de setembre té 30  dies";
+                        break;
+                    case 10:
+                        text = "El mes de octubre té 31  dies";
+                        break;
+                    case 11:
+                        text = "El mes de novembre té 30 dies";
+                        break;
+                    case 12:
+                        text = "El mes de desembre té 31  dies";
+                        break;
+
+                    default:
+                        text = "El mes que has introduit no és correcte";
+                }
+
+                document.getElementById("missatge").innerHTML=text;                
+            }
+
+
+       </script>
+
+
+
+    </div>    
+</body>
+</html>

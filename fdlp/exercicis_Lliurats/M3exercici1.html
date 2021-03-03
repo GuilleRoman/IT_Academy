@@ -55,7 +55,7 @@
        <p id="missatge"></p> 
 
        <script>
-            var numPortes=prompt("Número de portes del vehicle");
+            var numPortes=Number(prompt("Número de portes del vehicle"));
 
             if(isNaN(numPortes)){
                 document.getElementById("missatge").innerHTML="No has introduit un valor numèric";

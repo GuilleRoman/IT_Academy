@@ -1,0 +1,97 @@
+<!-- 
+    Fonaments de la programació
+    M3 Exercici 5
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M3 exercici 5</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+           Fer un programa que demani dos números i un operador. <br>
+           Al final, el programa imprimeix per pantalla el resultat de fer l’operació que contingui la variable operador.
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+
+        <!-- paràgraf on mostrarem el resultat de les operacions-->
+        <p id="missatge"></p> 
+        
+        <script>
+
+            var resultat;
+        
+             // recollim els digits i l'operador via prompt
+            var digit1=Number(prompt("Primer dígit: "));
+            var operador=(prompt("Operador : "));
+            var digit2=Number(prompt("Segon  dígit: "));
+            
+
+            // Determinem l'operador amb un switch 
+             if(isNaN(digit1) || isNaN(digit2) ){
+                document.getElementById("missatge").innerHTML="Has introduït un valor no numèric";
+            
+            // Determinem el nombre de dies del mes inserit
+            }else{
+                switch (operador) {
+                    case "+":
+                        resultat = digit1+digit2;
+                        break;
+                    case "-":
+                        resultat = digit1-digit2;
+                        break;    
+                    case "*":
+                        resultat = digit1*digit2;
+                        break;    
+                    case "/":
+                        if(digit2==0){
+                            resultat="Divisió per zero (Indeterminació)";        
+                        }else{
+                            resultat = digit1/digit2;
+                        }    
+                        break;
+                    default:
+                        resultat="Has introduit un operador no vàlid !!!"
+                }
+                document.getElementById("missatge").innerHTML=resultat;
+            }
+
+        </script>
+
+
+    </div>    
+</body>
+</html>

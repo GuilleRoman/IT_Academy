@@ -1,0 +1,165 @@
+<!-- 
+    Fonaments de la programació
+    M3 Exercici 6
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M3 exercici 6</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+           <br>Fer un programa que demani a l’usuari quin dia i quin mes va néixer,<br> 
+           amb aquesta informació el programa mostra per pantalla, de quin signe del zodíac és.
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+
+        <!-- paràgraf on mostrarem el resultat de les operacions-->
+        <p id="missatge">El teu signe es ......</p> 
+        
+        <script>
+
+            var text;
+        
+             // recollim els digits i l'operador via prompt
+            var dia=Number(prompt("Dia de neixement: "));
+            var mes=Number(prompt("Mes de neixement: "));
+            
+
+            // Determinem si hem introduit valors numèrics
+             if(isNaN(dia) || isNaN(mes) ){
+                document.getElementById("missatge").innerHTML="Has introduït un valor no numèric";
+            
+            // Determinem el signe del zodíac 
+            }else{                
+                switch (mes) {
+                    case 1:
+                        if(dia>=21){
+                            text="Acuari";
+                        }else{
+                            text="Capricorni";    
+                        };
+                        break;
+                    case 2:
+                        if(dia>=19){
+                            text="Peixos";
+                        }else{
+                            text="Acuari";    
+                        }; 
+                        break;
+                    case 3:
+                        if(dia>=21){
+                            text="Àries";
+                        }else{
+                            text="Peixos";    
+                        };
+                        break;
+                    case 4:
+                        if(dia>=21){
+                            text="Taure";
+                        }else{
+                            text="Àries";    
+                        };
+                        break;
+                    case 5:
+                        if(dia>=22){
+                            text="Bessons";
+                        }else{
+                            text="Taure";    
+                        };
+                        break;
+                    case 6:
+                        if(dia>=22){
+                            text="Cranc";
+                        }else{
+                            text="Bessons";    
+                        };
+                        break;
+                    case 7:
+                        if(dia>=23){
+                            text="Lleó";
+                        }else{
+                            text="Cranc";    
+                        };
+                        break;
+                    case 8:
+                        if(dia>=24){
+                            text="Verge";
+                        }else{
+                            text="Lleó";    
+                        };
+                        break;
+                    case 9:
+                        if(dia>=24){
+                            text="Balança";
+                        }else{
+                            text="Verge";    
+                        };
+                        break;
+                    case 10:
+                        if(dia>=24){
+                            text="Escorpí";
+                        }else{
+                            text="Balança";    
+                        };
+                        break;
+                    case 11:
+                        if(dia>=23){
+                            text="Sagitari";
+                        }else{
+                            text="Escorpí";    
+                        };
+                        break;
+                    case 12:
+                        if(dia>=22){
+                            text="Capricorni";
+                        }else{
+                            text="Sagitari";    
+                        };
+                        break;
+                    default:
+                        text="Has introduit un mes no vàlid !!!"
+                }
+                text="El teu signe del zodíac és "+text;
+                document.getElementById("missatge").innerHTML=text;
+            }
+
+        </script>
+
+
+    </div>    
+</body>
+</html>

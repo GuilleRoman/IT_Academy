@@ -1,0 +1,103 @@
+<!-- 
+    Fonaments de la programació
+    M3 Exercici 3
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M3 exercici 3</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+           Una escola d’idiomes concedeix beques a futurs estudiants si compleixen una sèrie de requisits.<br>
+           Se’ls assigna una beca si:<br>            l’alumne és major d’edat i si té un títol universitari, o si l’alumne està a l’atur. <br>           El programa demana les tres dades per pantalla i el programa diu si l’alumne té o no la beca.<br> 
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        <h3>CONSULTA REQUISITS PER ESTAR BECAT </h3>
+
+        <label>Edat </label>
+        <input type="number" id="edat" size="6">
+        <br><br>
+        
+        <label>
+            <input type="checkbox" id="titolUniversitari" value="universitari">
+            Disposa de títol universitari
+        </label>        
+        <br><br>
+
+        <label>
+            <input type="checkbox" id="atur" value="atur">
+            Està a l'atur ?
+        </label>
+        <br><br><br>
+
+        <button id="consultaBecat" onclick="consultaBeca()">Consultar si estas becat</button>
+
+        <h4>Resultat de la consulta: </h4>
+        <p id="resultatConsulta">Consulta sense resultats </p>
+    </div>    
+        
+    <script>
+        function consultaBeca(){
+         // recollim edat i si tenen títol universitari i si està a l'atur.   
+         var edat=document.getElementById("edat").value;
+         var titolUniveristari;
+         var atur;
+
+         if(document.getElementById('titolUniversitari').checked){
+              titolUniversitari=true;
+         } else {
+              titolUniversitari=false;
+         } 
+
+         if(document.getElementById("atur").checked){
+            atur=true;
+         } else {
+            atur=false;
+         }
+
+         // Resolem si té dret a una beca
+         if((edat>=18 && titolUniversitari) || atur){
+            document.getElementById("resultatConsulta").innerHTML="Compleixes els requisits per demanar una Beca";
+         } else {
+            document.getElementById("resultatConsulta").innerHTML="No compleixes els requisits per demanar una Beca"; 
+         }
+        }
+
+
+    </script>
+</body>
+</html>
