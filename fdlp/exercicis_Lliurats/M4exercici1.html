@@ -1,0 +1,107 @@
+<!-- 
+    Fonaments de la programació
+    M4 Exercici 1
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M4 exercici 1</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Fer un programa amb una caixa de text i un botó.<br>
+             L’usuari introdueix el nombre de paraules que vol introduir en el camp de text,<br>
+             al fer clic en el botó apareixen tants “prompts” com el nombre de paraules que<br>
+             ha dit l’usuari que volia introduir. Les paraules es guarden en un array i un cop <br>
+             han sigut totes introduïdes, es mostren per pantalla.
+
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        <label>Nombre de paraules: </label>
+        <input type="text" id="caixaText">
+        
+        <input type="button" value="Demanar paraules" onclick="demanarParaules()">
+        <br><br>
+
+        <label>Resultat: </label><p id="resultat"></p>
+        
+        <script>
+
+            function demanarParaules(){
+               
+                //Defineixo l'array que contindrà les paraules introduides.
+                var paraules=[];
+                var paraula;
+
+                // Converteixo a numèric el valor de la caixa de text.
+                var nombreParaules=parseInt(document.getElementById("caixaText").value);
+                console.log("elements: "+nombreParaules);
+
+                // Determinem si hem introduït un valor numèric a la caixa de text
+                if(isNaN(nombreParaules )){
+                
+                    //document.getElementById("resultat").innerHTML="Has introduït un valor no numèric";
+                    alert("Has introduit un valor no numèric !!!")
+
+                // Demanem les paraules per mostrar-les
+                } else {  
+                    //Recollim les paraules i les inserim a l'Array 
+                                
+                    for(let i=0; i<nombreParaules;i++){
+
+                        paraula=prompt("Introdueix la paraula numero "+(i+1));
+
+                        if(paraula==""){
+                            paraules.push("buit");
+                        } else {
+                            paraules.push(paraula);
+                        }
+                    }
+
+                    // Mostrem les paraules introduides 
+                    document.getElementById("resultat").innerHTML=paraules;
+                    console.log(paraules);  
+
+                
+                } 
+            }
+
+        </script>
+            
+
+    </div>    
+</body>
+</html>

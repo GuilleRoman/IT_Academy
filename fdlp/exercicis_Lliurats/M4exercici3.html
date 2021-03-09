@@ -1,0 +1,92 @@
+<!-- 
+    Fonaments de la programació
+    M4 Exercici 3
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M4 exercici 3</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Aquesta línia de codi: Math.ceil((Math.random() * 10)); <br>
+
+            Retorna un número entre l’1 i el 10 de forma aleatòria.<br>
+
+            L’exercici consisteix a què l’usuari ha d'endevinar el número escollit aleatòriament pel programa.
+
+            El programa, mitjançant “prompts”, anirà demanant números a l’usuari fins que aquest encerti el número escollit pel programa.
+
+            Un cop l’usuari hagi endevinat el número, es mostrarà per pantalla el següent missatge: “Enhorabona, el número era X”
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        
+        <p id="missatge"></p><br>
+        <p id="intents"></p>
+
+        <script>
+            // Generem el valor aleatori del [1..10], 
+            let valorGenerat=Math.ceil((Math.random() * 10)); 
+            console.log(valorGenerat);
+
+            // Inicialitzem variables.
+            let valorTriat=0;
+            let nombreIntents=0;
+            let trobat=false;
+
+            //Bucle per trobar el nombre generat.
+            while (valorTriat!=valorGenerat || nombreIntents<6) {
+                valorTriat=prompt("Introdueix el nombre del 1 al 10");    
+                if(valorTriat!=valorGenerat){
+                    nombreIntents++;
+                    trobat=false;
+                } else{
+                    trobat=true;
+                }
+            }
+
+            // Mostrem el valor generat i endevinat i el nombre de intents realitzats.
+            if(trobat){
+                document.getElementById("missatge").innerHTML="Enhorabona el número es el "+valorGenerat;
+                document.getElementById("intents").innerHTML="Has fet servir "+nombreIntents+" intents";
+            } else {
+                document.getElementById("missatge").innerHTML="Has fet servir massa intents el número era el "+valorGenerat;
+            }    
+
+        </script>
+    </div>    
+</body>
+</html>

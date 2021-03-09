@@ -1,0 +1,127 @@
+<!-- 
+    Fonaments de la programació
+    M4 Exercici 2
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M4 exercici 2</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Modificar l'exercici3 del M3.<br>
+            En aquest programa, l’usuari introdueix una caixa de text amb el nombre d’alumnes a matricular <br>
+            i fa clic en un botó, llavors apareixen “prompts” per demanar el nom, l’edat, si l’alumne té títol universitari i si l’alumne està a l’atur.<br>
+            Aquestes dades es demanen tants cops com nombre d’alumnes hagi introduït l’usuari a la caixa de text.<br>
+
+            Els requisits per obtenir la beca són: que l’alumne sigui major d’edat i <br>
+            estigui en disposició d’un títol universitari, o que l’alumne estigui a l’atur. Si es compleixen les condicions, l’escola li ofereix la beca.<br>
+
+            Un cop l’usuari hagi acabat d’introduir les dades, el programa ha de mostrar per pantalla el nom de tots els alumnes que tenen beca.<br>
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        <label>Alumnes a matricular : </label>
+        <input type="text" id="caixaText">
+        
+        <input type="button" value="Matricular " onclick="demanarAlumnes()">
+        <br><br>
+
+        <label>Alumnes becats : </label><p id="resultat"></p>
+        
+        <script>
+
+             /** ------------------------------------------------------------
+            **  funció  demanarAlumnes  
+            --------------------------------------------------------------**/
+            function demanarAlumnes(){               
+                //Defineixo l'array que contindrà les paraules introduides.
+                let alumnesBecats=[];
+                let alumne;
+
+                // Converteixo a numèric el valor de la caixa de text.
+                var nombreAlumnes=parseInt(document.getElementById("caixaText").value);
+                console.log("elements: "+nombreAlumnes);
+
+                // Determinem si hem introduït un valor numèric a la caixa de text
+                if(isNaN(nombreAlumnes )){                
+                    alert("Has introduit un valor no numèric !!!");
+
+                // Demanem les paraules per mostrar-les
+                } else {  
+                    //Recollim els paràmetres dels alumnes dels alumnes  
+                    var nom,edat,titol,atur;
+                                 
+                    for(let i=0; i<nombreAlumnes;i++){
+
+                        // Demano les dades de l'alumne.
+                        nom=prompt("Nom del l'alumne núm "+(i+1));
+                        edat=parseInt(prompt("Edat :"));
+                        titol=prompt("Té títol universitari? (S/N):").toUpperCase();
+                        atur=prompt("Està a l'atur? (S/N) :").toUpperCase();
+                        console.log(titol);
+                        //comprobarem si esta becat, si becat l'afegirem el nom de l'array.
+                        if(consultaBeca(edat,titol,atur)){
+                            alumnesBecats.push(nom);
+                        }                        
+                    }
+
+                    // Mostrem les paraules introduides 
+                    let missatge=alumnesBecats.length+" persones amb dret a sol·licitar beca : "+alumnesBecats;
+                    document.getElementById("resultat").innerHTML=missatge;
+                    console.log(alumnesBecats);                 
+                } 
+            }
+            
+            /** 
+            **  funció  consultarBeca --------------------------------------------- 
+            **  @ param     edat    integer
+            **  @ param     titol   char,String
+            **  @ param     atur    char,String
+            **  @ return    becat   boolean  true becat, false no becat.
+            ---------------------------------------------------------------------**/
+            function consultaBeca(edat,titol,atur){
+                console.log(edat+titol+atur);
+                // Resolem si té dret a una beca
+                if((edat>=18 && titol=="S") || atur=="S"){                    
+                    return true;
+                } else {
+                    return false;                    
+                }
+            }
+        </script>
+    </div>    
+</body>
+</html>

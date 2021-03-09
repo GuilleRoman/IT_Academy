@@ -72,29 +72,29 @@
         
     <script>
         function consultaBeca(){
-         // recollim edat i si tenen títol universitari i si està a l'atur.   
-         var edat=document.getElementById("edat").value;
-         var titolUniveristari;
-         var atur;
+            // recollim edat i si tenen títol universitari i si està a l'atur.   
+            var edat=document.getElementById("edat").value;
+            var titolUniveristari;
+            var atur;
 
-         if(document.getElementById('titolUniversitari').checked){
-              titolUniversitari=true;
-         } else {
-              titolUniversitari=false;
-         } 
+            if(document.getElementById('titolUniversitari').checked){
+                titolUniversitari=true;
+            } else {
+                titolUniversitari=false;
+            } 
 
-         if(document.getElementById("atur").checked){
-            atur=true;
-         } else {
-            atur=false;
-         }
+            if(document.getElementById("atur").checked){
+                atur=true;
+            } else {
+                atur=false;
+            }
 
-         // Resolem si té dret a una beca
-         if((edat>=18 && titolUniversitari) || atur){
-            document.getElementById("resultatConsulta").innerHTML="Compleixes els requisits per demanar una Beca";
-         } else {
-            document.getElementById("resultatConsulta").innerHTML="No compleixes els requisits per demanar una Beca"; 
-         }
+            // Resolem si té dret a una beca
+            if((edat>=18 && titolUniversitari) || atur){
+                document.getElementById("resultatConsulta").innerHTML="Compleixes els requisits per demanar una Beca";
+            } else {
+                document.getElementById("resultatConsulta").innerHTML="No compleixes els requisits per demanar una Beca"; 
+            }
         }
 
 
