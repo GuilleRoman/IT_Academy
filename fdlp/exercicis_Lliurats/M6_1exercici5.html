@@ -1,0 +1,105 @@
+<!-- 
+    Fonaments de la programació
+    M6_1 Exercici 5
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.1 exercici 5</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Taula de multiplicar.<br>
+            L’usuari introduirà un número per pantalla i el programa li mostrarà la taula de multiplicar d’aquell número.
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        <button id="calcularTaula" onclick="calcularTaula()">Generar taula de multiplicar</button>
+        <button id="neteja" onclick="netejar()">Netejar taula</button><br><br>
+
+        <label id="label">Taula de multiplicar del </label><br><br>    
+        <textarea id="txtTaula" rows="11" cols="25"></textarea>
+         
+        <script>
+            /** --------------------------------------------------------------------
+            ** Calcula taula de multiplicar del número indicat via prompt
+            ** ------------------------------------------------------------------**/
+            function calcularTaula(){
+                
+                // Definició de variables.
+                let valor;
+                let taula="";
+
+                //Demanem el nombre per confeccionar la taula de multiplicar.
+                do{
+                    valor=parseInt(prompt("Número a fer la taula: "));
+                }while(!esNumeric(valor));
+                
+                //Confeccionem la taula de multiplicar.
+                for(let i=0;i<=10;i++){
+                    taula=taula+valor+" x "+i+" = "+valor*i+"\n";
+                    console.log(taula);
+                }
+
+                //Mostrem la taula al textArea.
+                document.getElementById("label").innerHTML="Taula de multiplicar del "+valor;
+                document.getElementById("txtTaula").innerHTML=taula;
+            }
+
+            /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            ** @ param  valor   Number
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                if(isNaN(valor)){
+                    return false;
+                } else {
+                    return true;
+                }   
+            }
+
+            /** -----------------------------------------------------------------------
+            *   Neteja el textArea de la taula de multiplicar.
+            *** ---------------------------------------------------------------------**/
+            function netejar(){
+                document.getElementById("txtTaula").innerHTML="";
+                document.getElementById("label").innerHTML="";
+            }
+
+        </script>
+
+    </div>    
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!-- 
+    Fonaments de la programació
+    M6.1 Exercici 4
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.1 exercici 4</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Mostra per pantalla els nombres parells compresos entre el 100 i el 0 en ordre descendent.
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        
+        <button id="calcular" onclick="calcular()">Calcular parells/senars del 100 al 0</button>
+        <button id="netejar" onclick="netejar()">Netejar caixes de text</button><br><br>
+
+        <label>Parells del 100 al 0 ordre descendent</label><br>    
+        <textarea id="txtParells" rows="3" cols="51"></textarea>
+
+        <br><br>
+        <label>Senars del 100 al 0 ordre descendent</label><br>    
+        <textarea id="txtSenars" rows="3" cols="50"></textarea>  
+        
+        <script>
+
+            /** -----------------------------------------------------------------------
+            * Determina si un numero és parell o senar.
+            *** ---------------------------------------------------------------------**/
+            function parell(numero){
+                if(numero%2==0){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            /** -----------------------------------------------------------------------
+            *   Calcula parell/senars contingut a la sèrie 100-0 order desc.
+            *** ---------------------------------------------------------------------**/
+            function calcular(){
+
+                //Definició de variables.
+                let parells=[];
+                let senars=[];
+
+                // Recorrem el rang de numeros i determinem els parells i senars.
+                for (let i=100;i>=0;i--){
+                    if(parell(i)){
+                        parells.push(i);
+                    }else{
+                        senars.push(i);
+                    }
+                }
+
+                //Mostrem en pantalla els nombres parells i senars.
+                document.getElementById("txtParells").innerHTML=parells;
+                document.getElementById("txtSenars").innerHTML=senars;
+
+            }
+
+            function netejar(){
+                document.getElementById("txtParells").innerHTML="";
+                document.getElementById("txtSenars").innerHTML=""; 
+            }
+
+
+
+        </script>
+    </div>    
+</body>
+</html>

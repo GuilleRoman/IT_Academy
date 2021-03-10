@@ -1,0 +1,108 @@
+<!-- 
+    Fonaments de la programació
+    M6.1 Exercici 2
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.1 exercici 2</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            L’usuari ha d'introduir un número en una caixa de text i el programa ha de mostrar per pantalla si el número és parell o imparell.
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        
+        <label>Número :</label><input type="text" id="numero">
+               
+        <button id="parellSenar" onclick="calcularParells()">Parell o senar ? </button>
+        <br><br>
+        <p id="resultat"></p>
+      
+        <script>
+            //esNumeric ---------------------------------------------------------------------
+            function esNumeric(valor){
+                if(isNaN(valor)){
+                    return false;
+                } else {
+                    return true;
+                }   
+            }
+
+
+           
+
+            function calcularParells(){
+                // Declaració de variables
+                let missatgeParells="";
+
+                //Recuperem el valor de les notes i les convertim a numèric
+                let numero1=Number(document.getElementById("numero").value);
+                
+                
+                //Determinem si els valors es numèric.
+                if(!esNumeric(numero1)){
+                
+                    alert("El número no és un valor numèric");
+                    document.getElementById("resultat").innerHTML="";                   
+                    document.getElementById("numero").select();
+                
+                }else{  // Calculem si el número és parell o senar.
+                
+                    if(parell(numero1)){
+                        missatgeParells="El número "+numero1+" és parell";
+                    } else {
+                        missatgeParells="El número "+numero1+" és senar";
+                    }
+
+                    document.getElementById("resultat").innerHTML=missatgeParells;
+                }
+            }
+
+
+            function parell(numero){
+                if(numero%2==0){
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+
+        </script>  
+    </div>    
+</body>
+</html>
