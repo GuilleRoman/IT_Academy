@@ -1,0 +1,100 @@
+<!-- 
+    Fonaments de la programació
+    M6.1 Exercici 1
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.1 exercici 1</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Crea un programa que tingui dues caixes de text on l’usuari ha d'introduir dues notes<br>
+            i el programa ha de mostrar per pantalla la mitja de les dues notes.    
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        
+        <label>Primera nota :</label><input type="text" id="nota1">
+        <br><br>
+        <label>Segona nota  : </label><input type="text" id="nota2">
+        <br><br>
+        <button id="mitjaAritmetica" onclick="calcularMitja()">Calcular la mitja </button>
+        <br><br>
+        <p id="resultat"></p>
+   
+      
+        <script>
+            
+            // calcularMitja ----------------------------------------------------------------
+            function calcularMitja(){
+                
+                //Recuperem el valor de les notes i les convertim a numèric
+                let nota1=Number(document.getElementById("nota1").value);
+                let nota2=Number(document.getElementById("nota2").value);
+
+                //Determinem si els valors de les notes son numèrics.
+                if(isNaN(nota1)){
+                
+                    alert("La primera nota no és un valor numèric");
+                    document.getElementById("resultat").innerHTML="";                   
+                    document.getElementById("nota1").select();
+                
+                }else if(isNaN(nota2)){
+                
+                    alert("La segona nota no és un valor numèric");
+                    document.getElementById("resultat").innerHTML="";
+                    document.getElementById("nota2").select();
+
+                }else{  // Calculem la mitjana aritmètica i la mostrem.
+                
+                    let mitjana=(nota1+nota2)/2;
+                    let missatge="La mitjana de les dues notes és : "+mitjana;
+                    document.getElementById("resultat").innerHTML=missatge;
+                }
+
+            }
+
+
+
+        </script>    
+
+
+
+
+
+    </div>    
+</body>
+</html>

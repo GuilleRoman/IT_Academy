@@ -1,0 +1,123 @@
+<!-- 
+    Fonaments de la programació
+    M4 Exercici 5
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M4 exercici 5</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Modificar el programa de les beques.<br>
+            Ara el programa només ha de poder donar 5 beques.<br>
+            El programa anirà demanant les dades dels alumnes fins que es donin aquestes 5 beques.<br>
+            Un cop el programa hagi assignat les 5 beques s’ha de mostrar per pantalla els noms dels 5 alumnes que tenen beca.
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+                
+        <input type="button" value="Inserir dades dels alumnes " onclick="demanarAlumnes()">
+        <br><br>
+        
+        <p id="resultat">Becats</p>        
+        <p id="resultatNegatiu">No becats</p>
+
+        <script>
+
+             /** ------------------------------------------------------------
+            **  funció  demanarAlumnes  
+            --------------------------------------------------------------**/
+            function demanarAlumnes(){               
+                //Defineixo l' array que contindrà les paraules introduïdes.
+                let alumnesBecats=[];
+                let alumnesNoBecats=[];
+                let alumne;
+               
+                //Declaració de  variables  
+                let nom,edat,titol,atur;
+                let nombreBeques=0;
+
+                while(nombreBeques<5){
+
+                    // Demano les dades de l'alumne.
+                    nom=prompt("Nom del l'alumne núm ");
+                    edat=parseInt(prompt("Edat :"));
+                    titol=prompt("Té títol universitari? (S/N):").toUpperCase();
+                    atur=prompt("Està a l'atur? (S/N) :").toUpperCase();
+                    
+                    //comprovarem si està becat, si becat l'afegirem el nom de l' array.
+                    if(consultaBeca(edat,titol,atur)){
+                        alumnesBecats.push(nom);
+                        nombreBeques++;
+                    } else {
+                        alumnesNoBecats.push(nom);
+                    }
+
+
+                }
+
+                // Mostrem els alumnes becats 
+                let missatge="Persones amb dret a sol·licitar beca : "+alumnesBecats;
+                document.getElementById("resultat").innerHTML=missatge;
+
+                // Mostrem els alumnes no becats.
+                missatge="Persones que no tenen dret a sol·licitar beca : "+alumnesNoBecats;
+                document.getElementById("resultatNegatiu").innerHTML=missatge;
+                console.log(alumnesNoBecats);  
+
+                 
+            }
+            
+            /** 
+            **  funció  consultarBeca --------------------------------------------- 
+            **  @ param     edat    integer
+            **  @ param     titol   char,String
+            **  @ param     atur    char,String
+            **  @ return    becat   boolean  true becat, false no becat.
+            ---------------------------------------------------------------------**/
+            function consultaBeca(edat,titol,atur){
+                console.log(edat+titol+atur);
+                // Resolem si té dret a una beca
+                if((edat>=18 && titol=="S") || atur=="S"){                    
+                    return true;
+                } else {
+                    return false;                    
+                }
+            }
+        </script>
+    </div>    
+</body>
+</html>

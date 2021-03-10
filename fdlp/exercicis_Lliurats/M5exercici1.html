@@ -1,0 +1,166 @@
+<!-- 
+    Fonaments de la programació
+    M5 Exercici 1
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M5 exercici 1   Funcions</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Calculadora arcaica. <br>
+            El programa demana a l’usuari mitjançant prompts l’operació que desitja realitzar i els números amb els quals vol operar.<br>
+            Cada operació (suma, resta, multiplicació, divisió i mòdul) estarà programada en una funció diferent.
+        </h4>
+    </header>
+    <hr>
+    <div class="contenidor">
+        
+        <!-- Controls suma  -->
+        <label>SUMA
+        <p id="suma"></p></label>
+        
+        <!-- Controls resta  -->
+        <label>RESTA</label>
+        <p id="resta"></p>
+        
+        <!-- Controls producte  -->
+        <label>PRODUCTE</label>
+        <p id="producte"></p>
+        
+        <!-- Controls divisió  -->
+        <label>DIVISIÓ</label>
+        <p id="divisio"></p>
+
+        <!-- Controls mòdul  -->
+        <label>MODUL</label>
+        <p id="modul"></p>
+
+        <button type="button" id="operadors"  onclick="demanarOperadors()">Introduir els números</button>
+       
+        <script>
+           
+           // Demanar números --------------------------------------------------------------------- 
+           function demanarOperadors(){
+
+               //Declarem les variables 
+               var operador1,operador2;
+
+               // demanem el primer número
+               do {
+                   operador1=parseInt(prompt("Primer número: "));                   
+               } while(isNaN(operador1)); 
+
+               // demanem el segon número
+               do {
+                 operador2=parseInt(prompt("segon número: "));                   
+               } while(isNaN(operador2)); 
+
+               // Realitzem les operacions sobre els números introduïts. 
+               suma(operador1,operador2);
+               resta(operador1,operador2);
+               producte(operador1,operador2);
+               divisio(operador1,operador2);
+               modul(operador1,operador2);
+
+           }
+
+           // suma ------------------------------------------------------------------------
+           function suma(operador1,operador2){
+
+                let total=operador1+operador2;
+                let missatge= operador1+" + "+operador2+" = "+total;
+                document.getElementById("suma").innerHTML=missatge;
+
+           }
+
+           // resta ------------------------------------------------------------------------
+           function resta(operador1,operador2){
+
+                let total=operador1-operador2;
+                let missatge= operador1+" - "+operador2+" = "+total;
+                document.getElementById("resta").innerHTML=missatge;
+
+           }
+
+           // producte ------------------------------------------------------------------------
+           function producte(operador1,operador2){
+
+                let total=operador1*operador2;
+                let missatge= operador1+" x "+operador2+" = "+total;
+                document.getElementById("producte").innerHTML=missatge;
+
+            }
+
+            // divisio ------------------------------------------------------------------------
+           function divisio(operador1,operador2){
+                let missatge;
+
+                if(operador2==0){
+                    missatge="Divisió per zero (indeterminació) ";    
+                    document.getElementById("divisio").innerHTML=missatge;
+                }else{
+                    let total=operador1/operador2;
+                    missatge= operador1+" / "+operador2+" = "+total;
+                    document.getElementById("divisio").innerHTML=missatge;
+                }
+            }
+
+            // mòdul  ------------------------------------------------------------------------
+           function modul(operador1,operador2){
+                let missatge;
+
+                if(operador2==0){
+                    missatge="Divisió per zero (indeterminació) ";    
+                    document.getElementById("modul").innerHTML=missatge;
+                }else{
+                    let total=operador1%operador2;
+                    missatge= operador1+" % "+operador2+" = "+total;
+                    document.getElementById("modul").innerHTML=missatge;
+                } 
+
+            }
+
+
+
+
+
+
+
+
+        </script>
+    </div>    
+</body>
+</html>
