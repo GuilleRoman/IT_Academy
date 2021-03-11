@@ -49,52 +49,54 @@
     <div class="contenidor">
         
         <!-- Controls suma  -->
-        <label>SUMA
-        <p id="suma"></p></label>
+        <label>Resultat: </label>
+        <p id="resultat"></p>
         
-        <!-- Controls resta  -->
-        <label>RESTA</label>
-        <p id="resta"></p>
         
-        <!-- Controls producte  -->
-        <label>PRODUCTE</label>
-        <p id="producte"></p>
-        
-        <!-- Controls divisió  -->
-        <label>DIVISIÓ</label>
-        <p id="divisio"></p>
-
-        <!-- Controls mòdul  -->
-        <label>MODUL</label>
-        <p id="modul"></p>
-
         <button type="button" id="operadors"  onclick="demanarOperadors()">Introduir els números</button>
        
         <script>
            
-           // Demanar números --------------------------------------------------------------------- 
+           // Demanar números i operació a realitzar--------------------------------------- 
            function demanarOperadors(){
 
                //Declarem les variables 
-               var operador1,operador2;
+               let operador1,operador2,operacio;
 
                // demanem el primer número
                do {
                    operador1=parseInt(prompt("Primer número: "));                   
-               } while(isNaN(operador1)); 
+               } while(isNaN(operador1));
+               
+               //Demanem l'operació
+               operacio=prompt("Operació a realitzar");
 
                // demanem el segon número
                do {
                  operador2=parseInt(prompt("segon número: "));                   
-               } while(isNaN(operador2)); 
+               } while(isNaN(operador2));                
 
                // Realitzem les operacions sobre els números introduïts. 
-               suma(operador1,operador2);
-               resta(operador1,operador2);
-               producte(operador1,operador2);
-               divisio(operador1,operador2);
-               modul(operador1,operador2);
 
+               switch(operacio){
+                    case "+":
+                            suma(operador1,operador2);
+                            break;
+                    case "-":
+                            resta(operador1,operador2);
+                            break;
+                    case "*":
+                            producte(operador1,operador2);
+                            break;
+                    case "/":
+                            divisio(operador1,operador2)
+                            break;;
+                    case "%":
+                            modul(operador1,operador2);
+                            break;
+                    default:
+                            alert("La operació especificada no existeix");
+               }     
            }
 
            // suma ------------------------------------------------------------------------
@@ -102,7 +104,7 @@
 
                 let total=operador1+operador2;
                 let missatge= operador1+" + "+operador2+" = "+total;
-                document.getElementById("suma").innerHTML=missatge;
+                document.getElementById("resultat").innerHTML=missatge;
 
            }
 
@@ -111,7 +113,7 @@
 
                 let total=operador1-operador2;
                 let missatge= operador1+" - "+operador2+" = "+total;
-                document.getElementById("resta").innerHTML=missatge;
+                document.getElementById("resultat").innerHTML=missatge;
 
            }
 
@@ -120,7 +122,7 @@
 
                 let total=operador1*operador2;
                 let missatge= operador1+" x "+operador2+" = "+total;
-                document.getElementById("producte").innerHTML=missatge;
+                document.getElementById("resultat").innerHTML=missatge;
 
             }
 
@@ -130,11 +132,11 @@
 
                 if(operador2==0){
                     missatge="Divisió per zero (indeterminació) ";    
-                    document.getElementById("divisio").innerHTML=missatge;
+                    document.getElementById("resultat").innerHTML=missatge;
                 }else{
                     let total=operador1/operador2;
                     missatge= operador1+" / "+operador2+" = "+total;
-                    document.getElementById("divisio").innerHTML=missatge;
+                    document.getElementById("resultat").innerHTML=missatge;
                 }
             }
 
@@ -144,11 +146,11 @@
 
                 if(operador2==0){
                     missatge="Divisió per zero (indeterminació) ";    
-                    document.getElementById("modul").innerHTML=missatge;
+                    document.getElementById("resultat").innerHTML=missatge;
                 }else{
                     let total=operador1%operador2;
                     missatge= operador1+" % "+operador2+" = "+total;
-                    document.getElementById("modul").innerHTML=missatge;
+                    document.getElementById("resultat").innerHTML=missatge;
                 } 
 
             }

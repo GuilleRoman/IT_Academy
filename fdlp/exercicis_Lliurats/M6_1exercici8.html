@@ -1,0 +1,133 @@
+<!-- 
+    Fonaments de la programació
+    M6_1 Exercici 8
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+
+        .boto{
+            padding: 10px;
+            color: blue;
+            font-weight: bold;
+            background-color: darkgrey;        }
+
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.1 exercici 8</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Fes un programa que mostri el següent per pantalla:<br>
+
+            * * *<br>
+
+            * *<br>
+
+            *<br>           
+
+            El nombre de línies formades per “*” vindrà donat per un número que l’usuari introduirà en una caixa de text.<br>
+ 
+            Condició: En tot el codi del programa només hi pot haver un *<br>
+        </h4>
+    </header>
+    <hr>
+        <button class="boto" id="dibuixar" onclick="dibuixarInreves()">Demanar línies a dibuixar</button>
+        <br><br>        
+        <p id="info"></p>
+        <br><br>
+        <textarea id="panell" rows="30" cols="50"></textarea>
+       
+        <script>
+            
+            // demana un integer via prompt ----------------------------------------------
+            function demanarInteger(missatge){
+                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+            /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            ** @ param  valor   Number
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+
+            function dibuixar(){
+                
+            }
+
+            
+            // Dibuixa els * de forma incremental. ---------------------------------------
+            function dibuixarInreves(){
+                //Definició de variables
+                let numAsteric=demanarInteger("Entrar el número de *");
+                let dibuix="";
+                console.log(numAsteric);
+
+                //dibuixem l'arbre d' *
+                for(let i=numAsteric;i>0;i--){
+                    console.log("var i :"+i);
+                    for(let x=i;x>0;x--){
+                        dibuix=dibuix+"*";
+                        console.log(dibuix);
+                    }
+                    
+                    dibuix=dibuix+"\n";                    
+                }
+
+                document.getElementById("info").innerHTML="Número de línies "+numAsteric;
+                document.getElementById("panell").innerHTML=dibuix;
+            }
+
+
+
+        </script>
+
+    </div>    
+</body>
+</html>
