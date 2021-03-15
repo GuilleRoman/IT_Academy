@@ -61,13 +61,29 @@
         </h4>
     </header>
     <hr>
-        <button class="boto" id="dibuixar" onclick="dibuixarInreves()">Demanar línies a dibuixar</button>
+        <button class="boto" id="dibuixar" onclick="inici()">Demanar línies a dibuixar</button>
         <br><br>        
         <p id="info"></p>
         <br><br>
         <textarea id="panell" rows="30" cols="50"></textarea>
        
         <script>
+            
+            function inici(){
+                 //Demanem el nombre de asteriscs 
+                let numAsterisc=demanarInteger("Entrar el número de *");
+                
+                // Fem el dibuix de inici
+                let figuraDret=dibuixarDret(numAsterisc);
+                
+                // Fem el dibuix a l'inreves
+                let figuraInreves=dibuixarInreves(numAsterisc);
+
+                //Mostrem el dibuix al textArea.
+                document.getElementById("info").innerHTML="Número de línies "+numAsterisc;
+                document.getElementById("panell").innerHTML=figuraDret+figuraInreves;
+
+            }
             
             // demana un integer via prompt ----------------------------------------------
             function demanarInteger(missatge){
@@ -101,16 +117,27 @@
                 
             }
 
+            // Dibuixa els * de forma incremental. ---------------------------------------
+            function dibuixarDret(numLinies){
+                //Definició de variables
+                let dibuix="";
+                
+                for(let i=0;i<numLinies;i++){
+                    for(let x=0;x<=i;x++){
+                        dibuix=dibuix+"*";
+                        console.log(dibuix);
+                    }                    
+                    dibuix=dibuix+"\n";                    
+                }                
+                return dibuix;
+            }
             
             // Dibuixa els * de forma incremental. ---------------------------------------
-            function dibuixarInreves(){
-                //Definició de variables
-                let numAsteric=demanarInteger("Entrar el número de *");
+            function dibuixarInreves(numLinies){
                 let dibuix="";
-                console.log(numAsteric);
-
+                
                 //dibuixem l'arbre d' *
-                for(let i=numAsteric;i>0;i--){
+                for(let i=numLinies;i>0;i--){
                     console.log("var i :"+i);
                     for(let x=i;x>0;x--){
                         dibuix=dibuix+"*";
@@ -120,8 +147,7 @@
                     dibuix=dibuix+"\n";                    
                 }
 
-                document.getElementById("info").innerHTML="Número de línies "+numAsteric;
-                document.getElementById("panell").innerHTML=dibuix;
+                return dibuix;
             }
 
 
