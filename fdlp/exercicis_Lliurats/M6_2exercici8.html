@@ -1,0 +1,84 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 8
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+        .boto{
+            padding: 10px;
+            color: blue;
+            font-weight: bold;
+            background-color: darkgrey;        
+        }
+
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 8</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Crea un programa on l’usuari introdueixi una temperatura en ºC i es mostri per pantalla la conversió en ºFahrenheit
+        </h4>
+    </header>
+    <hr>
+        <H4 id="titol">Graus celsius a Fahrenheit </H4>
+        <input type="number" id="celsius" size="6" maxlength="6"> 
+        <br><br>        
+        <button class="boto" id="Convertir" onclick="main()"> Convertir  </button> 
+        
+        
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                //Recupero el valor de la caixa de text                
+                let celsius=document.getElementById("celsius").value;
+                
+                // Determinem si és un any de traspàs
+                let fahren=toFahrenheit(celsius);
+
+                //Mostrem el missatge amb el resultat              
+                document.getElementById("titol").innerHTML=celsius+" graus Celsius son "+fahren+" graus Fahrenheit";                                                  
+            } 
+
+           // funció que passa de graus celsius a Fahrenheit --------------------- 
+           function toFahrenheit(celsius){
+                let fahrenheit=(celsius*1.8)+32;
+                return fahrenheit;
+           }
+        </script>    
+
+
+    </div>    
+</body>
+</html>

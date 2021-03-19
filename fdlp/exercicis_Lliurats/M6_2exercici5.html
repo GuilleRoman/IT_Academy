@@ -1,0 +1,127 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 5
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 5</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            L’usuari introdueix un nombre per pantalla i el programa imprimeix per pantalla si el nombre és primer o no<br>
+        </h4>
+    </header>
+    <hr>
+        <H4 id="titol"></H4><br>
+        <br><br>
+
+        <label class="labelGran">Número: </label>
+        <input type="text" id="numero" class="inputGran"
+         maxlength="6" size="6" onKeyPress="return nomesNumeros(event)">
+
+        <br><br>
+        <button class="button" id="Calcular" onclick="main()"> Calcular  </button> 
+        
+        <br><br>
+        <h1 id="resultat"></h1> 
+        <br><br>
+        <h1 id="resultat1"></h1>        
+        
+        
+        
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                //Recollim el valor de l'opció del menú
+                let numero=parseInt(document.getElementById("numero").value);               
+
+                // Esborrem el imput text
+                document.getElementById("numero").value="";
+
+                // Determinem si es primer mètode tradicional
+                let primo=primer(numero);
+                if(primo){
+                    document.getElementById("resultat").innerHTML="El número "+numero+" es primer";                    
+                }else{
+                    document.getElementById("resultat").innerHTML="El número "+numero+" no es primer";                    
+                }
+
+                // Determinem si es primer mètode Wilson
+                let primoW=primerWilson(numero);
+                console.log(primoW);
+                if(primoW){
+                    document.getElementById("resultat1").innerHTML="El número "+numero+" es primer  met. Wilson";                    
+                }else{
+                    document.getElementById("resultat1").innerHTML="El número "+numero+" no es primer    met. Wilson";                    
+                }
+
+            } 
+            
+            // Determina si un número és primer
+            //---------------------------------------------------------------------
+            function primer(numero){
+                let primo=true;
+
+                for(let i=2;i<numero;i++){
+                    if(numero % i==0){
+                        primo=false;
+                    }
+                }
+
+                return primo;
+            }
+
+            // Determina si un número és primer
+            // Teorema Wilson n es primer si (n-1)!+1 és multiple de n
+            //---------------------------------------------------------------------
+            function primerWilson(numero){
+                let primo=false;
+
+                let calcul=factorial(numero-1)+1;
+                if(calcul%numero==0){
+                    primo=true;
+                }
+
+                return primo;
+            }
+
+            // Calcula el factorial de un número
+            //-----------------------------------------------------------------
+            function factorial(numero){
+                if(numero==0){
+                    return 1;
+                }
+
+               return numero*factorial(numero-1);
+            }
+
+            
+             // funció només números en input ..................................
+            // onKeyPress="return nomesNumeros(event)" .........................
+           //-------------------------------------------------------------------
+            function nomesNumeros(e){
+                var key = window.Event ? e.which : e.keyCode;           
+                return (key >= 48 && key <= 57);            
+            }
+
+                
+        </script>    
+
+
+    </div>    
+</body>
+</html>

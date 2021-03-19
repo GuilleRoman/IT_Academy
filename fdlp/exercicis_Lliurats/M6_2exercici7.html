@@ -1,0 +1,98 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 7
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+        .boto{
+            padding: 10px;
+            color: blue;
+            font-weight: bold;
+            background-color: darkgrey;        
+        }
+
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 7</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Crea un programa on l’usuari introdueixi un any en una caixa de text i el programa digui si l’any és de traspàs o no.<br><br>
+
+            - any mod 400==0  <br><br>   - any mod 4==0  && any mod 100!=0
+        </h4>
+    </header>
+    <hr>
+        <H4 id="titol">ÉS any de traspàs? </H4>
+        <input type="number" id="any" size="6" maxlength="4"> 
+        <br><br>        
+        <button class="boto" id="iniciar" onclick="main()"> Comprovar  </button> 
+        
+        
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                //Recupero el valor de la caixa de text                
+                let any=document.getElementById("any").value;
+                
+                // Determinem si és un any de traspàs
+                let traspas=anyTraspas(any);
+
+                //Mostrem el missatge amb el resultat
+                if (traspas){
+                    document.getElementById("titol").innerHTML="L'any "+any+" és any de traspàs";                    
+                }else{
+                    document.getElementById("titol").innerHTML="L'any "+any+" no és any de traspàs";                    
+                }
+               
+            } 
+
+           // funció que calcula si un any és de traspàs ------------------------------- 
+           function anyTraspas(any){
+                let tr=false;
+
+                if(any%400==0){
+                    tr=true;
+                }else if((any%4==0) && (any%100!=0)){
+                    tr=true;
+                }
+
+                return tr;
+           }
+        </script>    
+
+
+    </div>    
+</body>
+</html>

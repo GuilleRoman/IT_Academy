@@ -1,0 +1,78 @@
+<!-- 
+    Fonaments de la programació
+    M6_3 Exercici 2
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.3 exercici 2</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            En aquest programa l’usuari ha d’introduir un string i el programa ha de mostrar l’string al revés
+           
+        </h4>
+    </header>
+    <hr>
+        <label class="labelGran">String</label>
+        <input id="delDret" size="25" maxlength="25" class="inputGran"></input><br><br>         
+        
+        <label class="labelGran">gnirtS </label>
+        <input id="delReves" size="25" maxlength="25" class="inputGran"></input>
+        <br><br>
+        <label class="labelGran error" id="missatges"></label>
+
+        <br><br>
+        <button class="button" id="iniciar" onclick="main()"> Voltar l'String  </button>        
+             
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                let cadena="";          // String amb la frase del dret.
+                let cadenaInreves="";  // String amb la frase a l'inreves. 
+
+                //Recuperem el valor de la cadena String
+                cadena=document.getElementById("delDret").value;
+                
+                // Voltem l'string inicial.
+                cadenaInreves=voltarCadena(cadena);
+                
+                //mostrem el resultat
+                document.getElementById("delReves").value=cadenaInreves;
+
+            } 
+            
+            // crea un string del reves al passat via param.--------------------------
+            function voltarCadena(cadena){
+                //Definició de variables.
+                let novaCadena="";    //contindrà la cadena voltada.
+                let i=cadena.length; // Calculem la longitud de la cadena.
+
+                for(let i=cadena.length;i>=0;i--){
+                    novaCadena+=cadena.charAt(i);
+                    console.log(novaCadena);
+                }              
+                
+                return novaCadena;
+            }
+            
+                
+        </script>    
+
+
+    </div>    
+</body>
+</html>

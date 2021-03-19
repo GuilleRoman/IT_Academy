@@ -1,0 +1,164 @@
+<!-- 
+    Fonaments de la programació
+    M6_3 Exercici 8
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.3 exercici 8</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            L’usuari introdueix un any i el programa diu si dia 1 de gener de l’any introduït és diumenge<br>
+
+        </h4>
+    </header>
+    <hr>
+        <label>Determina el dia de la setmana de la data compresa entre els anys 1700 a l'any 2299</label>
+        <br><br>
+        <label class="labelGran">Data : </label>
+
+        <input id="dia" class="inputGran" size="2" maxlength="2" onfocus="this.select();"  
+            onkeypress="return validarTeclatNum(event);"></input> 
+
+        <input id="mes" class="inputGran" size="2" maxlength="2" onfocus="this.select();" 
+             onkeypress="return validarTeclatNum(event);"></input> 
+
+        <input id="any" class="inputGran" size="4" maxlength="4" onfocus="this.select();" 
+        onkeypress="return validarTeclatNum(event);"></input> 
+        
+        <button class="button" id="iniciar" onclick="main()"> Calcular dia <br>de la setmana </button>
+        <br><br>
+       
+        <label class="labelGran error" id="missatge"></label>
+
+       
+       
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                // recollim el valor de les variables
+                let dia=parseInt(document.getElementById("dia").value);
+                let mes=parseInt(document.getElementById("mes").value);
+                let any=parseInt(document.getElementById("any").value);
+                
+                console.log("dia :"+dia);
+                console.log("mes :"+mes);
+                console.log("any :"+any);
+
+                //Trobem el dia de la setmana de la data
+                let diaWeek=diaSetmana(dia,mes,any);
+
+                //Mostrem el dia que és
+                document.getElementById("missatge").innerHTML="El dia "+dia+"/"+mes+"/"+any+" és "+diaWeek;
+                
+            } 
+
+            /* diaSetmana: retorna el dia dll..dg de la data passada via paràmetres
+            *  De l'any 2700 al 2229
+            * @param dia    int.
+            * @param mes   int.
+            * @param any    int.
+            * *******************************************  */
+            function diaSetmana(dia,mes,any){
+                let a,b,c,d;
+
+                //Trobem A en funció del segle -----------
+                if(any<=1799){
+                    a=5;
+                }else if(any<=1899){
+                    a=3;
+                }else if(any<=1999){
+                    a=1;
+                }else if(any<=2029){ 
+                    a=0;
+                }else if(any<=2199){ 
+                    a=-2;
+                }else if(any<=2299){
+                    a=-4;
+                } 
+                console.log("A :"+a);
+
+                // determinem B ------------------------
+                b0=document.getElementById("any").value;
+                b1=parseInt(b0.substr(2,2));
+                b=b1+(Math.floor(b1/4));
+                console.log("b0 :"+b0);
+                console.log("B1 :"+b1);
+                console.log("B  :"+b);
+
+                // determinem C ----------------------------
+                if(anyTraspas(any) && (mes==1 || mes==2)){
+                    c=1;
+                }else {
+                    c=0;
+                }
+                console.log("C :"+c);
+                
+                // determinem D ----------------------------
+                dVar=[6,2,2,5,0,3,5,1,4,6,2,4];
+                d=dVar[mes-1];
+                console.log("D :"+d);
+
+                // determinem E= dia ------------------------
+                e=dia;
+                console.log("E :"+e);
+
+                // Sumem    A + B + C + D + E 
+                suma=a+b+c+d+e;
+                console.log("Suma :"+suma);
+
+                // calculamos el resto módulo 7 de la suma
+                resto=suma%7;
+                console.log(resto);
+
+                diesSetmana=["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte","diumenge"];
+                return diesSetmana[resto];
+            }
+
+            function anyTraspas(any){
+                let traspas=false;
+
+                if((any%4==0 && any%100!=0) || (any%400==0)){
+                    traspas=true;
+                }
+
+                return traspas
+            }
+
+            // validar entradas per teclat només números
+            // onkeypress="return validarTeclaNum(event);"
+            function validarTeclatNum(evt){
+                // code es la representació ASCII de la tecla pitjada.
+                var code = (evt.which) ? evt.which : evt.keyCode;
+                
+                if(code==8) { // espai en blanc.
+                return false;
+                } else if(code>=48 && code<=57) { // Si és un nombre.
+                    return true;
+                } else{ // altres tecles.
+                    return false;
+                }
+               
+            }
+
+
+        </script>    
+
+
+    </div>    
+</body>
+</html>

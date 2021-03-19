@@ -1,0 +1,120 @@
+<!-- 
+    Fonaments de la programació
+    M6_3 Exercici 1
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.3 exercici 1</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Fer un programa on l’usuari introdueix per pantalla un caràcter i un número. El programa imprimeix per pantalla un quadrat amb la mida i el caràcter introduïts per l’usuari.<br>
+
+            Exemple:<br>
+
+                % % % % %<br>
+                % % % % %<br>
+                % % % % %<br>
+                % % % % %<br>
+                % % % % %<br>
+           
+        </h4>
+    </header>
+    <hr>
+        <textarea id="resultat" cols="50" rows="30"></textarea> 
+        <br><br>
+        <button class="button" id="iniciar" onclick="main()"> Iniciar  </button>        
+             
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                let numero=0;          // número recollit via prompt.
+                let caracter="";      // Caracter amb el que farem el quadrat 
+                let figura;          // Figura del quadrat dibuixat.
+
+                // Demanem el nombre de termes de la successió de Fib.
+                numero=demanarInteger("Introdueix el nombre de termes de la successió ");
+                caracter=prompt("Caracter ");
+
+                // dibuixem el quadrat amb caracters
+                figura=dibuixarQuadrat(numero,caracter);
+                
+                //mostrem la sèrie en pantalla
+                document.getElementById("resultat").innerHTML=figura;                           
+                
+            } 
+            
+            // Dibuixem el quadrat amb el caracter sel.-----------------------------
+            function dibuixarQuadrat(numero,caracter){
+                let linia="";
+                let dibuix="";
+
+                // dibuixem la línia 
+                for (let i=0;i<numero;i++){
+                    linia=linia+caracter;         
+                        
+                }
+
+                // dibuixem el quadrat
+                for(let a=0;a<numero;a++){                   
+                    dibuix+=linia+"\n";
+                }
+
+                return dibuix;
+            }
+            
+
+             /**demanarInteger:  demana un integer via prompt -----------------------
+            **
+            ** @param       missatge    String
+            ** @return      valor       Integer
+            ** ------------------------------------------------------------------**/
+            function demanarInteger(missatge){                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+             /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            **
+            ** @ param      valor   Number
+            ** @ return     result  boolean
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+
+                
+        </script>    
+
+
+    </div>    
+</body>
+</html>

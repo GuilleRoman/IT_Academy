@@ -1,0 +1,177 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 10
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+        .boto{
+            padding: 10px;
+            color: blue;
+            font-weight: bold;
+            background-color: darkgrey;        
+        }
+
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 10</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Realitzar un programa on se li mostraran 4 opcions a l’usuari per pantalla:<br><br>
+
+                1.- Quadrat<br>
+
+                2.- Triangle<br>
+
+                3.- Rectangle<br>
+
+                4.- Cercle<br>
+
+            Segons l’opció escollida haurà d’introduir unes dades o altres perquè el programa mostri per pantalla l’àrea del polígon escollit.<br>
+        </h4>
+    </header>
+    <hr>
+        <H4 id="titol">Àrea de polígons</H4><br>
+        <h3> 1.- Quadrat<br>
+             2.- Triangle<br>
+             3.- Rectangle<br>
+             4.- Cercle<br>
+        </h3>
+        <input type="text" id="opcio" maxlength="1" size="3">
+        <br><br>
+        <button class="boto" id="Calcular" onclick="main()"> Calcular  </button> 
+
+        <h1 id="resultat"></h1> 
+        <br><br>        
+        
+        
+        
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                //Recollim el valor de l'opció del menú
+                let opcio=parseInt(document.getElementById("opcio").value);
+                // Esborrem el imput text
+                document.getElementById("opcio").value="";
+
+                switch(opcio){
+                    case 1: 
+                        areaQuadrat();
+                        break;
+                    case 2: 
+                        areaTriangle();
+                        break;
+                    case 3: 
+                        areaRectangle();
+                        break;
+                    case 4: 
+                        areaCercle();
+                        break;
+                    default: 
+                        document.getElementById("resultat").innerHTML="L'opció triada és incorrecta";                    
+                }
+            } 
+                
+            // area del  Quadrat l*l------------------------------------------------------------------------- 
+            function areaQuadrat(){
+                let costat=demanarInteger("Costat del quadrat");
+                let area=costat*costat;
+                document.getElementById("resultat").innerHTML="L'àrea del quadrat de costat "+costat+" és "+area;    
+            }
+            // area del  triangle  b+h/2-----------------------------------------------------------------------
+            function areaTriangle(){
+                let base=demanarInteger("Base del triangle ");
+                let alcada=demanarInteger("Alçada del triangle ");
+                let area=(base*alcada)/2;
+                document.getElementById("resultat").innerHTML="L'àrea del triangle de base "+base+" i alçada "+alcada+" és "+area;    
+
+            }
+            // area del Rectangle L+l----------------------------------------------------------------------------
+            function areaRectangle(){
+                let costatLLarg=demanarInteger("Costat llarg");
+                let costatCurt=demanarInteger("Costat curt ");
+                let area=(costatLLarg*costatCurt);
+                document.getElementById("resultat").innerHTML="L'àrea del rectangle de costats "+costatLLarg+" i "+costatCurt+" és "+area;     
+
+            }
+            // area del   PI*r^2 ----------------------------------------------------------------------------
+            function areaCercle(){
+                let radi=demanarInteger("Radi del cercle ");
+                let area=(Math.PI*Math.pow(radi, 2));
+                document.getElementById("resultat").innerHTML="L'àrea del cercle de radi "+radi+" és "+area;      
+
+            }
+
+            /**demanarInteger:  demana un integer via prompt -----------------------
+            **
+            ** @param       missatge    String
+            ** @return      valor       Integer
+            ** ------------------------------------------------------------------**/
+            function demanarInteger(missatge){                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+             /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            **
+            ** @ param      valor   Number
+            ** @ return     result  boolean
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+
+
+
+                
+        </script>    
+
+
+    </div>    
+</body>
+</html>

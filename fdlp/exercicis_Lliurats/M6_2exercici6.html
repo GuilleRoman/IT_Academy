@@ -1,0 +1,143 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 6
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 6</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            L’usuari ha d’introduir números fins que introdueixi un nombre primer.<pr>
+            En el moment que l’usuari introdueixi un nombre primer, el programa ha de treure per pantalla el següent missatge:<br>
+            Exacte, el número “x” és primer!
+           
+        </h4>
+    </header>
+    <hr>
+        <H4 id="titol"></H4><br>
+        <br><br>
+
+        <label class="labelGran">Introdueix números fins a introduir un nombre primer </label>
+        
+        <button class="button" id="iniciar" onclick="main()"> Iniciar  </button> 
+        
+        <br><br>
+        <h1 id="resultat"></h1> 
+        <br><br>
+        <h1 id="resultat1"></h1>        
+        
+        
+        
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                let numero=0;         // número recollit via prompt.
+                let numPrimer=false;  // Testimoni de si el número és primer
+
+                do{
+                  numero=demanarInteger("Introdueix un número ");
+                  numPrimer=primer(numero);
+                  console.log(numPrimer);  
+                }while(numPrimer==false);
+                
+                if (numPrimer){
+                    document.getElementById("resultat").innerHTML="Exacte, el número "+numero+" es primer!";                                   
+                }
+            } 
+            
+            // Determina si un número és primer
+            //---------------------------------------------------------------------
+            function primer(numero){
+                let primo=true;
+                let calcul=0;
+
+                for(let i=2;i<numero;i++){
+                    calcul=numero%i;
+                    console.log(calcul);
+                    if(numero % i==0){
+                        primo=false;
+                    }
+                }
+
+                return primo;
+            }
+
+            // Determina si un número és primer
+            // Teorema Wilson n es primer si (n-1)!+1 és multiple de n
+            //---------------------------------------------------------------------
+            function primerWilson(numero){
+                let primo=false;
+
+                let calcul=factorial(numero-1)+1;
+                if(calcul%numero==0){
+                    primo=true;
+                }
+
+                return primo;
+            }
+
+            // Calcula el factorial de un número
+            //-----------------------------------------------------------------
+            function factorial(numero){
+                if(numero==0){
+                    return 1;
+                }
+
+               return numero*factorial(numero-1);
+            }
+
+             /**demanarInteger:  demana un integer via prompt -----------------------
+            **
+            ** @param       missatge    String
+            ** @return      valor       Integer
+            ** ------------------------------------------------------------------**/
+            function demanarInteger(missatge){                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+             /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            **
+            ** @ param      valor   Number
+            ** @ return     result  boolean
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+
+                
+        </script>    
+
+
+    </div>    
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!-- 
+    Fonaments de la programació
+    M6_3 Exercici 3
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.3 exercici 3</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Donat un array de nombres, el programa ha de mostrar per pantalla, el vector amb els nombres ordenats de menor a major
+            <br><br>
+
+            Para que la función sort ordene de forma distinta a la predeterminada se le debe pasar como parámetro una función de comparación. Por ejemplo:<br>
+
+            [3, 5, 1, 7, 4].sort (funcionDeComparacion);<br><br>
+            
+            Donde funcionDeComparacion debe ser una función que reciba como parámetros dos elementos del tipo con el que trabaja el array y devuelva un número negativo si el primer elemento debe ordenarse antes que el segundo, cero si ambos elementos tienen igual orden, o un número positivo si el segundo elemento debe ordenarse antes que el primero.<br>
+            <br><br>
+            Definir una función de comparación que permita ordenar un array numérico de menor a mayor es sencillo:<br>
+            
+            function funcionDeComparacion (elem1, elem2) { return elem1 – elem2; }<br>
+
+        </h4>
+    </header>
+    <hr>
+        <br><br>
+        <label class="labelGran">Array generat: </label>
+        <label id="labelGenerat" class="labelGran"></label>   
+        
+        <br><br>
+        <label class="labelGran">Array ordenat ASC : </label>
+        <label id="labelOrdenat" class="labelGran"></label>   
+        
+        <br><br>
+        <label class="labelGran">Array ordenat DESC : </label>
+        <label id="labelOrdenatDesc" class="labelGran"></label>   
+
+        <br><br>
+        <label class="labelGran error" id="missatges"></label>
+
+        <br><br>
+        <button class="button" id="iniciar" onclick="main()"> Generar Array  </button>        
+        <button class="button" id="ordenar" onclick="ordenar()"> Ordenar ASC  </button>             
+        <script>
+            
+            // Ocultem el button ordenar fins que no es generi un array de nombres.
+            document.getElementById("ordenar").style.display="none";
+
+            // main del button -------------------------------------------------
+            function main(){
+                let arreglo=[];           // Arreglo inicial
+                let termes=10;           // Nombre d'elements de l'arreglo
+                let ArregloOrdenat=[];  // String amb la frase a l'inreves. 
+
+                //Eliminem ordenació anterior si existís
+                document.getElementById("labelOrdenat").innerHTML="";
+
+                //Generem un arreglo int de n termes
+                arreglo=generarArreglo(termes);
+                
+                //mostrem l'arreglo generat.
+                document.getElementById("labelGenerat").innerHTML=arreglo;
+                document.getElementById("ordenar").style.display="inline"; //mostrem botó ordenar.
+
+                // ordenem i mostrem l'arreglo
+               // arregloOrdenat=ordenarIntercanviASC(arreglo);
+               // document.getElementById("labelOrdenat").innerHTML=arregloOrdenat+"---> Ordenació per intercanvi";                
+            } 
+
+            function ordenar(){
+                let arregloOrdenat=[]; // contindrà arreglo ja ordenat.
+
+                // Recupero l'arreglo en format String
+                let arreglo=document.getElementById("labelGenerat").innerHTML;
+                
+                // el passo a format arreglo de strings
+                let arregloDef=arreglo.split(",");
+
+                // passo a arreglo de integers
+                arregloFinal= arregloDef.map((i) => Number(i));
+
+                // ordenem ascendent i mostrem l'arreglo
+                arregloOrdenat=ordenarIntercanvi(arregloFinal,"asc");
+                document.getElementById("labelOrdenat").innerHTML=arregloOrdenat;
+
+                // ordenem descendent i mostrem l'arreglo
+                arregloOrdenat=ordenarIntercanvi(arregloFinal,"desc");
+                document.getElementById("labelOrdenatDesc").innerHTML=arregloOrdenat;
+
+                // Ocultem el button ordenar fins que no es generi un array de nombres.
+                document.getElementById("ordenar").style.display="none";
+            }
+            
+            // Generar un arreglo de n elements de tipus int. -----------------------------
+            function generarArreglo(numero){
+                //Definició de variables.
+                let arreglo=[];    //arreglo a generar.
+                let valor;  // valor del numero aleatori generat (1..100)
+
+                for(let i=0;i<numero;i++){
+                   valor=integerAleatori(1,100);
+                   arreglo.push(valor);
+                }              
+                
+                return arreglo;
+            }
+
+             // Ordenar arreglo mètode per intercanvi. -----------------------------
+             // arreglo:  array [int]   
+             // "asc" ascendent   desc
+            function ordenarIntercanvi(arreglo,ordre){
+                let arregloOrdenat=arreglo;  //arreglo ordenat que retornarem.
+                let traspas=0; //var per fer intercanvis de valors a l'arreglo.
+
+                for(let i=0;i<arregloOrdenat.length;i++){
+                    for(let j=i+1;j<arregloOrdenat.length;j++){
+
+                        if(arregloOrdenat[j]<arregloOrdenat[i]){
+                            traspas=arregloOrdenat[i];
+                            arregloOrdenat[i]=arregloOrdenat[j];
+                            arregloOrdenat[j]=traspas;                                
+                        }
+                    }
+                }
+                if(ordre=="desc"){
+                    let arregloDesc=[];
+                    let maxim=arregloOrdenat.length;
+                    for(let i=maxim;i>=0;i--){
+                        arregloDesc.push(arregloOrdenat[i]);
+                        console.log(arregloOrdenat[i]);
+                    }
+                    return arregloDesc;
+                }else{
+                    return arregloOrdenat;
+                }    
+            }
+            
+             // ordenar arreglo mètode selecció ------------------------------------
+             //---------------------------------------------------------------------
+            function ordenarSeleccioASC(arreglo){
+                let arregloOrdenat=arreglo;  //arreglo ordenat que retornarem.
+                let traspas=0; //var per fer intercanvis de valors a l'arreglo.
+                
+               
+
+            }
+
+
+
+
+
+
+
+
+
+            // funció que genera un nombre aleatori entre max i min
+            //-------------------------------------------------------------------------------
+            function integerAleatori(min,max){
+                let valor=Math.floor((Math.random()*(max-min))+min);
+                return valor;
+            }
+            
+
+
+        </script>    
+
+
+    </div>    
+</body>
+</html>

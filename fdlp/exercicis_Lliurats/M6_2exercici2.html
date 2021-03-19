@@ -1,0 +1,253 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 2
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+        .boto{
+            padding: 10px;
+            color: blue;
+            font-weight: bold;
+            background-color: darkgrey;        
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 2</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Un professor vol calcular les mitges de les notes de tota la classe.<br>
+            Crea una aplicació on l’usuari introduirà un número per pantalla (el número correspon al número de notes que vol introduir)<br>
+            i el programa li demanarà que inclueixi les notes de tots els alumnes.<br>
+            Un cop les notes han sigut introduides, el programa retorna el següent: <br><br>
+            - Si la nota mitja es menor que 5: “La nota media de la clase es de suspenso. Los alumnos deberían preguntar sus dudas y trabajar más por su cuenta". <br>
+            - Si la nota es inferior a 7: "La nota media de la clase es buena pero los alumnos deberían mejorar el trabajo personal".<br> 
+            - Para el resto de casos, el mensaje debería ser: "Enhorabuena! La nota media de la clase se corresponde con el esfuerzo que habéis realizado";
+
+        </h4>
+    </header>
+    <hr>
+        <p id="display">Notes de la classe: </p>
+        <p id="display1"></p>
+        <p id="resultat"></p><br><br>
+        <label>Resultat de les proves sobre el modul</label><br>
+        <textarea cols="100" rows="20" id="text"></textarea><br><br>
+
+        <button class="boto" id="numNotes" onclick="main()"> Registrar notes  </button>
+        <button class="boto" id="proves" onclick="proves()"> Proves</button>
+
+        <script>
+            function main(){
+                //Declaració de variables
+                let numNotes=0;         // Número de notes a introduir
+                let notes=[];           // Array de les notes introduides
+                let mitjanaClasse=0;  // Mitjana de les notes de la classe
+                let valoracio="";    // Resultat de la mitja de la classe
+
+                // Demano el número de notes a introduir
+                numNotes=demanarInteger("Número de notes a introduir: ");
+                
+                // Demano les notes i les emma en un array i les mostro 
+                notes=demanarNotes(numNotes);
+                document.getElementById("display").innerHTML+=notes;
+
+                // Calculem la mitjana de les notes 
+                mitjanaClasse=calcularMitja(notes);
+                console.log(mitjanaClasse);
+
+                // Valoració de la mitjana de la classe (string)
+                valoracio=valoracioMitjana(mitjanaClasse);
+
+                // Mostrem la mitjana i el seu missatge associat.
+                document.getElementById("resultat").innerHTML=valoracio;
+
+            }
+
+            /** proves: realitza les proves per validar el bon funcionament del mòdul  ---------------
+            ** 
+            ** @return      missatge             String  valoració de la mitjana
+            ** ------------------------------------------------------------------------------------**/
+            function proves(){
+                //Declaració de variables
+                let numNotes=0;          // Número de notes a introduir
+                let notes=[];           // Array de les notes introduides
+                let mitjanaClasse=0;   // Mitjana de les notes de la classe
+               
+                document.getElementById("text").innerHTML="";
+                document.getElementById("display").innerHTML= "Proves sobre el modul:";
+
+                //Notes menors de 5 ----------------------------
+                notes=[5,3,4,5,2,1];                
+                mitjanaClasse=calcularMitja(notes);
+                mostrarResultatProves(notes,mitjanaClasse);
+
+                notes=[5,3,4,2,1];                
+                mitjanaClasse=calcularMitja(notes);
+                mostrarResultatProves(notes,mitjanaClasse);
+
+                //Notes majors de 5 i menors de 7 ----------------
+                notes=[5,6,7,5,4];
+                mitjanaClasse=calcularMitja(notes);
+                mostrarResultatProves(notes,mitjanaClasse);
+
+                notes=[5,6,7,7,5,4];
+                mitjanaClasse=calcularMitja(notes);
+                mostrarResultatProves(notes,mitjanaClasse);
+
+                //Notes majors de 7 -----------------------------
+                notes=[7,8,9,7];
+                mitjanaClasse=calcularMitja(notes);
+                mostrarResultatProves(notes,mitjanaClasse);
+
+                notes=[7,8,9,7,9,7];
+                mitjanaClasse=calcularMitja(notes);
+                mostrarResultatProves(notes,mitjanaClasse);
+
+                function mostrarResultatProves(notes,mitjana){
+                    let missatge="Notes: "+notes+" Mitja resultant: "+mitjana+"\n\n";
+                    document.getElementById("text").innerHTML+=missatge;
+                }
+    
+
+            }
+
+           
+            
+            
+            /** valoracioMitjana: valora la mitjana de classe ---------------
+            **
+            ** @param       mitjanaClasse        Integer
+            ** @return      missatge             String  valoració de la mitjana
+            ** ------------------------------------------------------------------**/
+            function valoracioMitjana(mitjanaClasse){
+                //Declaració de variables
+                let missatge="";
+
+                //Valorem la mitja i associem el missatge corresponent
+                if(mitjanaClasse<5){
+                    missatge="Mitjana : "+mitjanaClasse+" La nota media de la clase es de suspenso. Los alumnos deberían preguntar sus dudas y trabajar más por su cuenta";
+                }else if(mitjanaClasse<7){
+                    missatge="Mitjana : "+mitjanaClasse+" La nota media de la clase es buena pero los alumnos deberían mejorar el trabajo personal";
+                }else{
+                    missatge="Mitjana : "+mitjanaClasse+" Enhorabuena! La nota media de la clase se corresponde con el esfuerzo que habéis realizado";
+                }
+
+                return missatge;
+            }
+
+
+            /**demanarNotes:  demana un integer via prompt -----------------------
+            **
+            ** @param       numNotes        Integer
+            ** @return      mitjaNotes      Integer (mitja de les notes)
+            ** ------------------------------------------------------------------**/
+            function demanarNotes(numNotes){
+
+                // Declaració de variables
+                let nota=0;          // recull cada nota abans de emma. a l' array.
+                let notes=[];       // array de notes dels alumnes de la classe.
+                let missatge="";   // missatge a la introducció de cada nota.
+                let mitjaNotes=0; // Recull la mitja de les notes de l' array
+
+                // Demanem les notes i les emma. en l' array notes.
+                for(let i=0;i<numNotes;i++){
+                    missatge="Introdueix la nota numero "+(i+1);
+                    nota=demanarInteger(missatge);
+                    notes.push(nota);
+                }
+ 
+                return notes;
+            }
+
+            /**CalcularMitja:  demana un integer via prompt -----------------------
+            **
+            ** @param       notes            Array[Integers]
+            ** @return      mitjaNotes       Integer (mitja de les notes)
+            ** ------------------------------------------------------------------**/
+            function calcularMitja(notes){
+                // Declaració de variables
+                let sumaNotes=0;   //Suma de totes les notes
+                let mitjaNotes=0; //Mitja de totes les notes (return)
+                let index=notes.length; //Nombre de notes passades
+
+                // Calcul de la suma de totes les notes.
+                for(let i=0;i<index;i++){
+                    sumaNotes+=notes[i];
+                }
+
+                // Càlcul de la mitjana de les notes i les retornem
+                 mitjaNotes=sumaNotes/index;
+                 return mitjaNotes;
+            }
+
+
+            /**demanarInteger:  demana un integer via prompt -----------------------
+            **
+            ** @param       missatge    String
+            ** @return      valor       Integer
+            ** ------------------------------------------------------------------**/
+            function demanarInteger(missatge){                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+             /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            **
+            ** @ param      valor   Number
+            ** @ return     result  boolean
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+
+        </script>    
+        
+
+
+    </div>    
+</body>
+</html>

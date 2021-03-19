@@ -1,0 +1,138 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 4
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fdlp </title>
+    <style type="text/css">
+        
+        body{
+            background-color: #00FFFF;
+        }
+        
+        .capcelera{
+            margin: 15px;
+            padding: 10px;
+            background-color: #E6E6FA; 
+        }
+
+        .enLinia{
+            display: inline;
+            padding-right: 25px;
+            color:blue;
+        }
+        .contenidor{
+            padding: 15px;
+        }
+        .boto{
+            padding: 10px;
+            color: blue;
+            font-weight: bold;
+            background-color: darkgrey;        
+        }
+    </style>
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 4</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Realitzar un programa on l’usuari introdueix un número i el programa li retorna el factorial del número introduit
+
+        </h4>
+    </header>
+    <hr>
+        <p id="display"></p>
+        <p id="display1"></p>
+        <br><br>        
+        <button class="boto" id="iniciar" onclick="main()"> Iniciar  </button> 
+        
+        
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                let missatge="";
+                let missatge1="";
+
+                // Demano un número integer 
+                numeroFactorial=demanarInteger("Número : ");
+                
+                resultatFactorial=factorial(numeroFactorial);
+                resultatFactorialB=factorialExtra(numeroFactorial);
+
+                missatge1="El factorial de "+numeroFactorial+" es: "+resultatFactorialB;
+                missatge="El factorial de "+numeroFactorial+" es: "+resultatFactorial+"  Càlcul recursiu";
+                document.getElementById("display").innerHTML=missatge;
+                document.getElementById("display1").innerHTML=missatge1;
+            } 
+
+            /** factorial amb recursivitat ----------------------------------------- **/
+            function factorial(numero){                
+                if (numero==0){
+                    return 1;
+                }
+                
+                return numero*factorial(numero-1);
+            }
+            
+            /** factorial amb bucle for  ------------------------------------------- **/
+            function factorialExtra(numero){
+                let resultat=1;
+
+                if (numero==0){ return 1;}
+
+                for(let i=1;i<=numero;i++){
+                    resultat=resultat*i;
+                }
+                return resultat;
+            }
+
+           /**demanarInteger:  demana un integer via prompt -----------------------
+            **
+            ** @param       missatge    String
+            ** @return      valor       Integer
+            ** ------------------------------------------------------------------**/
+            function demanarInteger(missatge){                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+             /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            **
+            ** @ param      valor   Number
+            ** @ return     result  boolean
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+        </script>    
+        
+
+
+    </div>    
+</body>
+</html>

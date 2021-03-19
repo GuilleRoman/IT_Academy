@@ -1,0 +1,117 @@
+<!-- 
+    Fonaments de la programació
+    M6_2 Exercici 9
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.2 exercici 9</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            L’usuari introdueix un nombre per pantalla i el programa li ha de mostrar la successió de Fibonacci.<br>
+            Exemple:<br>
+            Si l’usuari introdueix el 10 el resultat ha de ser:  0,1,1,2,3,5,8,13,21,34<br>
+            La regla es xn = xn−1 + xn−2
+           
+        </h4>
+    </header>
+    <hr>
+        <H4 id="titol"></H4><br>
+        <br><br>
+
+        <label class="labelGran">La successió de Fibonacci </label>
+        
+        <button class="button" id="iniciar" onclick="main()"> Iniciar  </button> 
+        
+        <br><br>
+        <h1 id="resultat"></h1> 
+        <br><br>
+        <h1 id="resultat1"></h1>        
+        
+        
+        
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                let numero=0;          // número recollit via prompt.
+                let numPrimer=false;  // Testimoni de si el número és primer.
+                let serie;           // Array que contindrà la serie calculada.
+
+                // Demanem el nombre de termes de la successió de Fib.
+                numeroSuccessio=demanarInteger("Introdueix el nombre de termes de la successió ");
+                
+                // Calculem  els termes fins a n
+                serie=serieFibonacci(numeroSuccessio);
+                
+                //mostrem la sèrie en pantalla
+                document.getElementById("resultat").innerHTML=serie;                           
+                
+            } 
+            
+            // Calculem Fibonacci de n termes de llargaria. ------------------------------
+            function serieFibonacci(termes){
+                serie=[0,1];
+                valor=0;
+
+                for (let i=2;i<=termes;i++){
+                    valor=serie[i-2]+serie[i-1];                    
+                    serie.push(valor);
+                }
+                return serie;
+            }
+            
+
+             /**demanarInteger:  demana un integer via prompt -----------------------
+            **
+            ** @param       missatge    String
+            ** @return      valor       Integer
+            ** ------------------------------------------------------------------**/
+            function demanarInteger(missatge){                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+             /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            **
+            ** @ param      valor   Number
+            ** @ return     result  boolean
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+
+                
+        </script>    
+
+
+    </div>    
+</body>
+</html>

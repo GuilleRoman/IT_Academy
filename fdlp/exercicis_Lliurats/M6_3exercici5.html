@@ -1,0 +1,73 @@
+<!-- 
+    Fonaments de la programació
+    M6_3 Exercici 5
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.3 exercici 5</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            L’usuari ha d’introduir un DNI i el programa ha de dir si la lletra és correcte o no<br>
+            amb el nombre de DNI. Si la lletra no és correcta, ha de dir quina lletra és la correcta
+
+        </h4>
+    </header>
+    <hr>
+        <br><br>
+        <label class="labelGran">DNI: </label>
+        <input id="dni" class="inputGran" size=8 maxlength="8" onfocus="this.select();"></input> 
+        <input id="lletra" class="inputGran" style="text-transform: uppercase;" size=1 maxlength="1" onfocus="this.select();"></input>   
+        
+        <br><br>
+        <label class="labelGran error" id="missatges"></label>
+
+        <br><br>
+        <button class="button" id="iniciar" onclick="main()"> Comprovar </button>
+
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                let dni=document.getElementById("dni").value;          
+                let lletra=document.getElementById("lletra").value;
+                let lletraMj=lletra.toUpperCase();
+                let lletres=["T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E","T"];
+                let modul=0;
+
+                // Calculem el mòdul 23 sobre el dni
+                modul=parseInt(document.getElementById("dni").value)%23;
+                console.log(lletres[modul]);
+                console.log(lletra);
+                // Comprovem si la lletra és correcta
+                if(lletres[modul]==lletraMj){
+                    document.getElementById("missatges").innerHTML="La lletra "+lletraMj+" és correcta";
+                }else{
+                    document.getElementById("missatges").innerHTML="ERROR!!! La lletra correcta és "+lletres[modul];
+                }
+            } 
+
+            function seleccionar(){
+                this.select();
+            }
+
+
+        </script>    
+
+
+    </div>    
+</body>
+</html>
