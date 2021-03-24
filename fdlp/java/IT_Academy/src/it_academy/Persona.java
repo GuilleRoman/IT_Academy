@@ -59,7 +59,9 @@ public class Persona {
         return this.edat+anys;
     }
     
-    
+    public String parlar(String missatge){
+        return "Estic parlant: "+missatge;
+    }
     
     
     
