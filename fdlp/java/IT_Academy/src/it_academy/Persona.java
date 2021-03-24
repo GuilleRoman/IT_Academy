@@ -55,6 +55,9 @@ public class Persona {
     }
     
     
+    public int creixer(int anys){
+        return this.edat+anys;
+    }
     
     
     
