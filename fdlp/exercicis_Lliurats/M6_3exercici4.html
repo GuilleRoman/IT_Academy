@@ -1,0 +1,64 @@
+<!-- 
+    Fonaments de la programació
+    M6_3 Exercici 4 
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp M6_3 exercici 4</title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.3 exercici 4</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            L’usuari ha d’introduir una frase i el programa ha de dir si la frase és un palíndrom<br>
+
+        </h4>
+    </header>
+    <hr>
+        <label>Determina el dia de la setmana de la data compresa entre els anys 1700 a l'any 2299</label>
+        <br><br>
+        <label class="labelGran">Frase : </label>
+
+        <input id="frase" class="inputGran" size="25" maxlength="75" onfocus="this.select();"></input> 
+
+       
+        <button class="button" id="iniciar" onclick="main()">És palíndrom ? <br>de la setmana </button>
+        <br><br>
+       
+        <label class="labelGran" id="missatge"></label><br><br>
+        <label class="labelGran" id="missatge1"></label><br><br>
+        <label class="labelGran" id="missatge2"></label><br><br>
+       
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                // recollim el valor de les variables
+                let frase=document.getElementById("frase").value;
+                let fraseInversa="";
+                
+                //Eliminem els caracters especials
+                
+                //Fem el reverse de la frase               
+                
+                //Comprovem si son iguals (Palíndrom)
+                
+
+            } 
+        </script>    
+
+
+    </div>    
+</body>
+</html>

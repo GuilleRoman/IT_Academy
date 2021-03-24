@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ORDENACIÓ ARRAY INTEGERS MÈTODE DE LA BOMBOLLA</h1>
+
+    <textarea id="resultat" cols="70" rows="30" ></textarea><br>
+    <button id="generarRandom" class="button" onclick="main()">Generar Array i ordenar-lo </button>
+   
+    <script>
+
+        // Funció inicial -----------------------------------------------------------------------
+        function main(){            
+            // Genero l'array de integers aleatoris i el mostrem
+            let array=generarArreglo(5);            
+            document.getElementById("resultat").innerHTML="Array inicial ; \n"+array+"\n \n";
+            
+            // ordeno i mostrem l'array ordenat.
+            let arrayOrdenat=bombolla(array);
+            document.getElementById("resultat").innerHTML+="\n \n Array ordenat :\n"+arrayOrdenat;
+        }
+
+        //-----------------------------------------------------------------------------
+        // funció generar un array d'integers de forma aleatoria
+        //-----------------------------------------------------------------------------
+        // Generar un arreglo de n elements de tipus int. -----------------------------
+        function generarArreglo(numero){
+            //Definició de variables.
+            let arreglo=[];    //arreglo a generar.
+            let valor;  // valor del numero aleatori generat (1..100)
+
+            for(let i=0;i<numero;i++){
+               valor=integerAleatori(1,100);
+               arreglo.push(valor);
+            }              
+            
+            return arreglo;
+        }
+
+
+         // funció que genera un nombre aleatori entre max i min
+        //-------------------------------------------------------------------------------
+        function integerAleatori(min,max){
+            let valor=Math.floor((Math.random()*(max-min))+min);
+            return valor;
+        }
+        
+
+           //-------------------------------------------------------------------------
+          // funció ordena un array d'integers asc.
+         //  mètode de la bombolla  
+        //----------------------------------------------------------------------------
+        function bombolla(arreglo){
+            let intercanvi=0;  
+            let numIntercanvis=0;          
+            let ordenat=false;
+                       
+            do{
+                
+                for(let i=0;i<arreglo.length-1;i++){
+                    if(arreglo[i+1]<arreglo[i]){
+                        intercanvi=arreglo[i];
+                        arreglo[i]=arreglo[i+1];
+                        arreglo[i+1]=intercanvi;
+                        numIntercanvis++                        
+                    }                                                                                        
+                }
+                document.getElementById("resultat").innerHTML+=": "+arreglo+"\n";
+                
+
+                if(numIntercanvis==0){
+                     ordenat=true;
+                }
+
+                numIntercanvis=0;
+            }while(ordenat==false);  
+               
+            return arreglo;             
+        }
+
+
+
+    </script>
+
+
+
+
+    
+</body>
+</html>

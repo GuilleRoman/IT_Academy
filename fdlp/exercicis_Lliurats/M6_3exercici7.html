@@ -1,0 +1,147 @@
+<!-- 
+    Fonaments de la programació
+    M6_3 Exercici 7
+    Juan José Campos Caballero
+-->
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilsBasics.css" rel="stylesheet" type="text/css">
+    <title>fdlp </title>
+    
+</head>
+<body>
+    <header class="capcelera">
+        <h1 class="enLinia">IT ACADEMY</h1>
+        <h2 class="enLinia">Fonaments de la programació</h2>
+        <h2>M6.3 exercici 7</h2>
+        <h3>Enunciat:</h3>
+        <h4>
+            Un grup d’amics ha quedat per fer una fideuà, els ingredients principals seran:<br>
+            fideus, gambes, i calamars. <br>
+            Saben que per cada quatre persones han d’utilitzar mig quilo de fideus, 400 grams de calamars i 200 grams de gambes.<br>
+            S’ha de fer un programa que demani per pantalla el preu per quilo de cada ingredient i el nombre d’amics que seran per dinar.<br>
+            El programa ha de calcular les quantitats necessàries de cada ingredient, el preu per persona i el preu final de la fideuà<br>
+        </h4>
+    </header>
+    <hr>
+        <label></label>
+        <br><br>
+        <label class="labelGran">Càlculs fideua </label>
+        
+        <button class="button" id="iniciar" onclick="main()"> Iniciar calcul </button>
+        <br><br>
+       
+        <textarea cols="60" rows="12" id="missatge"></textarea>>
+
+       
+       
+        <script>
+
+            // main del button -------------------------------------------------
+            function main(){
+                // Demanem els preus dels ingredients
+                let preuFideus=Number(demanarInteger("Preu dels fideus : "));
+                let preuCalamars=Number(demanarInteger("Preu dels calamars : "));
+                let preuGambes=Number(demanarInteger("Preu de les gambes : "));
+                
+                //Demanem el nombre d'amics que venen a la fideuà 
+                let amics=parseInt(demanarInteger("nombre d'amics : "));
+                
+                //Calculem la quantitat de ingredients que necessitem.
+                let quantitatIngredients=calculemQuantitats(amics);
+                
+                //Mostrem la quantitat d'ingredients
+                let missatgeIngredients="Ingredients: \n"
+                missatgeIngredients+="- Fideus: "+quantitatIngredients[0]+" Kg. \n"
+                missatgeIngredients+="- Calamars: "+quantitatIngredients[1]+" Kg. \n"
+                missatgeIngredients+="- Gambes: "+quantitatIngredients[2]+" Kg. \n";
+
+                document.getElementById("missatge").innerHTML=missatgeIngredients+"\n";
+
+                //Calculem el preu dels ingredients 
+                let costFideus=quantitatIngredients[0]*preuFideus;
+                let costCalamars=quantitatIngredients[1]*preuCalamars;
+                let costGambes=quantitatIngredients[2]*preuGambes;
+
+                let missatgePreus="Preus dels ingredients: \n";
+                missatgePreus+="- "+quantitatIngredients[0]+" Kg de Fideus x "+preuFideus+"eur. ="+costFideus+"\n";
+                missatgePreus+="- "+quantitatIngredients[1]+" Kg de Calamars x "+preuCalamars+"eur. ="+costCalamars+"\n";
+                missatgePreus+="- "+quantitatIngredients[2]+" Kg de Gambes x "+preuGambes+"eur. ="+costGambes+"\n";
+
+                document.getElementById("missatge").innerHTML+=missatgePreus+"\n";
+
+                // Calculem el cost total de la fideuà i el cost personal 
+                let costTotal=costCalamars+costFideus+costGambes;
+                let costPersonal=costTotal/amics;
+                let missatgeCostos="Cost total de la fideuà: "+costTotal+"eur.  \n";
+                missatgeCostos+="Cost per persona : "+costPersonal+"eur.  \n";
+
+                document.getElementById("missatge").innerHTML+=missatgeCostos+"\n";
+
+            } 
+            
+
+            function calculemQuantitats(amics){
+                let quantitats=[];
+                
+                // quantitat de fideos
+                quantitats.push(amics*500/1000);
+
+                // quantitat de calamars
+                quantitats.push(amics*400/1000);
+
+                // quantitat de gambes
+                quantitats.push(amics*200/1000);
+
+                return quantitats;
+            }
+
+
+             // demana un integer via prompt ----------------------------------------------
+             function demanarInteger(missatge){
+                 
+                let valor=0;
+
+                //Demanem el nombre via prompt.
+                 do{
+                    valor=parseInt(prompt(missatge));                    
+                }while(!esNumeric(valor));
+
+                return valor;
+            }
+
+            /** --------------------------------------------------------------------
+            ** esNumeric:  determina si un valor és de tipus numèric
+            ** @ param  valor   Number
+            ** ------------------------------------------------------------------**/
+            function esNumeric(valor){
+                let result;
+
+                if(isNaN(valor)){
+                    result=false;
+                } else {
+                    result=true;
+                }   
+                return result;
+            }
+
+
+
+
+
+
+
+
+
+
+        </script>    
+
+
+    </div>    
+</body>
+</html>

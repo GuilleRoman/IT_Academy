@@ -1,6 +1,6 @@
 <!-- 
     Fonaments de la programació
-    M6_3 Exercici 8
+    M6_3 Exercici 8 bis
     Juan José Campos Caballero
 -->
 
@@ -11,14 +11,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="estilsBasics.css" rel="stylesheet" type="text/css">
-    <title>fdlp </title>
+    <title>fdlp M6_3 exercici 8 bis</title>
     
 </head>
 <body>
     <header class="capcelera">
         <h1 class="enLinia">IT ACADEMY</h1>
         <h2 class="enLinia">Fonaments de la programació</h2>
-        <h2>M6.3 exercici 8</h2>
+        <h2>M6.3 exercici 8 bis</h2>
         <h3>Enunciat:</h3>
         <h4>
             L’usuari introdueix un any i el programa diu si dia 1 de gener de l’any introduït és diumenge<br>
@@ -42,9 +42,9 @@
         <button class="button" id="iniciar" onclick="main()"> Calcular dia <br>de la setmana </button>
         <br><br>
        
-        <label class="labelGran" id="missatge"></label>
-        <label class="labelGran" id="missatge1"></label>
-       
+        <label class="labelGran" id="missatge"></label><br><br>
+        <label class="labelGran" id="missatge1"></label><br><br>
+        <label class="labelGran" id="missatge2"></label><br><br>
        
         <script>
 
@@ -54,11 +54,8 @@
                 let dia=parseInt(document.getElementById("dia").value);
                 let mes=parseInt(document.getElementById("mes").value);
                 let any=parseInt(document.getElementById("any").value);
+                let dataSencera=any+"/"+mes+"/"+dia;
                 
-                console.log("dia :"+dia);
-                console.log("mes :"+mes);
-                console.log("any :"+any);
-
                 //Trobem el dia de la setmana de la data
                 let diaWeek=diaSetmana(dia,mes,any);
 
@@ -68,6 +65,17 @@
                 let diaZeller=algoritmeZeller(dia,mes,any);
                 //Mostrem el dia que és
                 document.getElementById("missatge1").innerHTML="Zeller -> El dia "+dia+"/"+mes+"/"+any+" és "+diaZeller;
+
+                  //--------------------------------------------------------------------------------------
+                 // Desenvolupament amb l'objecte DATE de JS 
+                //----------------------------------------------------------------------------------------
+                let data=new Date(dataSencera);
+                let diesSetmana=["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"];
+                let diaSet=diesSetmana[data.getDay()];
+                let missatge="Objecte Date -> El dia "+dia+"/"+mes+"/"+any+" és "+diaSet;
+                document.getElementById("missatge2").innerHTML="OBJ Date -> El dia "+dia+"/"+mes+"/"+any+" és "+diaSet;
+                console.log("data :"+data);
+                console.log("data num :"+diaSet);
 
             } 
 
@@ -99,7 +107,7 @@
             * @param dia    int.
             * @param mes   int.
             * @param any    int.
-            * *******************************************  */
+            * *************************************************************************  */
             function diaSetmana(dia,mes,any){
                 let a,b,c,d;
 

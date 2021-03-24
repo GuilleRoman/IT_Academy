@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="estilsBasics.css" rel="stylesheet" type="text/css">
-    <title>fdlp </title>
+    <title> fdlp: M6_3 exercici 3 </title>
     
 </head>
 <body>
@@ -39,22 +39,17 @@
     <hr>
         <br><br>
         <label class="labelGran">Array generat: </label>
-        <label id="labelGenerat" class="labelGran"></label>   
+        <label id="labelGenerat" class="labelGran"></label> 
         
         <br><br>
-        <label class="labelGran">Array ordenat ASC : </label>
-        <label id="labelOrdenat" class="labelGran"></label>   
+        <label class="labelGran">Array ordenat Bubble Sort : </label> 
+        <label id="labelOrdenatBombolla" class="labelGran"></label><br>
+        <br>
+        <textarea id="resultat" cols="35" rows="20" ></textarea><br><br>
         
-        <br><br>
-        <label class="labelGran">Array ordenat DESC : </label>
-        <label id="labelOrdenatDesc" class="labelGran"></label>   
-
-        <br><br>
-        <label class="labelGran error" id="missatges"></label>
-
-        <br><br>
         <button class="button" id="iniciar" onclick="main()"> Generar Array  </button>        
-        <button class="button" id="ordenar" onclick="ordenar()"> Ordenar ASC  </button>             
+        <button class="button" id="ordenar" onclick="ordenar()"> Ordenar Array </button>  
+
         <script>
             
             // Ocultem el button ordenar fins que no es generi un array de nombres.
@@ -66,8 +61,9 @@
                 let termes=10;           // Nombre d'elements de l'arreglo
                 let ArregloOrdenat=[];  // String amb la frase a l'inreves. 
 
-                //Eliminem ordenació anterior si existís
-                document.getElementById("labelOrdenat").innerHTML="";
+                //Eliminem ordenació anterior si existís               
+                document.getElementById("labelOrdenatBombolla").innerHTML="";
+                document.getElementById("resultat").innerHTML="";
 
                 //Generem un arreglo int de n termes
                 arreglo=generarArreglo(termes);
@@ -75,15 +71,11 @@
                 //mostrem l'arreglo generat.
                 document.getElementById("labelGenerat").innerHTML=arreglo;
                 document.getElementById("ordenar").style.display="inline"; //mostrem botó ordenar.
-
-                // ordenem i mostrem l'arreglo
-               // arregloOrdenat=ordenarIntercanviASC(arreglo);
-               // document.getElementById("labelOrdenat").innerHTML=arregloOrdenat+"---> Ordenació per intercanvi";                
+                            
             } 
 
             function ordenar(){
-                let arregloOrdenat=[]; // contindrà arreglo ja ordenat.
-
+                
                 // Recupero l'arreglo en format String
                 let arreglo=document.getElementById("labelGenerat").innerHTML;
                 
@@ -91,20 +83,19 @@
                 let arregloDef=arreglo.split(",");
 
                 // passo a arreglo de integers
-                arregloFinal= arregloDef.map((i) => Number(i));
+                let arregloFinal= arregloDef.map((i) => Number(i));
+                console.log("Array inical recuperat : "+arregloFinal);                
 
-                // ordenem ascendent i mostrem l'arreglo
-                arregloOrdenat=ordenarIntercanvi(arregloFinal,"asc");
-                document.getElementById("labelOrdenat").innerHTML=arregloOrdenat;
-
-                // ordenem descendent i mostrem l'arreglo
-                arregloOrdenat=ordenarIntercanvi(arregloFinal,"desc");
-                document.getElementById("labelOrdenatDesc").innerHTML=arregloOrdenat;
+                //ordenem l'arreglo amb mètode buble sort.
+                console.log("Array inical abans de ordenar bombolla: "+arregloFinal);
+                let arregloOrdenatBombolla=bombolla(arregloFinal);
+                document.getElementById("labelOrdenatBombolla").innerHTML=arregloOrdenatBombolla;
 
                 // Ocultem el button ordenar fins que no es generi un array de nombres.
                 document.getElementById("ordenar").style.display="none";
             }
-            
+
+             //----------------------------------------------------------------------------
             // Generar un arreglo de n elements de tipus int. -----------------------------
             function generarArreglo(numero){
                 //Definició de variables.
@@ -119,53 +110,44 @@
                 return arreglo;
             }
 
-             // Ordenar arreglo mètode per intercanvi. -----------------------------
-             // arreglo:  array [int]   
-             // "asc" ascendent   desc
-            function ordenarIntercanvi(arreglo,ordre){
-                let arregloOrdenat=arreglo;  //arreglo ordenat que retornarem.
-                let traspas=0; //var per fer intercanvis de valors a l'arreglo.
-
-                for(let i=0;i<arregloOrdenat.length;i++){
-                    for(let j=i+1;j<arregloOrdenat.length;j++){
-
-                        if(arregloOrdenat[j]<arregloOrdenat[i]){
-                            traspas=arregloOrdenat[i];
-                            arregloOrdenat[i]=arregloOrdenat[j];
-                            arregloOrdenat[j]=traspas;                                
-                        }
-                    }
-                }
-                if(ordre=="desc"){
-                    let arregloDesc=[];
-                    let maxim=arregloOrdenat.length;
-                    for(let i=maxim;i>=0;i--){
-                        arregloDesc.push(arregloOrdenat[i]);
-                        console.log(arregloOrdenat[i]);
-                    }
-                    return arregloDesc;
-                }else{
-                    return arregloOrdenat;
-                }    
-            }
             
-             // ordenar arreglo mètode selecció ------------------------------------
-             //---------------------------------------------------------------------
-            function ordenarSeleccioASC(arreglo){
-                let arregloOrdenat=arreglo;  //arreglo ordenat que retornarem.
-                let traspas=0; //var per fer intercanvis de valors a l'arreglo.
-                
+           //-------------------------------------------------------------------------
+          // funció ordena un array d'integers asc.
+         //  mètode de la bombolla  
+        //----------------------------------------------------------------------------
+        function bombolla(arreglo){
+            let intercanvi=0;            
+            let swap=false;
+            let ordenat=false;
+            let pasades=0;
+            let arregloOrdenat=arreglo;
+             
+            do{                
+                for(let i=0;i<arregloOrdenat.length-1;i++){
+                    if(arregloOrdenat[i+1]<arregloOrdenat[i]){
+                        intercanvi=arregloOrdenat[i];
+                        arregloOrdenat[i]=arregloOrdenat[i+1];
+                        arregloOrdenat[i+1]=intercanvi;
+                        swap=true; 
+                    } 
+                    document.getElementById("resultat").innerHTML+=": "+arregloOrdenat+"\n";                                               
+                }
+
+                pasades++;
+                document.getElementById("resultat").innerHTML+="------- pasada "+pasades+"---------->\n";    
+                 
+
+                if(swap==false){
+                     ordenat=true;
+                }
+                 
+                swap=false;
+                                
+            }while(ordenat==false);   
                
-
-            }
-
-
-
-
-
-
-
-
+            return arregloOrdenat;   
+            
+        }
 
             // funció que genera un nombre aleatori entre max i min
             //-------------------------------------------------------------------------------
