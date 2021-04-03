@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author juanj
+ * @author JuanJo Campos Caballero
  */
 public class M7exercici2 {
 
@@ -45,8 +45,8 @@ public class M7exercici2 {
             System.out.println("6.- Retirar saldo del compte");
             System.out.println("7.- Consulta del saldo");
             System.out.println("8.- Mostrar tots els comptes ");
-            System.out.println("9.- Sortir");
-            System.out.println("");
+            System.out.println("9.- Omplir Array amb dades");
+            System.out.println("0.- Sortir");
             System.out.print("Tria l'opció :");
             opcio=lector.nextInt();
             
@@ -64,10 +64,26 @@ public class M7exercici2 {
                     }
                     break;
                 case 2:
-                    
+                    nouCompte=demanarDades(); 
+                    existeix=existeixCompteCorrent(comptes,nouCompte);
+                    if(existeix){
+                        comptes.remove(nouCompte);
+                        System.out.println(nouCompte.toString());
+                        System.out.println("El compte corrent ha estat donat de baixa");                        
+                    }else{
+                        System.out.println("El compte corrent no existeix ");
+                        System.out.println("Comptes associats a "+nouCompte.getNom()+", "+nouCompte.getCognoms());                        
+                    }
                     break;
                 case 3:
-                   
+                    nouCompte=demanarDades();
+                    existeix=existeixCompteCorrent(comptes,nouCompte);
+                    if(existeix){
+                        System.out.println(nouCompte.toString());
+                    }else{
+                        cercarComptesClient(comptes,nouCompte);
+
+                    }    
                     break;
                 case 4:
                                      
@@ -85,6 +101,9 @@ public class M7exercici2 {
                     mostrarComptes(comptes);
                     break;  
                 case 9:                    
+                    omplirArray();
+                    break;
+                case 0:                    
                     sortir=true;
                     break;
                 default:
@@ -94,7 +113,41 @@ public class M7exercici2 {
         }
     }// main
     
-    
+    /**
+     * cercarComptesClient
+     * 
+     * @param comptes   ArrayList<CompteCorrent>
+     * @param compte    CompteCorrent
+     * ************************************************************************************************ */
+    public static void cercarComptesClient(ArrayList<CompteCorrent> comptes, CompteCorrent compte){
+        //Recollim variables de l'objecte compteCorrent a cercar.
+        String nom = compteCorrent.getNom();
+        String cognoms = compteCorrent.getCognoms();
+        String compteC = compteCorrent.getNumeroCompte();
+        int comptesTrobats=0;
+
+
+        //Recorrem l'ArrayList per determinar si existeixen comptes associats al client.
+        for(int i=0;i<comptes.size();i++){
+            if(comptes.get(i).getNom().equals(nom) && comptes.get(i).getCognoms().equals(cognoms)){
+                comptes.get(i).toString();
+                comptesTrobats++;
+            }                
+            
+
+            //Informem si el client no té cap compte corrent.
+            if (comptesTrobats==0){
+                System.out.println("ATENCIÓ: El Client "+nom+" ,"+cognoms+" No té cap compte corrent ");
+            }
+        }        
+
+    }
+   
+    /**
+     * mostrarComptes
+     * 
+     * @param comptes   ArrayList <CompteCorrent>
+     */
     static void mostrarComptes(ArrayList <CompteCorrent> comptes){
         for(int i=0;i<comptes.size();i++){
             comptes.get(i).toString();
@@ -118,7 +171,7 @@ public class M7exercici2 {
         
         // Demano el nom del client
         while(iterar){
-            
+            System.out.println("Nom : ");
             nom = lector.nextLine();
             
             if(nom.length() > 0){
@@ -129,7 +182,7 @@ public class M7exercici2 {
         // Demano els cognoms del client
         iterar=true;
         while(iterar){
-            
+            System.out.println("Cognoms : ");
             cognoms = lector.nextLine();
             
             if(cognoms.length() > 0){
@@ -140,6 +193,7 @@ public class M7exercici2 {
         // Demano el número del compte corrent (8 digits)
         iterar=true;
         while(iterar){
+            System.out.println("Número de compte corrent [8dígits mínim]: ");
             compteCorrent=lector.nextLine();
             if(compteCorrent.length()>=8){
                 iterar=false;
@@ -153,7 +207,7 @@ public class M7exercici2 {
     }//demanarDades
     
     /**
-     * 
+     * existeixCompteCorrent
      * @param   comptes           ArrayList d'objectes CompteCorrent
      * @param   compteCorrent     Objecte CompteCorrent
      * @return  existeix    Boolean     true existeix el compte corrent 
@@ -178,7 +232,41 @@ public class M7exercici2 {
         return existeix;
     }//existeixCompteCorrent
     
-    
+    /**
+     * omplirArray amb dades inicials per fer proves.
+     * 
+     * *****************************************************************************************************/
+    public static void omplirArray(){
+        CompteCorrent nouCompte =new CompteCorrent("Joan","Mainat","11111111");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("joan","Mainat","22222222");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("Pere","Calders","33333333");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("Rosa","Parks","44444444");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("Tania","Garriga","55555555");
+        comptes.add(nouCompte);
+        
+        CompteCorrent nouCompte =new CompteCorrent("Tania","Garriga","66666666");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("Marc","Salmeron","77777777");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("Laia","Pinyol","88888888");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("Laia","Pinyol","99999999");
+        comptes.add(nouCompte);
+
+        CompteCorrent nouCompte =new CompteCorrent("Nuria","Permach","00000000");
+        comptes.add(nouCompte);
+    }//omplirArray
     
        
     }//class M7exercici2
