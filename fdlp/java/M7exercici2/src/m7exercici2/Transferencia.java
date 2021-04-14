@@ -11,4 +11,9 @@ public class Transferencia {
     double import;              //import de la transacció
     
     
+
+
+
+
+    
 }

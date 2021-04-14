@@ -3,7 +3,7 @@
  * Fonaments de la programació -POO-
  * Juan José Campos Caballero.
  */
-package m7exercici2;
+package m7exercici3;
 
 import java.util.ArrayList;
 
@@ -12,39 +12,19 @@ import java.util.ArrayList;
  * @author juanj
  */
 public class CompteCorrent {
-    
     // Propietats. -------------------------------------------------------------
-    String nom;
-    String Cognoms;
     String numeroCompte;
     double saldo;
     ArrayList<Transaccio> transaccions= new ArrayList();
     
     //Constructor. -------------------------------------------------------------
-    public CompteCorrent(String nom,String cognoms,String compteCorrent){
-        this.nom=nom;
-        this.Cognoms=cognoms;
+    public CompteCorrent(String compteCorrent){
         this.numeroCompte=compteCorrent;
         this.saldo=50;        
     }
     
     // Getters and Setters + toString ------------------------------------------
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getCognoms() {
-        return Cognoms;
-    }
-
-    public void setCognoms(String Cognoms) {
-        this.Cognoms = Cognoms;
-    }
 
     public String getNumeroCompte() {
         return numeroCompte;
@@ -72,11 +52,17 @@ public class CompteCorrent {
 
     @Override
     public String toString() {
-        return "CompteCorrent :" + numeroCompte + "\n" + "Titular :" + nom + ", "+ Cognoms + "\n" + "saldo= " + saldo +'\n';
+        return "CompteCorrent :" + numeroCompte + "\n"+ "saldo= " + saldo +'\n';
     }
     
     // Mètodes -----------------------------------------------------------------
-    
+    /**
+     * afegirTransaccio
+     * 
+     * Afegeix una transacció al l'array de comptes.
+     * 
+     * @param transacc 
+     */
     public void afegirTransaccio(Transaccio transacc){
         transaccions.add(transacc);
     }

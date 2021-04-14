@@ -1,3 +1,75 @@
 (M7) Exercici 2
 
 
+
+1.- Dades per fer proves: 
+
+-comptes corrents inicials:
+
+("Joan",		"Mainat",		"11111111");
+("joan",		"Mainat",		"22222222");        
+(Pere",		"Calders",		"33333333");
+("Rosa",		"Parks",		"44444444");
+("Tania",		"Garriga",		"55555555");
+("Tania",		"Garriga",		"66666666");
+("Marc",		"Salmeron",	"77777777");
+("Laia",		"Pinyol",		"88888888");
+("Laia",		"Pinyol",		"99999999");
+("Nuria",		"Permach",		"00000000");
+
+
+---------------------------------------------------------------------------------
+Transferències inicials
+
+Ingrés	Ingrés	Retirada	compte associat
+------------------------------------------------
+20.50		120.50	10.50		11111111
+50.50		150,50	10,50		22222222
+35.58				10.50		33333333
+70.50		50.50		12.50		44444444
+150.50			20.50		55555555
+50.50				10.50		66666666
+50.50		50.50		12.50		77777777
+70.50		50.50		12.50		88888888
+70.50		50.50		12.50		99999999
+170.50	150.50	120.50	00000000
+-----------------------------------------
+
+
+Errors a depurar:-------------------------------------------------------------
+
+M7EXERCICI2:
+fet - Transaccions (Class)	afegirTransacció(Transacció) línia 81
+
+fet - Afegir nou compte c.	Error compte ja existeix .
+
+fet - ExisteixCompteCorrent     itera n vegades la no existència del compte.
+
+fet - mostrarComptes()	Afegir mostrar les transaccions dels comptes.
+
+fet- demanarDades canviar println()
+
+fet- Ingrés import treure println();
+
+Ingrés: 
+- Genero nova trasacció
+- Actualitzo el saldo comptable 
+- retorno l'objecte transacció amb els valors assignats.
+fet problema: no actualitzo la transacció sobre el compte corrent.
+  fet- Comprovar que la transacció arriba ben formada. 
+     fet No mostro les transaccions correctament.
+
+fet -No calculo bé la retirada del compte c. -->Càcul erroni.
+  
+
+Final proves ---> revisar double per a decimals en Java 
+
+
+Ingressar al compte corrent ---------------------------------------------------
+
+- Demanar un double amb la quantitat a ingressar.  (no buit i double).
+- Afegir la transacció a transaccions (data,concepte,import,saldo).
+- Actualitzar saldo del compte corrent.
+
+
+

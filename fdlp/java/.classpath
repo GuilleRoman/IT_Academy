@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="IT_Academy/src"/>
 	<classpathentry kind="src" path="M7exercici2/src"/>
+	<classpathentry kind="src" path="M7exercici5/src/m7exercici5"/>
 	<classpathentry kind="output" path="IT_Academy/build/classes"/>
 </classpath>
