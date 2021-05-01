@@ -41,13 +41,9 @@ public class M7exercici5 {
             // Genero un objecte de la classe Cercle amb els valors aleatoris generats.  
             punt1 = new Punt(x,y);
             cercle1=new Cercle(punt1,rad);
-            System.out.println("Cercle aleatori "+numCercles+"  "+cercle1.toString());
-            
-            //Executo els mètodes de la Classe Cercle
-            cercle.distanciaCentres(cercle1);    //Calculo la distància entre centres.
-            // test equals cercles.
-            System.out.println("- Cercle1 equals Cercle2 és "+cercle1.iguals(cercle1) ); 
             System.out.println("-----------------------------------------------------");
+            cercle.mostrarCoordenades(cercle1);
+            mostrarMetodes(cercle,cercle1);
             numCercles++;
             
         }while (numCercles<=6);
@@ -57,31 +53,88 @@ public class M7exercici5 {
          System.out.println("-------------cercle igual en pos i radi -----------------");
         punt1 = new Punt(4,8);
         cercle1=new Cercle(punt1,10);
-        System.out.println("Cercle aleatori "+numCercles+"  "+cercle1.toString());
-        cercle.distanciaCentres(cercle1);  //Calculo la distància entre centres.
-        System.out.println("- Cercle1 equals Cercle2 és "+cercle1.iguals(cercle1) );       
-        numCercles++;
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
         
         //Genero un cercle identic en l'eix x 
         System.out.println("-------------cercle eix x iguals, radi diferent-----------");
         punt1 = new Punt(4,6);
         cercle1=new Cercle(punt1,10);
-        System.out.println("Cercle aleatori "+numCercles+"  "+cercle1.toString());
-        cercle.distanciaCentres(cercle1);  //Calculo la distància entre centres.
-        System.out.println("- Cercle1 equals Cercle2 és "+cercle1.iguals(cercle1) );        
-        numCercles++;
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
         
         //Genero un cercle identic en l'eix x 
         System.out.println("-------------cercle eix y iguals, radi diferent-----------");
         punt1 = new Punt(7,8);
         cercle1=new Cercle(punt1,10);
-        System.out.println("Cercle aleatori "+numCercles+"  "+cercle1.toString());
-        cercle.distanciaCentres(cercle1);  //Calculo la distància entre centres.
-        System.out.println("- Cercle1 equals Cercle2 és "+cercle1.iguals(cercle1) );        
-        numCercles++;
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
+        
+        //Genero un cercle concèntric  
+        System.out.println("-------------cercle concentric -----------");
+        punt1 = new Punt(4,8);
+        cercle1=new Cercle(punt1,12);
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
+        
+        
+        //Genero un cercle tangent exterior
+        System.out.println("-------------cercle tangent exterior -----------");
+        punt1 = new Punt(4,13);
+        cercle1=new Cercle(punt1,5);
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
+        
+        //Genero un cercle tangent interior
+        System.out.println("-------------cercle tangent interior -----------");
+        punt1 = new Punt(4,14);
+        cercle1=new Cercle(punt1,4);
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
+        
+        //Genero un cercle que no es toca
+        System.out.println("-------------cercles secants  -----------");
+        punt1 = new Punt(16,11);
+        cercle1=new Cercle(punt1,18);
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
+                        
+                
+        //Genero un cercle que no es toca
+        System.out.println("-------------cercles no es toquen  -----------");
+        punt1 = new Punt(19,8);
+        cercle1=new Cercle(punt1,2);
+        cercle.mostrarCoordenades(cercle1);
+        mostrarMetodes(cercle,cercle1);
+               
         
         System.out.println("L'execució del programa ha finalitzat. ");
     }
+    
+    
+    /**
+     * mostrarMetodes(c1,c1)
+     * 
+     * Mostra tots els mètodes de cercle respecte a c1 i c2
+     * 
+     * @param cercle1   Cercle
+     * @param cercle2   Cercle 
+     */
+    public static void mostrarMetodes(Cercle cercle1, Cercle cercle2){
+        
+        System.out.println("- Distancia entre centres : "+cercle1.distanciaCentres(cercle2));  
+        System.out.println("- Equals       : "+cercle1.iguals(cercle2) );        
+        System.out.println("- Concèntrics  : "+cercle1.sonConcentrics(cercle2) ); 
+        System.out.println("- Radis iguals : "+cercle1.mateixRadi(cercle2));
+        System.out.println("- Tangents     : "+cercle1.sonTangents(cercle2));
+        System.out.println("- Secants      : "+cercle1.sonSecants(cercle2));
+        System.out.println("- No es toquen : "+cercle1.noEsToquen(cercle2));            
+    }
+    
+    
+    
+    
+    
     
     /**
      * generarIntAleatori

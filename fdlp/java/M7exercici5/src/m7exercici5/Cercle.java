@@ -8,6 +8,10 @@ package m7exercici5;
 /**
  *
  * @author Juan José Campos Caballero.
+ * 
+ * Informació trigonomètrica
+ * https://www.superprof.es/diccionario/?s=circunferencias&post_type=post
+ *  
  */
 public class Cercle {
     // ---------- Propietats ---------------------------------------------------
@@ -50,13 +54,16 @@ public class Cercle {
     * distanciaCentres(altreCercle)
     * : Retorna la distància entre el centre del cercle actual i el rebut com a paràmetre.          
     *
-    * @param altreCercle   Cercle
+    * @param        altreCercle   Cercle
+    *  
+    * @return       c     double     Valor de la distància entre centres  
     * 
     **/
-    public void distanciaCentres(Cercle altreCercle){
+    public double distanciaCentres(Cercle altreCercle){
         double a = 0,b = 0;    //Catetos del triangle rectangle
         double c=-1;  // hipotenusa del triangle rectangle
         double x,y,x1,y1,r;
+                
         
         //Determinem les coordenades cercle per paràmetre
         x1=altreCercle.getCentre().getPosicioX();
@@ -95,22 +102,16 @@ public class Cercle {
             }else if(x<x1){
                 c=x1-x;
             }
-        }
-        
-        //Mostrem les coordenades i els valors a,b i c         
-        System.out.println("------ Coordenades, a, b, c ------");
-        System.out.println("eix x [ "+x+" - "+x1+" ]"+" a = "+a);
-        System.out.println("eix y [ "+y+" - "+y1+" ]"+" b = "+b);
-        System.out.println("El Valor de l'hipotenusa (c)  = "+c);
-        System.out.println("radis [ "+r+" - "+radi+" ]");
+        }       
         
         
         // Si formen un triangle rectangle, llavors calculem c, i distància entre centres.
         if (c==-1){
-            c= Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
+            c= Math.sqrt(Math.pow(a, 2)+Math.pow(b, 2));
         }
         
-        System.out.println("- La distància entre centres es de : "+c);
+                        
+        return c;
     }
     
     /**
@@ -126,17 +127,16 @@ public class Cercle {
         Boolean eq=false;        
         double x,y,x1,y1,r;
         
-        x=centre.getPosicioX();
+        //Determinem les coordenades cercle per paràmetre
         x1=altreCercle.getCentre().getPosicioX();
-        y=centre.getPosicioY();
         y1=altreCercle.getCentre().getPosicioY();
-        r=altreCercle.getRadi();
         
-        //Mostrem les coordenades.
-        System.out.println("-- Coordenades --");
-        System.out.println("eix x [ "+x+" - "+x1+" ]");
-        System.out.println("eix y [ "+y+" - "+y1+" ]");
-        System.out.println("radis [ "+r+" - "+radi+" ]");
+        //Coordenades del cercle referència
+        x=this.centre.getPosicioX();
+        y=this.centre.getPosicioY();
+        
+        //valor del radi per paràmetre
+        r=altreCercle.getRadi();
         
         if((x==x1) & (y==y1) & (r==radi) ){ 
             eq=true;            
@@ -145,6 +145,149 @@ public class Cercle {
         return eq;
     }
     
+    /**
+     * mostrarCoordenades(Cercle altreCercle)
+     * 
+     * Mostra les coordenades dels dos cercles.
+     * 
+     * @param altreCercle   Cercle
+     */
+    public void mostrarCoordenades(Cercle altreCercle){
+        double x,y,x1,y1,r;       
+         
+        //Determinem les coordenades cercle per paràmetre
+        x1=altreCercle.getCentre().getPosicioX();
+        y1=altreCercle.getCentre().getPosicioY();
+        
+        //Coordenades del cercle referència
+        x=this.centre.getPosicioX();
+        y=this.centre.getPosicioY();
+        
+        //valor dels radis
+        r=altreCercle.getRadi();
+        
+        
+       System.out.println("Coordenades : ");
+       System.out.print("eix x [ "+x+" - "+x1+" ]  ");
+       System.out.print("eix y [ "+y+" - "+y1+" ]  ");        
+       System.out.print("radis [ "+radi+" - "+r+" ] \n");
+            
+        
+    }
     
+    
+    
+    
+    /**
+     *sonConcentrics(altreCercle) 
+     * 
+     * Retorna true si dos cercles són concèntrics (tenen igual centre).
+     * Tenen el mateix centre i no tenen cap punt en comú
+     * 
+     * @param       altreCercle
+     * @return      Boolean         true:Concèntric  
+     */
+    public Boolean sonConcentrics(Cercle altreCercle){
+        Boolean concentrics=false;
+        
+        if(altreCercle.centre.getPosicioX()==this.centre.getPosicioX() & altreCercle.centre.getPosicioY()==this.centre.getPosicioY() &  this.radi!=altreCercle.getRadi()){
+            concentrics=true;
+        } 
+        
+        return concentrics;
+    }
+    
+    
+    public Boolean mateixRadi(Cercle altreCercle){
+        Boolean mateixRadi=false;
+        
+        if(altreCercle.getRadi()==this.radi){
+            mateixRadi=true;
+        }
+        
+        return mateixRadi;
+    }
+    
+    
+    
+    /**
+     * sonTangents(altreCercle)
+     * 
+     * Retorna true si dos cercles són tangents.
+     *  
+     * @param       altreCercle Cercle
+     * @return      tangents    true:tangents 
+     * 
+     * Tangents interiors:  La distancia entre los centros es igual a la diferencia de los radios.
+     * 
+     * Tangents exteriors:  La distancia entre los centros es igual a la suma de los radios.     * 
+     * 
+     */
+    public Boolean sonTangents(Cercle altreCercle){
+        Boolean tangents=false;
+        double sumaRadis=this.radi+altreCercle.getRadi();
+        double restaRadis=this.radi-altreCercle.getRadi();
+        double dec=this.distanciaCentres(altreCercle);
+                
+        // tangents exteriors
+        if(sumaRadis==dec){
+            tangents=true;
+        }
+        
+        // tangents interiors.
+        if(dec==restaRadis){
+            tangents=true;
+        }
+                
+        return tangents;
+    }	
+
+        
+    /**
+     * sonSecants(altreCercle)
+     * 
+     * La distancia entre los centros es mayor que la diferencia de los radios pero menor que la suma.
+     * 
+     * @param   altreCercle     Cercle
+     * @return  secant          Boolean     True=secant
+     */
+    public Boolean sonSecants(Cercle altreCercle){
+        Boolean secant = false;
+        double difRadis =Math.abs(this.radi-altreCercle.getRadi());
+        double sumRadis =this.radi+altreCercle.getRadi();
+        double dec = this.distanciaCentres(altreCercle);
+        
+        if(dec > difRadis & dec<sumRadis){
+            secant = true;
+        } 
+        
+        return secant;
+    }
+	
+    /**
+     * noEsToquen(altreCercle)
+     * 
+     * Retorna true si dos cercles no es toquen.
+     * 
+     * Exteriors: true si la dist.entre centres > r1+r2
+     * Interiors: true si la dist.entre centres < r1-r2 
+     * 
+     * @param altreCercle
+     * @return 
+     */
+    public Boolean noEsToquen(Cercle altreCercle){
+        Boolean noToquen=false;
+        double difRadis =Math.abs(this.radi-altreCercle.getRadi());
+        double sumaRadis = this.radi+altreCercle.getRadi();
+        double dec = this.distanciaCentres(altreCercle);
+        
+        if (dec > sumaRadis || dec < difRadis){
+            noToquen=true;
+        }        
+        
+        return noToquen;
+    }
+    
+      
     
 }

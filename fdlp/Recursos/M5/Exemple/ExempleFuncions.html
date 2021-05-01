@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Funcions 1</h2>
+
+<script>
+
+    //Función NO parametros // NO return
+    function sumaNoParamNoReturn(){
+        let numero1 =parseInt(prompt("Introduce el numero 1"));
+        let numero2 =parseInt(prompt("Introduce el numero 2"));
+
+        console.log("LA FUNCION ESCRIBE EN CONSOLA LA SUMA: " + (numero1+numero2));
+    }
+
+
+    //Función SI parametros // NO return
+    function sumaSiParamNoReturn(p1, p2){ 
+        let resultado = p1 + p2;
+        console.log("LA FUNCION ESCRIBE EN CONSOLA LA SUMA: " +resultado);
+    }
+
+
+    //Función SI parametros // SI return
+    function sumSiParamSiReturn(n1, n2){
+        return n1 + n2;
+        //let numero1;    //nunca se ejecutaría esta linea
+    }
+
+
+    //Función NO parametros // SI return
+    function sumNoParamSiReturn(){
+        let numero1 =parseInt(prompt("Introduce el numero 1"));
+        let numero2 =parseInt(prompt("Introduce el numero 2"));
+        return numero1 + numero2;
+    }
+
+
+    //Llamadas a las funciones
+    let N1= 100;
+    let N2 = 20;
+
+    sumaNoParamNoReturn();
+
+    
+    sumaSiParamNoReturn(N1, 15);
+    sumaSiParamNoReturn(prompt("escribe un num"), N2);
+    sumaSiParamNoReturn(sumSiParamSiReturn(N2,20), N2);
+    
+    let resultado = sumSiParamSiReturn(N2,20);
+    console.log("IMPRIMIMOS EL RETURN DE LA FUNCION: " +resultado);
+    console.log("IMPRIMIMOS DE NUEVO EL RETURN DE LA FUNCION: " +sumSiParamSiReturn(N2,20));
+    
+    let resultado2 = sumNoParamSiReturn();
+    console.log("IMPRIMIMOS EL RETURN DE LA FUNCION: " +resultado2);
+    console.log("IMPRIMIMOS DE NUEVO EL RETURN DE LA FUNCION: " +sumNoParamSiReturn());
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    //esta funcion 
+    function retornaIndexNom(arrNoms, nom){
+
+        let resultado = "NOMBRE NO ENCONTRADO";
+
+        for (let i = 0; i<arrNoms.length; i++){
+            if(arrNoms[i] == nom){
+                resultado = "NOMBRE ENCONTRADO";
+                break;
+            }
+        }
+
+        return resultado;
+    }
+
+    let noms = ["Lara", "Laura", "Biel", "Jordi"];
+    let nom = prompt("Elige un nombre");
+    console.log("LA FUNCION RETORNA --> " +retornaIndexNom(noms, nom));
+
+
+</script>
+
+</body>
+</html>
