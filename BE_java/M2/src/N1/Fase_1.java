@@ -9,6 +9,11 @@ public class Fase_1 {
 	
 
 	public static void main(String[] args) {
+		
+		// Capcelera informativa
+		System.out.println("IT Academy   BE Java \nExercici M2  Nivell 1 Fase 1 \n");
+		
+		
 		String nom="Lionel Messi";
 		cadena=new char [nom.length()];
 		
@@ -17,13 +22,27 @@ public class Fase_1 {
 		
 	}
 	
-	
+	/**
+	 * omplirTaula
+	 * 
+	 * Omple l'array cadena (char) amb els caracters continguts
+	 * a l'array nom.
+	 * 
+	 * @param nom	String
+	 */
 	public static void omplirTaula(String nom) {
 		for(int i=0;i<nom.length();i++) {
 			cadena[i]=nom.charAt(i);
 		}
 	}
 	
+	/**
+	 * mostrarTaula
+	 * 
+	 * Mostra l'array de caracters per pantalla
+	 * 
+	 * @param 	elem	int	mida de l'array de caracters.
+	 */
 	public static void mostrarTaula(int elem) {
 		for(int i=0;i<cadena.length;i++) {
 			System.out.print(cadena[i]+" ");

@@ -1,9 +1,5 @@
 package N3;
 
-
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 public class Cronometre implements Runnable{
 	
 	private int hores=0,minuts=0,segons=0;
@@ -20,6 +16,11 @@ public class Cronometre implements Runnable{
 		
 	}
 	
+	/**
+	 * calculaHora
+	 * 
+	 * Calcula els resets de les hores, minuts i segons.
+	 */
 	private void calculaHora() {
 		segons++;
 		

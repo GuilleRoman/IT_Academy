@@ -14,6 +14,10 @@ public class Fase_2 {
 		 * @param args
 		 */
 		public static void main(String[] args) {
+			
+			// Capcelera informativa
+			System.out.println("IT Academy   BE Java \nExercici M2  Nivell 1 Fase 2 \n");
+			
 			omplirLlista("Lionel Messi 1a 2b");
 			mostrarLlista();			
 		}

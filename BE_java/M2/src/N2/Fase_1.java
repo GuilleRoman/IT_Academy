@@ -6,7 +6,17 @@ public class Fase_1 {
 
 	private static Scanner lector = new Scanner(System.in);
 	
+	
+	/**
+	 * main
+	 * 
+	 * @param args	String[]
+	 */
 	public static void main(String[] args) {
+		
+		// Capcelera informativa
+		System.out.println("IT Academy   BE Java \nExercici M2  Nivell 2 Fase 1 \n");
+		System.out.println("\n-ESCALA DE NÚMEROS I PIRÀMIDE INVERTIDA");
 		int alcada=0;
 		
 		System.out.println("\n-ESCALA DE NÚMEROS ");
@@ -18,6 +28,16 @@ public class Fase_1 {
 		piramideInvertida(alcada);
 	}
 	
+	/**
+	 * llegirSencer
+	 * 
+	 * LLegeix del teclat un nombre sencer.
+	 *  
+	 *  
+	 * @param missatge	String	Missatge a mostrar abans de llegir el nombre sencer.
+	 * 
+	 * @return	valor	int		nombre sencer que hem introduit per teclat
+	 */
 	public static int llegirSencer(String missatge){
         Boolean iterar=true;
         int valor = 0;
@@ -41,7 +61,13 @@ public class Fase_1 {
          return valor;   
 	}
 	
-	
+	/**
+	 * dibuixarEscala
+	 * 
+	 * Dibuixa una escala de números de n pisos i elements.
+	 * 
+	 * @param alc	int 	alçada de l'escala.
+	 */
 	public static void dibuixarEscala(int alc) {		
 		int inici=1;
 		
@@ -54,6 +80,13 @@ public class Fase_1 {
 		}
 	}
 	
+	/**
+	 * piramideInvertida
+	 * Dibuixa una piràmide invertida d'alçada n.
+	 * 
+	 * 
+	 * @param alc	int		Alçada de la piràmide.
+	 */
 	public static void piramideInvertida(int alc) {
 		String cadenaAsteriscs=" ";
 		String espais=" ";

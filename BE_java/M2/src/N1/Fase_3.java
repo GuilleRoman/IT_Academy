@@ -7,7 +7,16 @@ public class Fase_3 {
 
 	private static HashMap<Character, Integer> lletres = new HashMap<Character, Integer>();
 	
+	/**
+	 * main 
+	 * 
+	 * @param args	String[]
+	 */
 	public static void main(String[] args) {
+		
+		// Capcelera informativa
+		System.out.println("IT Academy   BE Java \nExercici M2  Nivell 1 Fase 3 \n");
+		
 		String nom="Lionel Messi";
 		System.out.println("Nom : "+nom+"\n");
 		
@@ -17,6 +26,15 @@ public class Fase_3 {
 		
 	}
 	
+	
+	/**
+	 * omplirMap
+	 * 
+	 * Afegirm la clau (caracter) i el nombre de vegades que es continguda a la variable nom
+	 * 
+	 * @param nom	String 	nom a inserir al HashMap de caràcters.
+	 * 
+	 */
 	public static void omplirMap(String nom) {
 		int valor=0;
 		
@@ -35,6 +53,12 @@ public class Fase_3 {
 		}
 	}
 	
+	/**
+	 * mostrarMap
+	 * 
+	 * Recorre el HashMap i mostra les claus i els valors emmagatzemats.
+	 * 
+	 */
 	public static void mostrarMap() {
 		
 		for(Map.Entry<Character, Integer> entrada : lletres.entrySet()) {
