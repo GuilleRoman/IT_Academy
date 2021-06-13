@@ -58,8 +58,7 @@ public class Fase_1 {
 	 * @return	valor	double		
 	 */
 	public static double demanarDouble() {
-		double valor = 0;
-		Boolean valorReal = false;
+		double valor = 0;		
 		Boolean iterar = true;
 		
 		while (iterar) {
