@@ -23,7 +23,9 @@ public class Fase_1 {
 	}
 	
 	/**
+	 * mostrarSerie
 	 * 
+	 * Mostra per pantalla la serie creada.
 	 */
 	public static void mostrarSerie() {
 		for(int i=0;i<serieFib.length;i++) {
