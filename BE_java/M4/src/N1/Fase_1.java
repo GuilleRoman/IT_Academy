@@ -40,6 +40,11 @@ public class Fase_1 {
 	
 	
 	/**
+	 * pagament 
+	 * 
+	 * Cerca la forma més eficient de pagament
+	 * de la quantitat passada per paràmetre.
+	 * 
 	 * 
 	 * @param valor
 	 */

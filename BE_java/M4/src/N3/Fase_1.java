@@ -1,4 +1,4 @@
-package N2;
+package N3;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Fase_1 {
+	
 	public static Scanner lector = new Scanner(System.in);
 	private static String plats[] = new String [15];
 	private static int preus[] = new int[15];
@@ -114,38 +115,30 @@ public class Fase_1 {
 	 * 
 	 * Selecciona els plats a demanar a cuina
 	 */
-	public static void seleccionarPlats() throws Exception {
+	public static void seleccionarPlats() {
 		Boolean iterar=true;
 		
 		int plat=0;		
 				
 		while(iterar) {
 			plat=demanarSencer("Selecciona el número de plat : ");    //demanem el número de plat
-			System.out.println();
 			
-			Boolean continua=true;
-			
-			if(plat<plats.length) {
-				comanda.add(plat);				
-				
-				while(continua) {
-					try {
-						char valorContinua = continuar("Vols demanar més plats (S/N) :");
-						if(valorContinua=='N') {
-							iterar=false;
-							continua=false;
-						}else if(valorContinua=='S') {
-							continua=false;
-						}
-					}catch(Exception ex) {
-						System.out.print(ex.getMessage());					
-					}
+			try {
+				if(plat<plats.length) {
+					comanda.add(plat);				
+					
+					char valorContinua = continuar("Vols demanar més plats (S/N) :");
+					if(valorContinua=='N') {
+						iterar=false;
+					}				
+					
+				}else {
+					
+					throw new platErroni("Plat inexistent al menú");				
 				}
-				
-			}else {
-				// si el plat triat no es troba al menú llenço una excepció generica.
-				throw new Exception("Plat inexistent al menú");				
-			}		
+			}catch(platErroni pe) {
+				System.out.println(pe.getMessage());
+			}
 		}
 	}
 	
@@ -158,14 +151,23 @@ public class Fase_1 {
 	 * @param missatge
 	 * @return	char	continuar	'S', 'N'
 	 */
-	public static char continuar(String missatge) throws Exception {
+	public static char continuar(String missatge) {
+		Boolean iterar=true;
 		char continuar='N';
-				
-		System.out.print(missatge);
-		continuar=Character.toUpperCase(lector.next().charAt(0));
 		
-		if(continuar!='S' & continuar!='N') { 
-	      throw new Exception("Opció incorrecta");
+		while(iterar) {
+			try {
+				System.out.print(missatge);
+				continuar=Character.toUpperCase(lector.next().charAt(0));
+						
+				if(continuar=='S' || continuar=='N') { 
+			      iterar=false;
+				}else {
+				  throw new TipusErroni("Opció incorrecta");
+				}
+			}catch(TipusErroni te) {
+				System.out.print(te.getMessage()+"  ");
+			}
 		}
 		
 		return continuar;
@@ -273,8 +275,5 @@ public class Fase_1 {
 		if (cinc>0) { System.out.println(" -"+cinc+" bitllets de 5 euros"); }
 		if (euro>0) { System.out.println(" -"+euro+" monedes de 1 euro"); }
 		
-	}
-	
-	
-
+	}	
 }
