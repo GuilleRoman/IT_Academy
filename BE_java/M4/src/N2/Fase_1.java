@@ -1,13 +1,12 @@
-package N1;
+package N2;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Fase_3 {
+public class Fase_1 {
 	public static Scanner lector = new Scanner(System.in);
 	private static String plats[] = new String [15];
 	private static int preus[] = new int[15];
@@ -29,15 +28,21 @@ public class Fase_3 {
 		omplirPlatsPreus();						 // Creació de plats i els seus preus corresponents implementats en un HashMap.	
 		omplirArrays();						    // Omplim els arrays plats i preus amb les dades del HashMap
 		mostrarCarta();		   				   // Mostrem la carta per cónsola.
-		seleccionarPlats();     			  // Selecciona els plats de la carta.
+		
+		try {
+			seleccionarPlats();     			  // Selecciona els plats de la carta.
+		}catch(Exception e) {
+			System.out.println("El plat seleccionat no està en el menú");
+		}
+		
 		System.out.println("\nResum de la comanda :");
 		totalComanda=(mostrarComanda());	// Mostra la comanda un cop finalitzada la tria de plats
 		System.out.println();
-		Fase_1.pagament(totalComanda);	   // Indiquem amb quins bitllets s'ha de pagar la comanda. 
+		//Fase_1.pagament(totalComanda);	   // Indiquem amb quins bitllets s'ha de pagar la comanda. 
 		
 	}
 	
-	
+
 	/**
 	 * mostrarComanda
 	 * 
@@ -102,24 +107,28 @@ public class Fase_3 {
 	 * 
 	 * Selecciona els plats a demanar a cuina
 	 */
-	public static void seleccionarPlats() {
+	public static void seleccionarPlats() throws Exception {
 		Boolean iterar=true;
 		int plat=0;
 				
 		System.out.println("\nSelecciona els plats de la carta : \n");
 		
-		while(iterar) {			
-			plat=demanarSencer("Número de plat : ");    //demanem el número de plat
+		while(iterar) {
+			System.out.print("- Número de plat : ");
+			plat=demanarSencer("Selecciona el número de plat : ");    //demanem el número de plat
 			System.out.println();
 			
-			//afegeixo el número de plat a la comanda -No comprovo que el número sigui correcte.
-			comanda.add(plat);
-			
-			// Demano si es vol continuar afegint plats a la comanda
-			if(continuar("Vols afegir més plats a la comanda?  (S/N) :")=='N') {
+			if(plat<plats.length) {
+				comanda.add(plat);				
+								
+				if(continuar("Vols demanar més plats (S/N) :")=='N') {
 					iterar=false;
-			}
-					
+				}
+			}else {
+				// si el plat triat no es troba al menú llenço una excepció generica.
+				throw new Exception();
+				//System.out.println("Opció incorrecta: tria de nou el número de plat "+"[ "+"0"+".."+(plats.length-1)+" ]");
+			}		
 		}		
 	}
 	
@@ -133,14 +142,24 @@ public class Fase_3 {
 	 * @param missatge
 	 * @return	char	continuar	'S', 'N'
 	 */
-	public static char continuar(String missatge) {
+	public static char continuar(String missatge) throws Exception {
 		char continuar='N';
+		Boolean iterar=true;
 		
 		do {
+			try {
+				System.out.print(missatge);
+				continuar=Character.toUpperCase(Fase_1.lector.next().charAt(0));
+				if(continuar!='S' & continuar!='N') { 
+					throw new Exception();
+				}else {
+					iterar=false;
+				}
+			}catch(Exception E) {
+				iterar=true;
+			}
 			
-			System.out.print(missatge);
-			continuar=Character.toUpperCase(Fase_1.lector.next().charAt(0));
-		}while(continuar!='S' & continuar!='N');
+		}while(iterar);
 		
 		return continuar;
 	}
@@ -200,11 +219,5 @@ public class Fase_3 {
 		
 		return valor;		
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

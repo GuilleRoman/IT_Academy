@@ -102,7 +102,10 @@ public class Fase_1 {
 	
 	
 	/**
+	 * SeleccionarPlats
 	 * 
+	 * Permet escollir els plats del menu i genera una comanada 
+	 * que emmagatzemem a un ArrayList.
 	 */
 	public static void seleccionarPlats() {
 		Boolean iterar=true;
@@ -144,7 +147,7 @@ public class Fase_1 {
 				iterar=false;
 			} catch (InputMismatchException ex) {
 				System.out.print("Valor incorrecte, torna a introduir-lo : ");
-				//lector.next();
+				lector.next();
 			}
 		}
 		
@@ -153,6 +156,9 @@ public class Fase_1 {
 	
 	
 	/**
+	 * mostrarCarta
+	 * 
+	 * Mostra per pantalla els plats del menú amb el seu preu
 	 * 
 	 */
 	public static void mostrarCarta() {
@@ -169,7 +175,10 @@ public class Fase_1 {
 		
 	
 	/**
+	 * omplirPlatsPreus
 	 * 
+	 * Omple els arrays plats i preus amb les dades inicials
+	 * amb les dades de la carta.
 	 */
 	public static void omplirPlatsPreus() {
 		plats[0] ="Garota a la crema";

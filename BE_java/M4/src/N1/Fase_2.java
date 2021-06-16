@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 
 public class Fase_2 {
+	public static Scanner lector = new Scanner(System.in);
 	private static String plats[] = new String [15];
 	private static int preus[] = new int[15];
 	private static HashMap<String, Integer> preuPlat = new HashMap<String, Integer>();
@@ -142,7 +143,7 @@ public class Fase_2 {
 		
 		while(iterar) {
 			System.out.print("- Número de plat : ");
-			plat=Fase_1.demanarSencer();    //demanem el número de plat
+			plat=demanarSencer();    //demanem el número de plat
 			System.out.println();
 			
 			if(plat<plats.length) {
@@ -183,6 +184,30 @@ public class Fase_2 {
 	}
 	
 	
+	/**
+	 * demanarSencer
+	 * 
+	 * Recull per teclat un valor de tipus sencer, el qual
+	 * retorna com a resultat de la funció.
+	 * 	 
+	 * @return	valor	int		
+	 */
+	public static int demanarSencer() {
+		int valor = 0;		
+		Boolean iterar = true;
+		
+		while (iterar) {
+			try {
+				valor = lector.nextInt();
+				iterar=false;
+			} catch (InputMismatchException ex) {
+				System.out.print("Valor incorrecte, torna a introduir-lo : ");
+				lector.next();
+			}
+		}
+		
+		return valor;		
+	}
 	
 	
 	
