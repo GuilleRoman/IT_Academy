@@ -33,6 +33,7 @@ public class Fase_1 {
 			seleccionarPlats();     			  // Selecciona els plats de la carta.
 		}catch(Exception e) {
 			System.out.println("El plat seleccionat no està en el menú");
+			seleccionarPlats();
 		}
 		
 		System.out.println("\nResum de la comanda :");
