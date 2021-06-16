@@ -20,6 +20,7 @@ public class Fase_1 {
 	 */
 	public static void main(String[] args) {
 		int totalComanda=0;
+		Boolean iterar=true;
 		
 		// Capcelera informativa
 		System.out.println("IT Academy   BE Java \nExercici M3  Nivell 1 Fase 2 \n");
@@ -29,12 +30,16 @@ public class Fase_1 {
 		omplirArrays();						    // Omplim els arrays plats i preus amb les dades del HashMap
 		mostrarCarta();		   				   // Mostrem la carta per cónsola.
 		
-		try {
-			seleccionarPlats();     			  // Selecciona els plats de la carta.
-		}catch(Exception e) {
-			System.out.println("El plat seleccionat no està en el menú");
-			seleccionarPlats();
-		}
+		// Selecciono els plats de la carta.
+		do {
+			try {
+				seleccionarPlats();     			  // Selecciona els plats de la carta.
+				iterar=false;
+			}catch(Exception e) {
+				System.out.println("El plat seleccionat no està en el menú");		
+			}
+		}while(iterar);
+		
 		
 		System.out.println("\nResum de la comanda :");
 		totalComanda=(mostrarComanda());	// Mostra la comanda un cop finalitzada la tria de plats
