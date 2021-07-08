@@ -7,7 +7,7 @@ import com.jobs.domain.AbsStaffMember;
 
 public class EmployeeRepository {
 
-	private static List<AbsStaffMember> members=new ArrayList<>();
+	private  List<AbsStaffMember> members=new ArrayList<>();
 	
 	public EmployeeRepository(){
 		
@@ -22,6 +22,5 @@ public class EmployeeRepository {
 		if(member==null) throw new Exception();
 		members.add(member);
 	}
-	
-	
+		
 }

@@ -17,7 +17,7 @@ public class JobsController {
 	
 	public void createBossEmployee(String name, String address, String phone, double salaryPerMonth) throws Exception{		
 		Employee boss = new Employee(name, address, phone,  salaryPerMonth, PaymentFactory.createPaymentRateBoss());
-		repository.addMember(boss);
+		repository.addMember(boss);		
 	}
 	
 	public void createEmployee(String name, String address, String phone, double salaryPerMonth) throws Exception{		
@@ -27,11 +27,14 @@ public class JobsController {
 
 	public void createManagerEmployee(String name, String address, String phone, double salaryPerMonth) throws Exception{
 		Employee boss = new Employee(name, address, phone,  salaryPerMonth, PaymentFactory.createPaymentRateManager());
-		repository.addMember(boss);
-		
+		repository.addMember(boss);			
 	}
 
-
+	public void createVolunteer(String nom, String address, String phone) throws Exception {
+		Volunteer voluntari = new Volunteer(nom,address,phone);
+		repository.addMember(voluntari);
+	}
+		
 	public void payAllEmployeers() {
 		List<AbsStaffMember> llistat = repository.getAllMembers();
 		
@@ -52,10 +55,7 @@ public class JobsController {
 		return employees;
 	}
 
-	public void createVolunteer(String nom, String address, String phone) throws Exception {
-		Volunteer voluntari = new Volunteer(nom,address,phone);
-		repository.addMember(voluntari);
-	}
+	
 	
 	
 	
