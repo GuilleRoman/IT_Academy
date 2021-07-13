@@ -3,7 +3,6 @@ package com.vehicles.view;
 import java.text.ParseException;
 
 import com.persones.application.PersonesController;
-import com.persones.project.Titular;
 import com.vehicles.application.Utilitats;
 import com.vehicles.application.VehicleController;
 
@@ -37,11 +36,11 @@ public class Inici {
 			System.out.println("CARWORKSHOP MANAGEMENT -- Menuú Principal --\n");		
 			System.out.println("  1.- Gestió de vehicles");
 			System.out.println("  2.- Gestió de persones");
-			System.out.println("  ");
+			System.out.println("  3.- Mostrar el carWorkShop");			
 			System.out.println("  0.- Sortir\n");
 			System.out.print("Tria l'opció desitjada [0..2] : ");
 			
-			opcio = Utilitats.llegirSencer(0,2);
+			opcio = Utilitats.llegirSencer(0,3);
 				
 			switch(opcio) {
 			
@@ -57,7 +56,15 @@ public class Inici {
 				case 2: //Gestió de Persones
 					menuPersones();
 					break;						
-				
+				case 3: // Mostrar tot el carWorkShop
+					System.out.println("CARWORKSHOP");
+					System.out.println("-- VEHICLES -----------------");
+					System.out.println(vController.getCarWorkShop());
+					
+					System.out.println("-- TITULARS I CONDUCTORS-----");
+					System.out.println(pController.persones.getAllPersones());
+					
+					break;
 			}		
 		}while(opcio!=0);	
 	}
@@ -70,7 +77,9 @@ public class Inici {
 	public static void menuVehicles() throws Exception {
 		int opcio;			 // opció menu principal
 		String[] carDate;	// array dades cotxe (plate, brand, color)
-		String[] bikeDate; // array dades cotxe (plate, brand, color)		
+		String[] bikeDate; // array dades cotxe (plate, brand, color)
+		//Titular titular;
+		//Conductor conductor;
 		
 		//Menú principal vehicles
 			do {
@@ -92,9 +101,22 @@ public class Inici {
 						
 					case 1:	//Afegim Cotxe al carWorkShop
 						
-						carDate = vController.requestVehicleDate();		 		// Demanar dades bàsiqes del vehicle
-						Titular titular = vController.assignarTitular(carDate[0], pController.getPersones());       // Selecciono el titular del vehicle
-						vController.addCar(carDate[0], carDate[1], carDate[2], titular); // Afegim el cotxe al carWorkShop						
+						// Demanar dades bàsiqes del vehicle
+						carDate = vController.requestVehicleDate();	
+						vController.addCar(carDate[0], carDate[1], carDate[2], pController.getPersones()); // Afegim el cotxe al carWorkShop	
+						
+						/**
+						// Afegeixo conductors si escau
+						System.out.println("Vols assignar conductors al vehicle?  (si/no) : ");		// Seleccionar un titular dels existens al repositori
+						if(Utilitats.siNo()) {
+							do {
+								conductor = pController.crearConductor();
+								System.out.println("Vols afegir més conductors?  (si/no) : ");								
+							}while(Utilitats.siNo());							
+						}
+												
+						// Afegeixo el cotxe al repositori
+						*/					
 						break;
 						
 					case 2: //Afegim moto al carWorkShop

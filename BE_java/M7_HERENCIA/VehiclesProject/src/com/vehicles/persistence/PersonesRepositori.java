@@ -49,7 +49,7 @@ public class PersonesRepositori {
 		String llistaPersones ="";
 
 		for(Persona pers : persones) {
-			llistaPersones += pers.toString();			
+			llistaPersones += pers.toString()+"\n";			
 		}
 		
 		return llistaPersones;

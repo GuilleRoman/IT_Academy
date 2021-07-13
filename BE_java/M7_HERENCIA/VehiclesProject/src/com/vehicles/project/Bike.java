@@ -10,7 +10,4 @@ public class Bike extends Vehicle {
 		this.wheels.add(frontWheels);
 		this.wheels.add(backWheels);
 	}
-
-	
-
 }

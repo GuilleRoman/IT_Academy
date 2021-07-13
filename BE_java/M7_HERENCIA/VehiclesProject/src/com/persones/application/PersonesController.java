@@ -11,14 +11,15 @@ import com.persones.project.Persona;
 import com.persones.project.Titular;
 import com.vehicles.application.Utilitats;
 import com.vehicles.persistence.PersonesRepositori;
+import com.vehicles.project.Vehicle;
 
 public class PersonesController {
 	
-	PersonesRepositori persones = new PersonesRepositori();	
+	public  PersonesRepositori persones = new PersonesRepositori();	
 	
 	// ----- CONDUCTORS --------------------------------------------------------------------
 	
-	public void crearConductor() {
+	public Conductor crearConductor() {
 		String nom;
 		String cognoms;
 		Date dataNaixement;
@@ -43,6 +44,7 @@ public class PersonesController {
 				
 		System.out.println("--> El Conductor "+cognoms+","+nom+" ha estat creat correctament.");
 		
+		return conductor;
 	}
 	
 	public Llicencia addLlicencia() {
@@ -114,16 +116,10 @@ public class PersonesController {
 			}							
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
+		
 	// ----- TITULAR ------------------------------------------------------------------------
 	
-	public void crearTitular() {
+	public Titular crearTitular() {
 		String nom;
 		String cognoms;
 		Date dataNaixement;
@@ -150,11 +146,13 @@ public class PersonesController {
 		// Creem el titular i l'afegim a la llista de titulars
 		Titular titular = new Titular(nom, cognoms, dataNaixement,asseguranca,parking);
 		persones.addPersona(titular);
-		
+				
 		System.out.println("--> El Titular "+cognoms+","+nom+" ha estat creat correctament.");
+		
+		return titular;
 	}
 		
-	
+		
 	/**
 	 * titularsProva
 	 * 
@@ -200,14 +198,19 @@ public class PersonesController {
 	 * mostrarTitulars
 	 */
 	public void mostrarTitulars() {
+		int i = 0;
 		
 		for(Persona pers : persones.getPersones()) {
 			
 			if(pers instanceof Titular) {
-				System.out.println(pers.toString());
+				System.out.println("id :"+i+"  -"+pers.toString());
+				i++;
 			}							
 		}
 	}
+	
+	
+// ---- PERSONES -----------------------------------------------------------------------
 	
 	public void mostrarPersones() {
 		

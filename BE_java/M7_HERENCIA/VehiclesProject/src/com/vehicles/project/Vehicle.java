@@ -3,6 +3,7 @@ package com.vehicles.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.persones.project.Conductor;
 import com.persones.project.Persona;
 import com.persones.project.Titular;
 
@@ -14,14 +15,31 @@ public abstract class Vehicle {
 	protected Titular titular;
 	protected List<Persona> conductors = new ArrayList<Persona>();
 	protected List<Wheel> wheels = new ArrayList<Wheel>();
-
-	public Vehicle(String plate, String brand, String color, Titular titular) {
+	
+	public Vehicle(String plate, String brand, String color) {
+		super();
 		this.plate = plate;
 		this.brand = brand;
 		this.color = color;
-		this.titular=titular;
+	}
+
+	public Vehicle(String plate, String brand, String color, Titular titular) {
+		super();
+		this.plate = plate;
+		this.brand = brand;
+		this.color = color;
+		this.titular = titular;
 	}
 	
+	public Vehicle(String plate, String brand, String color, Titular titular, List<Persona> conductors) {
+		super();
+		this.plate = plate;
+		this.brand = brand;
+		this.color = color;
+		this.titular = titular;
+		this.conductors = conductors;
+	}
+
 	// toString, Getters and Setters ----------------------------------------------------------------------------
 	@Override
 	public String toString() {
@@ -53,6 +71,13 @@ public abstract class Vehicle {
 		this.color = color;
 	}
 	
+	public void setTitular(Titular titular) {
+		this.titular = titular;
+	}
+	
+	public void addConductor(Conductor conductor) {
+		conductors.add(conductor);
+	}
 	
 	
 }

@@ -10,6 +10,11 @@ public class Car extends Vehicle {
 	public Car(String plate, String brand, String color, Titular titular) {
 		super(plate, brand, color, titular);
 	}
+	
+	public Car(String plate, String brand, String color) {
+		super(plate, brand, color);
+	}
+	
 
 	public void addWheels(List<Wheel> frontWheels, List<Wheel> backWheels) throws Exception {
 		addTwoWheels(frontWheels);
