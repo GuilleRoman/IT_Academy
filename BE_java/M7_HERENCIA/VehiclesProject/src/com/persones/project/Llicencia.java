@@ -21,6 +21,14 @@ public class Llicencia {
 	public String toString() {
 		return "Llicencia [tipus=" + tipus + ", nomComplet=" + nomComplet + ", dataCaducitat=" + sdf.format(dataCaducitat) + "]";
 	}
+
+	public String getTipus() {
+		return tipus;
+	}
+
+	public Date getDataCaducitat() {
+		return dataCaducitat;
+	}
 	
 	
 }

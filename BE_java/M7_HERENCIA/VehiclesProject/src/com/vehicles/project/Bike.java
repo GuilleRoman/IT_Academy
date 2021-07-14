@@ -10,4 +10,14 @@ public class Bike extends Vehicle {
 		this.wheels.add(frontWheels);
 		this.wheels.add(backWheels);
 	}
+
+	@Override
+	public String toString() {
+		return "Bike [plate=" + plate + ", brand=" + brand + ", color=" + color + ", titular=" + titular
+				+ ", conductors=" + conductors + ", wheels=" + wheels + "]";
+	}
+	
+	
+	
+	
 }

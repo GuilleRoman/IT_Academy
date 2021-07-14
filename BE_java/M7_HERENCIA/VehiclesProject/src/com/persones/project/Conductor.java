@@ -18,5 +18,7 @@ public class Conductor extends Persona {
 				"\n  -"+llicencia.toString() + "]";
 	}
 	
-	
+	public Llicencia getLlicencia() {
+		return llicencia;
+	}
 }

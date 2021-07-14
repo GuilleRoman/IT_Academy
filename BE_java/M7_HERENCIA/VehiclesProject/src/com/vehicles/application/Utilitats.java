@@ -142,7 +142,7 @@ public final class Utilitats {
 				bool = true;
 			}else if (resposta.equals("NO") || resposta.equals("N")) {
 				iterar = false;
-				bool = true;
+				bool = false;
 			}			
 		}
 		

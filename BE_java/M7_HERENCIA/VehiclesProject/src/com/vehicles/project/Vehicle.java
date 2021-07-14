@@ -7,6 +7,7 @@ import com.persones.project.Conductor;
 import com.persones.project.Persona;
 import com.persones.project.Titular;
 
+
 public abstract class Vehicle {
 
 	protected String plate;

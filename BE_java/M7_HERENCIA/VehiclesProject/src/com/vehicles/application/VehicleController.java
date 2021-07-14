@@ -43,6 +43,7 @@ public class VehicleController {
 	public void addBike(String plate, String brand, String color) throws Exception {
 		Wheel frontWheel;
 		Wheel rearWheel;
+		Conductor conductor;
 		
 		Bike bike = new Bike(plate, brand, color);
 		
@@ -57,10 +58,15 @@ public class VehicleController {
 		
 		//Afegeixo conductors al vehicle
 		do {
-			bike.addConductor(seleccionarConductor()); //Afegeixo el conductor al vehicle.
+			conductor = seleccionarConductor();
+			if(conductor.getLlicencia().getTipus()!="A"){ 
+				System.out.println("ATENCIÓ : Aquest conductor no té llicència per conduir una moto ");
+			}else {
+				bike.addConductor(conductor); //Afegeixo el conductor al vehicle.
+			}
 			
 			System.out.print("Vols inserir un altre conductor? (si/no)");			
-		}while(!Utilitats.siNo());
+		}while(Utilitats.siNo());
 		
 		// afegim la Bike al CarWorkShop
 		carWorkShop.addVehicle(bike);
@@ -74,12 +80,10 @@ public class VehicleController {
 	 * @throws Exception 
 	 */
 	public void addCar(String plate, String brand, String color, List<Persona> persons) throws Exception {
-		
-		
+		Conductor conductor;		
 		List<Wheel> wheelsFront;
 		List<Wheel> wheelsRear;
-		
-		
+			
 		Car newCar = new Car(plate, brand,color);			
 		
 		//afegim les dues rodes davanteres i traseres.
@@ -95,10 +99,16 @@ public class VehicleController {
 		
 		//Afegeixo conductors al vehicle
 		do {
-			newCar.addConductor(seleccionarConductor()); //Afegeixo el conductor al vehicle.
+			// Determino si la llicència permet conduir un cotxe
+			conductor = seleccionarConductor();
+			if(conductor.getLlicencia().getTipus()!="A"){ 
+				newCar.addConductor(conductor); //Afegeixo el conductor al vehicle.
+			}else {
+				System.out.println("ATENCIÓ : Aquest conductor no té llicència per conduir un cotxe");
+			}
 			
 			System.out.print("Vols inserir un altre conductor? (si/no)");			
-		}while(!Utilitats.siNo());		
+		}while(Utilitats.siNo());		
 						
 		//Afegeixo el cotxe al carWorkShop
 		carWorkShop.addVehicle(newCar);
@@ -106,38 +116,40 @@ public class VehicleController {
 				
 	}
 	
+	/**
+	 * SeleccionarConductor
+	 *  
+	 * @param  Conductor
+	 * @return conductor
+	 */
 	public Conductor seleccionarConductor() {
 		Conductor conductor;
 		int id_titular;
+				
 		List<Persona> persons = com.vehicles.view.Inici.pController.getPersones();
 		
-		System.out.print("Vols assignar conductors existents al vehicle?  (si/no) : ");		// Seleccionar un titular dels existens al repositori
-			if(Utilitats.siNo()) {					
-				for(int i=0; i<persons.size();i++) {						
-					if(persons.get(i) instanceof Conductor) {
-						System.out.println("id :"+i+"  -"+persons.get(i).toString());
-						i++;
-					}							
-				}
-						
-				do {
-					System.out.print("Selecciona el id del conductor que vols escollir :");
-					id_titular = Utilitats.llegirSencer(0, persons.size());
-				}while(!(persons.get(id_titular) instanceof Conductor));
-						
-					conductor =(Conductor) persons.get(id_titular);
-			}else {
-				// Creo nou conductor i l'afegeixo al repositori.
-				conductor = com.vehicles.view.Inici.pController.crearConductor();
-				com.vehicles.view.Inici.pController.getPersones().add(conductor);
+		System.out.print("Vols assignar conductors existents al vehicle?  (si/no) : ");		// Seleccionar un titular dels existens al repositori		
+		if(Utilitats.siNo()) {					
+			for(int i=0; i<persons.size();i++) {						
+				if(persons.get(i) instanceof Conductor) {
+					System.out.println("id :"+i+"  -"+persons.get(i).toString());					
+				}							
 			}
+					
+			do {
+				System.out.print("Selecciona el id del conductor que vols escollir :");
+				id_titular = Utilitats.llegirSencer(0, persons.size());
+			}while(!(persons.get(id_titular) instanceof Conductor));
+					
+				conductor =(Conductor) persons.get(id_titular);
+		}else {
+			// Creo nou conductor i l'afegeixo al repositori.
+			conductor = com.vehicles.view.Inici.pController.crearConductor();
+			com.vehicles.view.Inici.pController.getPersones().add(conductor);
+		}
 			
-			return conductor;		
+		return conductor;	
 	}
-	
-	
-	
-	
 	
 	/**
 	 * seleccionaTitular
@@ -151,33 +163,34 @@ public class VehicleController {
 		Titular titular = null;		
 		int id_titular;
 		
+		
 		List<Persona> persons = com.vehicles.view.Inici.pController.getPersones();
 		
 		// Afegeixo titular al vehicle
-			System.out.print("Vols assignar un titular existent al vehicle?  (si/no) : ");		// Seleccionar un titular dels existens al repositori
-			if(Utilitats.siNo()) {
+		System.out.print("Vols assignar un titular existent al vehicle?  (si/no) : ");		// Seleccionar un titular dels existens al repositori
+		if(Utilitats.siNo()) {
 					
-				for(int i=0; i<persons.size();i++) {
+			for(int i=0; i<persons.size();i++) {
 						
-					if(persons.get(i) instanceof Titular) {
-						System.out.println("id :"+i+"  -"+persons.get(i).toString());
-						i++;
-					}							
-				}
-					
-				do {
-					System.out.print("Selecciona el id de titular que vols escollir :");
-					id_titular = Utilitats.llegirSencer(0, persons.size());
-				}while(!(persons.get(id_titular) instanceof Titular));
-				
-				titular =(Titular) persons.get(id_titular);
-									
-			}else {
-				//Creo un nou titular i l'afegeixo al repositori de persones.
-				titular = com.vehicles.view.Inici.pController.crearTitular();
-				com.vehicles.view.Inici.pController.getPersones().add(titular);
+				if(persons.get(i) instanceof Titular) {
+					System.out.println("id :"+i+"  -"+persons.get(i).toString());						
+				}							
 			}
+					
+			do {
+				System.out.print("Selecciona el id de titular que vols escollir :");
+				id_titular = Utilitats.llegirSencer(0, persons.size());
+			}while(!(persons.get(id_titular) instanceof Titular));
 			
+			titular =(Titular) persons.get(id_titular);
+								
+		}else {
+			//Creo un nou titular i l'afegeixo al repositori de persones.
+			titular = com.vehicles.view.Inici.pController.crearTitular();
+			com.vehicles.view.Inici.pController.getPersones().add(titular);
+		}
+		
+		System.out.print(".Titular assigant al vehicle correctament")
 		return titular;
 	}
 	

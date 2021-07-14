@@ -103,20 +103,7 @@ public class Inici {
 						
 						// Demanar dades bàsiqes del vehicle
 						carDate = vController.requestVehicleDate();	
-						vController.addCar(carDate[0], carDate[1], carDate[2], pController.getPersones()); // Afegim el cotxe al carWorkShop	
-						
-						/**
-						// Afegeixo conductors si escau
-						System.out.println("Vols assignar conductors al vehicle?  (si/no) : ");		// Seleccionar un titular dels existens al repositori
-						if(Utilitats.siNo()) {
-							do {
-								conductor = pController.crearConductor();
-								System.out.println("Vols afegir més conductors?  (si/no) : ");								
-							}while(Utilitats.siNo());							
-						}
-												
-						// Afegeixo el cotxe al repositori
-						*/					
+						vController.addCar(carDate[0], carDate[1], carDate[2], pController.getPersones()); // Afegim el cotxe al carWorkShop						
 						break;
 						
 					case 2: //Afegim moto al carWorkShop
