@@ -27,6 +27,7 @@ public class PropulsorFrenar implements Runnable {
 				if(propulsor.getPotenciaObjectiu() == propulsor.getPotenciaActual()) {
 					iterar=false;
 				} else {
+					//Actualitzem la potencia actual decrementant la potencia
 					propulsor.setPotenciaActual(propulsor.getPotenciaActual()-cadencia);
 					propulsor.setEtiqueta();			
 					

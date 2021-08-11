@@ -9,8 +9,7 @@ public class ActualitzaVelocitat implements Runnable {
 	private double velocitat = 0;
 	
 	public ActualitzaVelocitat (Coet coet) {
-		this.coet = coet;
-		
+		this.coet = coet;		
 	}
 	
 	@Override
@@ -29,9 +28,8 @@ public class ActualitzaVelocitat implements Runnable {
 			}
 			
 			//Calculo la velocitat actual
-			velocitat =Math.sqrt(totalPropulsors); 
-			 													// Actualitzo la velocitat inicial
-			coet.setVelocitatActual(velocitat+""); 									   // Mostrem la velocitat a PanelDeControl	
+			velocitat =Math.sqrt(totalPropulsors);				// Actualitzo la velocitat inicial
+			coet.setVelocitatActual(velocitat+""); 			   // Mostrem la velocitat a PanelDeControl	
 			
 			
 			// Esperem un segon

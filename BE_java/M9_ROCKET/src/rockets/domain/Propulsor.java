@@ -3,6 +3,7 @@ package rockets.domain;
 import javax.swing.JLabel;
 
 public class Propulsor {
+	
 	private int potenciaMax;
 	private int potenciaActual;
 	private int potenciaObjectiu;
@@ -10,17 +11,16 @@ public class Propulsor {
 	private JLabel etiqueta = new JLabel();
 
 	
-
+	// ------ CONSTRUCTOR ------------------
 	public Propulsor(int potenciaMax) {
 		
 		this.potenciaMax = potenciaMax;
 		this.potenciaActual = 0;
 		// La potència objectiu la calculem com un 10% menys de la potència total; 
 		this.potenciaObjectiu =(int)(potenciaMax-(potenciaMax*0.10));
-		
-		
 	}
 
+	------ GETTERS SETTERS -------------------------------------------------------	
 	public int getPotenciaMax() {
 		return potenciaMax;
 	}

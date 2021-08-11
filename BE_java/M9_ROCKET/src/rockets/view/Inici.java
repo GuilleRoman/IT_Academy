@@ -36,10 +36,11 @@ public class Inici {
 		pr1 = new Propulsor(10);
 		llistaCoet2.add(pr1);
 		
-		
+		//Creem els dos coets 
 		Coet coet1 = new Coet("32WESSDS", llistaCoet1);
 		Coet coet2 = new Coet("LDSFJA32", llistaCoet2); 
 		
+		//Inicialitzem la pantalla principal amb els dos coets.
 		new PantallaPrincipal(coet1, coet2);
 		
 				

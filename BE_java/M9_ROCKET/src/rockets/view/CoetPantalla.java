@@ -9,9 +9,7 @@ import rockets.domain.Propulsor;
 
 
 public class CoetPantalla extends JPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;	
 	private JLabel potenciaObjectiuLabel;
 	private JLabel potenciaPropulsorsLabel;
@@ -20,7 +18,7 @@ public class CoetPantalla extends JPanel {
 	private JLabel nomLabel;
 	
 	/**
-	 * Constructor 
+	 * CONSTRUCTOR
 	 * 
 	 * @param coet
 	 */

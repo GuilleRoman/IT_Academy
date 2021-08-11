@@ -17,6 +17,7 @@ import rockets.domain.Propulsor;
 public class PanelControl extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
+	
 	private JButton accelerar = new JButton("accelerar");
 	private JButton frenar = new JButton("frenar");
 	private JButton parar = new JButton("parar");
@@ -24,16 +25,20 @@ public class PanelControl extends JPanel {
 	private JLabel velocitatLabel;
 	private JLabel velocitatInLabel;
 	private JLabel accelerarLabel;
-	private JTextField velocitat;
 	
+	private JTextField velocitat;	
 	private JTextField velocitatIn;
 	private JTextField accelerarText;
 	
 	private Coet coet;
 	private int cadencia = 1;		// Cadència en l'acceleració o frenada del coet
-	private int potNecessaria;	   // Potència necessaria per assolir la velocitat indicada al textField
 	
-
+	
+	/**
+	 * CONSTRUCTOR 
+	 * 
+	 * @param coet
+	 */
 	public PanelControl(Coet coet) {
 		this.coet = coet;		
 		setLayout(null);
@@ -58,11 +63,13 @@ public class PanelControl extends JPanel {
 		accelerarText = new JTextField();
 		accelerarText.setBounds(110,70,40,20);
 		
+		// Inicialització dels valors inicials dels JTextFields
 		this.velocitat.setText("0");
 		this.velocitatIn.setText("0");
 		this.velocitatIn.setEditable(false);
 		this.accelerarText.setText("1");
 		
+		// Accions quan es clika sobre el button accelerar
 		accelerar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -72,7 +79,8 @@ public class PanelControl extends JPanel {
 				accioBotonera(e);
 			}
 		});
-
+		
+		// Accions quan es clika sobre el button frenar
 		frenar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,6 +91,7 @@ public class PanelControl extends JPanel {
 			}
 		});
 		
+		// Accions quan es clika sobre el button parar
 		parar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,10 +100,8 @@ public class PanelControl extends JPanel {
 				parar.setEnabled(false);
 				accioBotonera(e);
 			}
-		});
-		
-				
-		
+		});	
+					
 		// Accions, events  sobre la caixa de text velocitat ---------------
 		velocitat.addActionListener(new ActionListener() {
 			   //En pulsar Enther al JtextField de velocitat calcula la potència dels propulsors per assolir la
@@ -191,6 +198,11 @@ public class PanelControl extends JPanel {
 		}
 	}
 	
+	/**
+	 * accelerar
+	 * 
+	 * Inicia l'acceleració dels propulsors fins assolir la potencia objectiu. 
+	 */
 	public void accelerar() {
 		for(Propulsor prop : coet.getPropulsors()) {
 			
@@ -207,6 +219,11 @@ public class PanelControl extends JPanel {
 		}
 	}
 	
+	/**
+	 * frenar
+	 * 
+	 * Inicia l'acceleració dels propulsors fins assolir la potencia objectiu. 
+	 */
 	public void frenar() {
 		for(Propulsor prop : coet.getPropulsors()) {
 			
@@ -243,7 +260,16 @@ public class PanelControl extends JPanel {
 	}
 	
 	
-	
+	/**
+	 * calcularPotenciaNecessaria 
+	 * 
+	 * - Determinar si els propulsors del coet poden assolir la velocitat.
+	 * - Assigna el valor dels propulsors per assolir la velocitat
+	 * - Accelera o frena en funció de la velocitat a assolir 
+	 * 
+	 * @param valor	int 	velocitat a assolir.
+	 * 
+	 */
 	public void calcularPotenciaNecessaria(int valor) {
 		int potNecessaria=0;		   // Potència necessaria per assolir la velocitat valor
 		int potCoet=0;				  // Potència de tots els propulsors del coet
@@ -289,7 +315,7 @@ public class PanelControl extends JPanel {
 					}else {
 						prop.setPotenciaObjectiu(0);
 					}
-				}else { //Si la potència a assolir és negativa -----
+				} /** else { //Si la potència a assolir és negativa -----
 					if(Math.abs(potenciaRestant) > 0) {
 						if(prop.getPotenciaMax() < Math.abs(potenciaRestant)){
 							potenciaRestant+=prop.getPotenciaMax();
@@ -304,7 +330,7 @@ public class PanelControl extends JPanel {
 					}
 					
 					System.out.println("propulsor : "+prop.getPotenciaObjectiu());
-				}
+				}**/
 			}
 			
 			// Ordenem a cada propulsor que acceleri o freni per tal
