@@ -20,7 +20,7 @@ public class Propulsor {
 		this.potenciaObjectiu =(int)(potenciaMax-(potenciaMax*0.10));
 	}
 
-	------ GETTERS SETTERS -------------------------------------------------------	
+	//------ GETTERS SETTERS -------------------------------------------------------	
 	public int getPotenciaMax() {
 		return potenciaMax;
 	}
