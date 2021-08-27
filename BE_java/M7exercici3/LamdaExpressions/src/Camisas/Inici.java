@@ -16,6 +16,10 @@ public class Inici {
 		camises.add(new Camisa("S","VERMELLA"));
 		camises.add(new Camisa("XL","BLAVA"));
 		camises.add(new Camisa("L","BLANCA"));
+		
+		List<Camisa> camisesVermelles = filtrar(camises, 
+			    (Camisa c) ­> “VERDA”.equals(c.getColor()));
+		
 	}
 	
 	
