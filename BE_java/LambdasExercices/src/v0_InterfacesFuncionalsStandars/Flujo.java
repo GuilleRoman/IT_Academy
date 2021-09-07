@@ -1,16 +1,26 @@
-package V6Lambdas;
+package v0_InterfacesFuncionalsStandars;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Flujo <T> {
 
-	private final List<T> llistaValors;
+	protected  final List<T> llistaValors;
 	
 	// CONSTRUCTOR ----------------------
 	public Flujo(List<T> llistaValors) {
 		this.llistaValors = llistaValors;
 	}
+	
+	public Flujo() {
+		this.llistaValors=null;
+	}
+	
 
 	public List<T> getLlistaValors() {
 		return llistaValors;
@@ -22,11 +32,11 @@ public class Flujo <T> {
 	 * @param proveidor
 	 * @return
 	 */
-	public Flujo<T> proveir (int size, Proveidor<T> proveidor) {
+	public static <T> Flujo<T> proveir (int size, Supplier<T> proveidor) {
 		List<T> resultat = new ArrayList<>();
 		
 		for(int i=0; i<size;i++) {
-			resultat.add(proveidor.obtenir());
+			resultat.add(proveidor.get());
 		}
 		
 		return new Flujo<>(resultat);
@@ -37,7 +47,7 @@ public class Flujo <T> {
 	 * @param predicado
 	 * @return
 	 */
-	public Flujo<T> filtrar(Predicado<T> predicado){
+	public Flujo<T> filtrar(Predicate<T> predicado){
 		List<T> resultat = new ArrayList<>();
 		
 		for( T valor : llistaValors) {
@@ -55,11 +65,11 @@ public class Flujo <T> {
 	 * @param funcio
 	 * @return
 	 */
-	public <R> Flujo<R> transformar(Funcio<T,R> funcio){
+	public <R> Flujo<R> transformar(Function<T,R> funcio){
 		List<R> resultat = new ArrayList<>();
 		
 		for( T valor : llistaValors) {
-			resultat.add(funcio.aplicar(valor));			
+			resultat.add(funcio.apply(valor));			
 		}		
 		
 		return new Flujo<>(resultat);
@@ -70,10 +80,10 @@ public class Flujo <T> {
 	 * @param consumidor
 	 * @return
 	 */
-	public Flujo<T> actuar(Consumidor<T> consumidor){
+	public Flujo<T> actuar(Consumer<T> consumidor){
 		
 		for( T valor : llistaValors) {
-			consumidor.aceptar(valor);
+			consumidor.accept(valor);
 		}	
 		
 		return new Flujo<>(llistaValors);		
@@ -83,10 +93,10 @@ public class Flujo <T> {
 	 * 
 	 * @param consumidor
 	 */
-	public void consumir (Consumidor<T> consumidor){
+	public void consumir (Consumer<T> consumidor){
 		
 		for( T valor : llistaValors) {
-			consumidor.aceptar(valor);
+			consumidor.accept(valor);
 		}			
 	}
 	
@@ -97,11 +107,11 @@ public class Flujo <T> {
 	 * @param operadorBinari
 	 * @return
 	 */
-	public T reducir(T identitat, OperadorBinario<T> operadorBinari) {
+	public T reducir(T identitat, BinaryOperator<T> operadorBinari) {
 		T total = identitat;
 		
 		for(T valor : llistaValors) {
-			total = operadorBinari.aplicar(total, valor);
+			total = operadorBinari.apply(total, valor);
 		}
 		
 		return total;
