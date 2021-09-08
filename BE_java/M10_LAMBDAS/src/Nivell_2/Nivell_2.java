@@ -2,15 +2,11 @@ package Nivell_2;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class Nivell_2 {
 
 	private static String[] matriu = {"Joel","5","Carmeta","34","Anna","23","Joanet","4","123","Marc","33","Aina","pol"} ;
-	private static Random aleatori = new Random();
 	
 	public static void main(String[] args) {
 		
@@ -46,27 +42,35 @@ public class Nivell_2 {
 		//	Crea una Functional Interface que continga un mètode abstracte operacio (), que retorne un valor float; 
 		//	injecta a la interfície creada mitjançant una lambda el cos del mètode, de manera que pugis transformar 
 		//	la operació a una suma, resta, multiplicació i divisio.
-		System.out.println("\nCrea una Functional Interface que continga un mètode abstracte operacio ().");
-		System.out.println("Injecta una lambda de manera que pugis transformar l'operació en suma,resta,multiplicació, i divisió.");
-		int valor1 = 10;
-		int valor2 = 5;	
+		System.out.println("\n- Crea una Functional Interface que continga un mètode abstracte operacio ().");
+		System.out.println("- Injecta una lambda de manera que pugis transformar l'operació en suma,resta,multiplicació, i divisió.");
+		int v1 = 10;
+		int v2 = 5;	
 		operacionsBasiques ob;
 		
-		ob = ((v1,v2) -> v1+v2) ;
-		System.out.println(valor1+" + "+valor2+" = "+ob.operacio(valor1, valor2));
+		ob = (() -> v1+v2) ;
+		System.out.println(v1+" + "+v2+" = "+ob.operacio());
 		
-		ob = ((v1,v2) -> v1-v2) ;
-		System.out.println(valor1+" - "+valor2+" = "+ob.operacio(valor1, valor2));
+		ob = (() -> v1-v2) ;
+		System.out.println(v1+" - "+v2+" = "+ob.operacio());
 		
-		ob = ((v1,v2) -> v1*v2) ;
-		System.out.println(valor1+" x "+valor2+" = "+ob.operacio(valor1, valor2));
+		ob = (() -> v1*v2) ;
+		System.out.println(v1+" x "+v2+" = "+ob.operacio());
 		
-		ob = ((v1,v2) -> v1/v2) ;
-		System.out.println(valor1+" / "+valor2+" = "+ob.operacio(valor1, valor2));
+		ob = (() -> v1/v2) ;
+		System.out.println(v1+" / "+v2+" = "+ob.operacio());
 		
 	}
 	
-	
+	/**
+	 * ordenarLongitud
+	 * 
+	 * ordena per longitud  asc true  de més curta a més llarga
+	 * 						asc false de més llarga a més curta
+	 * 
+	 * @param llista	String[]
+	 * @param asc		Boolean
+	 */
 	private void ordenarLongitud(String[] llista, Boolean asc) {
 		if(asc) {
 			Arrays.stream(llista)
@@ -80,18 +84,43 @@ public class Nivell_2 {
 		}
 	}
 	
+	/**
+	 * conteCadena
+	 * 
+	 * Mostra les cadenes que contenen c primer, seguidament mostra tota la resta.
+	 * 
+	 * @param llista	String[]
+	 * @param c			String
+	 */
 	private void conteCadena(String[] llista, String c) {
 		 Arrays.stream(llista)
 		 	.sorted(Comparator.comparing((String v) -> v.toLowerCase().contains(c)).reversed())
 			.forEach(System.out::println);
 	}
 	
+	/**
+	 * reemplaça
+	 * 
+	 * Sustitiueix a les cadenes el valorAntic pel valorNou
+	 * 
+	 * @param llista		String[]
+	 * @param valorAntic	String
+	 * @param nouValor		String	
+	 */
 	public void reemplaça(String[] llista, String valorAntic, String nouValor) {
 		Arrays.stream(llista)
 			.map (valor -> valor.replace(valorAntic, nouValor))
 			.forEach(System.out::println);
 	}
 	
+	/**
+	 * numèrics
+	 * 
+	 * Mostra els valors que son numèrics
+	 * 
+	 * @param llista	String[]
+	 * 
+	 */
 	public void numerics(String[] llista) {
 		String valorsNumerics = "[0-9]+";
 		

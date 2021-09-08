@@ -26,13 +26,13 @@ public class Nivell_3 {
 			.forEach(System.out::println);
 		
 		// mostra per pantalla els alumnes que tinguin un 5 o mes de nota. 
-		System.out.println("\nMostra per pantalla els alumnes que tinguin un 5 o mes de nota.");
+		System.out.println("\nMostra per pantalla els alumnes que tinguin un 5 o més de nota.");
 		llistatAlumnes.stream()
 		.filter(valor -> valor.getNota()>=5)			
 		.forEach(System.out::println);
 		
 		// Filtra y mostra per pantalla els alumnes que tinguin un 5 o mes de nota y que no siguin de PHP. 
-		System.out.println("\nMostra per pantalla els alumnes que tinguin un 5 o mes de nota y que no siguin de PHP. ");
+		System.out.println("\nMostra per pantalla els alumnes que tinguin un 5 o més de nota y que no siguin de PHP. ");
 		llistatAlumnes.stream()
 		.filter(valor -> valor.getNota()>=5 & valor.getCurs()!="PHP")			
 		.forEach(System.out::println);
