@@ -1,4 +1,4 @@
-package NIVELL_1;
+package NIVELL_1.Fase1;
 
 import java.util.Arrays;
 import java.util.Comparator;
