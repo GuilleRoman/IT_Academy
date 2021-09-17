@@ -21,7 +21,11 @@ public class Main {
 				new Book("923-45", "Brigadistes", 1998, Genre.THRILLER),
 				new Book("978-25", "El capital", 2017, Genre.COMEDY),
 				new Book("923-45", "Brigadistes", 1998, Genre.THRILLER),
-				new Book("978-25", "Catalunya any zero", 2017, Genre.THRILLER)
+				new Book("978-25", "Catalunya any zero", 2017, Genre.THRILLER),
+				new Book("978-35", "El temps de les cireres", 2007, Genre.THRILLER),
+				new Book("978-05", "Boletaires i pixapins ", 2011, Genre.COMEDY),
+				new Book("978-23", "Regetton missogin", 2013, Genre.COMEDY)
+				
 		);
 		
 		
@@ -99,8 +103,13 @@ public class Main {
 		
 		System.out.println(resultatMap1);
 		
+		//Quants llibres de cada gènere hi han que siguin d'aquest segle
+		System.out.println("Quants llibres de cada gènere hi han que siguin d'aquest segle\n");
+		Map<Genre, Long> result = llibres.stream()
+			.collect(Collectors.groupingBy(Book::getGenre,
+					Collectors.filtering(book -> book.getAnyPublicacio()>= 2000, Collectors.counting())));
 		
-		
+		System.out.println(result);
 	}
 	
 	
