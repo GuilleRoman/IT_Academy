@@ -16,6 +16,7 @@ import javax.swing.JMenu;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -102,7 +103,13 @@ public class MenuInicial extends JFrame {
 	}
 	
 	public void mostrarFloristeries() {
+		String totesFloristeries="";
 		
+		for(Floristeria flor : floristeries ) {
+			totesFloristeries+="- "+flor.getNom()+"\n";
+		}
+		
+		 JOptionPane.showMessageDialog(null, " Floristeries Existents : \n" + totesFloristeries);
 	}
 	
 	
