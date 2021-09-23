@@ -69,6 +69,14 @@ public class MenuInicial extends JFrame {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Seleccionar Floristeria");
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Mostrar floristeries");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarFloristeries();
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_6);
+		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Mostrar stock dels articles");
 		mnNewMenu.add(mntmNewMenuItem_5);
 		
@@ -92,6 +100,11 @@ public class MenuInicial extends JFrame {
 		contentPane.add(lblNewLabel, BorderLayout.SOUTH);
 		
 	}
+	
+	public void mostrarFloristeries() {
+		
+	}
+	
 	
 	/**
 	 * afegirFloristeria
