@@ -7,7 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controlador.FabricaProductes;
 import Model.Floristeria;
+import Model.Producte;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,7 +18,6 @@ import javax.swing.JMenu;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -26,16 +27,15 @@ public class MenuInicial extends JFrame {
 	
 	private JPanel contentPane;
 	
-	public List<Floristeria> floristeries = new ArrayList<Floristeria>();
+	public static List<Floristeria> floristeries = new ArrayList<Floristeria>();
 	public Floristeria floristeriaActual;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					carregarFloristeries();
 					MenuInicial frame = new MenuInicial();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -54,6 +54,8 @@ public class MenuInicial extends JFrame {
 		setBounds(100, 100, 700, 400);
 		
 		JLabel lblNewLabel = new JLabel("Floristeria Activa : Cap seleccionada !!!");
+		FabricaProductes nouProducte = new FabricaProductes();
+				
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -89,29 +91,80 @@ public class MenuInicial extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_6);
 		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Mostrar stock dels articles");
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Mostrar stock valorat dels articles");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(floristeriaActual!=null) {
+					valorarFloristeriaActiva();
+				}else {
+					JOptionPane.showMessageDialog(null, "No hi ha cap floristeria seleccionada !!\n");
+				}
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_5);
 		
 		JMenu mnNewMenu_1 = new JMenu("Productes");
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Crear Arbre");
-		mnNewMenu_1.add(mntmNewMenuItem_2);
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(floristeriaActual!=null) {
+					floristeriaActual.getArticles().add(nouProducte.getProducte("arbre"));
+				}else {
+					JOptionPane.showMessageDialog(null, "No hi ha cap floristeria seleccionada !!\n");
+				}	
+			}
+		});
 		
+		mnNewMenu_1.add(mntmNewMenuItem_2);		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Crear Flor");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(floristeriaActual!=null) {
+					floristeriaActual.getArticles().add(nouProducte.getProducte("flor"));
+				}else {
+					JOptionPane.showMessageDialog(null, "No hi ha cap floristeria seleccionada !!\n");
+				}
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear Decoracio");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(floristeriaActual!=null) {
+					floristeriaActual.getArticles().add(nouProducte.getProducte("decoracio"));
+				}else {
+					JOptionPane.showMessageDialog(null, "No hi ha cap floristeria seleccionada !!\n");
+				}
+			}
+		});
+		
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		//lblNewLabel = new JLabel("Floristeria Activa : ");
+		
 		contentPane.add(lblNewLabel, BorderLayout.SOUTH);
 		
 	}
+	
+	public void valorarFloristeriaActiva() {
+		String articles = "";
+		double valor = 0.0;
+				
+		for(Producte product : floristeriaActual.getArticles()) {
+			articles +="- "+product.getNom()+" "+product.getPreu()+"\n";
+			valor += product.getPreu();
+		}
+		
+		articles+="Import total de l'estock : "+valor+"\n";
+		JOptionPane.showMessageDialog(null, "STOCK VALORAT DE LA FLORISTERIA : "+ floristeriaActual.getNom() + "\n" + articles);
+	}
+	
 	
 	public void mostrarFloristeries() {
 		String totesFloristeries="";
@@ -149,5 +202,23 @@ public class MenuInicial extends JFrame {
 		
 		return nom;
 	}
+	
+	/**
+	 * carregarFloristeries
+	 * 
+	 * Carrega floristeries per fer les proves
+	 */
+	public static void carregarFloristeries() {
+		Floristeria fl_01 = new Floristeria ("La crisàlida");
+		Floristeria fl_02 = new Floristeria ("Sant Jordi");
+		Floristeria fl_03 = new Floristeria ("La ben florida");
+		Floristeria fl_04 = new Floristeria ("Roser de l'alba");
+		
+		floristeries.add(fl_01);
+		floristeries.add(fl_02);
+		floristeries.add(fl_03);
+		floristeries.add(fl_04);
+	}
+
 
 }
