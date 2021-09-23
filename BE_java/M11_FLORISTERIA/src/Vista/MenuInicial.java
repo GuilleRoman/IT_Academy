@@ -27,7 +27,7 @@ public class MenuInicial extends JFrame {
 	private JPanel contentPane;
 	
 	public List<Floristeria> floristeries = new ArrayList<Floristeria>();
-	
+	public Floristeria floristeriaActual;
 
 	/**
 	 * Launch the application.
@@ -53,6 +53,8 @@ public class MenuInicial extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 400);
 		
+		JLabel lblNewLabel = new JLabel("Floristeria Activa : Cap seleccionada !!!");
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -68,6 +70,15 @@ public class MenuInicial extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Seleccionar Floristeria");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object[] opcions = floristeries.toArray();
+				Object opcio = JOptionPane.showInputDialog(null,"Selecciona una Floristeria", "",JOptionPane.QUESTION_MESSAGE,null,opcions, opcions[0]);
+				int index = floristeries.indexOf(opcio); 
+				floristeriaActual = floristeries.get(index);
+				lblNewLabel.setText("Floristeria activa : "+floristeriaActual.getNom());
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Mostrar floristeries");
@@ -97,7 +108,7 @@ public class MenuInicial extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel = new JLabel("Floristeria Activa : ");
+		//lblNewLabel = new JLabel("Floristeria Activa : ");
 		contentPane.add(lblNewLabel, BorderLayout.SOUTH);
 		
 	}
