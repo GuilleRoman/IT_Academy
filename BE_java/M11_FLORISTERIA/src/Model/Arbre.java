@@ -6,11 +6,13 @@ public class Arbre extends Producte{
 
 	public Arbre(String nom, double preu) {
 		super(nom, preu);	
+		Floristeria.contadorArticulos++;
 	}
 	
 	public Arbre(String nom, double preu, double alçada) {
 		super(nom, preu);
 		this.alçada = alçada;
+		Floristeria.contadorArticulos++;
 	}
 
 	public double getAlçada() {

@@ -6,11 +6,14 @@ public class Flor extends Producte {
 	
 	public Flor(String nom, double preu) {
 		super(nom, preu);
+		Floristeria.contadorArticulos++;
 	}
 
 	public Flor(String nom, double preu, String color) {
 		super(nom, preu);
 		this.color = color;
+		Floristeria.contadorArticulos++;
+		
 	}
 
 	public String getColor() {

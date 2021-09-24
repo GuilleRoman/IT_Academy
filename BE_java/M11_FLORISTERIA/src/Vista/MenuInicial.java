@@ -7,7 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controlador.FabricaProductes;
 import Model.Floristeria;
+import Model.Producte;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -28,6 +30,7 @@ public class MenuInicial extends JFrame {
 	
 	public List<Floristeria> floristeries = new ArrayList<Floristeria>();
 	public Floristeria floristeriaActual;
+	public FabricaProductes fabricador = new FabricaProductes();
 
 	/**
 	 * Launch the application.
@@ -90,18 +93,54 @@ public class MenuInicial extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem_6);
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Mostrar stock dels articles");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				mostrarStock();
+			}
+			
+		});
 		mnNewMenu.add(mntmNewMenuItem_5);
 		
 		JMenu mnNewMenu_1 = new JMenu("Productes");
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Crear Arbre");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				fabricador.getProducte("arbre", floristeriaActual);
+			}
+			
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Crear Flor");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				fabricador.getProducte("flor", floristeriaActual);
+			}
+			
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear Decoracio");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				fabricador.getProducte("decoracio", floristeriaActual);
+			}
+			
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -111,6 +150,17 @@ public class MenuInicial extends JFrame {
 		//lblNewLabel = new JLabel("Floristeria Activa : ");
 		contentPane.add(lblNewLabel, BorderLayout.SOUTH);
 		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Mostrar precio total del Stock");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				precioTotalStock();
+			}
+			
+		});
+		mnNewMenu.add(mntmNewMenuItem_7);
 	}
 	
 	public void mostrarFloristeries() {
@@ -149,5 +199,19 @@ public class MenuInicial extends JFrame {
 		
 		return nom;
 	}
-
+	public void mostrarStock() {
+	List<Producte> stock = floristeriaActual.getArticles();
+	System.out.println("Existen un total de " +Floristeria.contadorArticulos+" artículos, que son los siguientes:");
+		stock.stream().forEach(v -> System.out.println(v.getNom()+ " "+ v.getPreu()));
+	}
+	
+	public double precioTotalStock() {
+		List<Producte> stock = floristeriaActual.getArticles();
+		double precioTotal= 0;
+		for (Producte e: stock) {
+			precioTotal = precioTotal + e.getPreu();
+		}
+		System.out.println("El precio total es de: "+precioTotal+ "€");
+		return precioTotal;
+	}
 }

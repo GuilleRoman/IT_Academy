@@ -3,26 +3,30 @@ package Controlador;
 import javax.swing.JOptionPane;
 
 import Model.Arbre;
+import Model.Decoracio;
+import Model.Flor;
+import Model.Floristeria;
 //import Model.Decoracio;
 //import Model.Flor;
 import Model.Producte;
 
 public class FabricaProductes {
 	
-	public Producte getProducte(String producte) {
+	public void getProducte(String producte, Floristeria e) {
 		switch (producte) {
 		case "arbre":					
-			return new Arbre(demanarNom("arbre"), demanarPreu());
-//			break;
-//		case "flor":
-//			//return new Flor();
-//			break;
-//		case "decoracio":
-//			//return new Decoracio();
-//			break;
-		default:
-			return null;
+			e.addProduct(new Arbre(demanarNom("arbre"), demanarPreu()));
+			break;
+		case "flor":
+			e.addProduct(new Flor(demanarNom("flor"), demanarPreu()));
+			break;
+		case "decoracio":
+			e.addProduct(new Decoracio(demanarNom("decoracio"), demanarPreu()));
+			break;
+		default: 
+			
 		}
+		
 	}
 	
 	public String demanarNom(String tipus) {

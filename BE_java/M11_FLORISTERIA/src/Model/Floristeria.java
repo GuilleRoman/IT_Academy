@@ -1,11 +1,12 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Floristeria {
 	private String nom;
-	private List<Producte> articles;
-	
+	private List<Producte> articles = new ArrayList<Producte>();
+	public static int contadorArticulos=0;
 	
 	public Floristeria(String nom) {		
 		this.nom = nom;
@@ -35,6 +36,10 @@ public class Floristeria {
 	@Override
 	public String toString() {
 		return "Floristeria nom : " + nom;
+	}
+	
+	public void addProduct(Producte e) {
+		this.articles.add(e);
 	}
 	
 	
