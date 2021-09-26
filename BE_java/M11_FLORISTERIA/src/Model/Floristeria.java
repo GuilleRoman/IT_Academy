@@ -7,12 +7,19 @@ public class Floristeria {
 	private String nom;
 	private List<Producte> articles = new ArrayList<Producte>();
 	public static int contadorArticulos=0;
-	
+	public ArrayList<Ticket> ticketVentaActual = new ArrayList<Ticket>();
+	public ArrayList<Ticket> ticketsVentaAntiguos = new ArrayList<Ticket>();
+	private double dineroTotalGanado;
 	public Floristeria(String nom) {		
 		this.nom = nom;
 	}
 
-
+	public double getDineroTotalGanado() {
+		return dineroTotalGanado;
+	}
+	public void setDineroTotalGanado(double e) {
+		dineroTotalGanado+=e;
+	}
 	public String getNom() {
 		return nom;
 	}

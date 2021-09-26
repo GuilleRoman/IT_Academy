@@ -9,6 +9,10 @@ public class Producte {
 		this.preu = preu;
 	}
 
+	public Producte() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNom() {
 		return nom;
 	}
