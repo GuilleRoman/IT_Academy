@@ -204,7 +204,7 @@ public class MenuInicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				tabla.setText("");
-				tabla.append("El negocio ha obtenido hasta ahora: "+String.valueOf(floristeriaActual.getDineroTotalGanado()+"€"));
+				tabla.append("\nEl negocio ha obtenido hasta ahora: "+String.valueOf(floristeriaActual.getDineroTotalGanado()+"€"));
 			}
 			
 		});
@@ -254,10 +254,6 @@ public class MenuInicial extends JFrame {
 	public void mostrarStock() {
 		tabla.setText("");
 		List<Producte> stock = floristeriaActual.getArticles();
-		//System.out.println("Existen un total de " +Floristeria.contadorArticulos+" artículos, que son los siguientes:");
-		
-		//stock.stream().forEach(v -> System.out.println(v.getNom()+ " "+ v.getPreu()));
-		
 		tabla.append("\nExisten un total de " +Floristeria.contadorArticulos+" artículos, que son los siguientes:\n");
 		stock.stream().forEach(v -> tabla.append(v.getNom()+ " "+ v.getPreu()+"\n"));
 	}
@@ -270,7 +266,6 @@ public class MenuInicial extends JFrame {
 			precioTotal = precioTotal + e.getPreu();
 		}
 		tabla.append(("\nEl precio total es de: "+precioTotal+ "€"));
-		//System.out.println("El precio total es de: "+precioTotal+ "€");
 		return precioTotal;
 	}
 	
@@ -278,28 +273,21 @@ public class MenuInicial extends JFrame {
 		
 		tabla.setText("");
 		tabla.append("\nElige qué productos quieres añadir a tu compra:");
-		//System.out.println("Elige qué productos quieres añadir a tu compra:");
 		mostrarStock();
 		Ticket compra = new Ticket();
 		String productNom= JOptionPane.showInputDialog("Nombre del producto (Introduce \"N\" para terminar)" );
 		
 		while (!productNom.equalsIgnoreCase("n")) {
-			
 			int index=0;
-			
-			//String nom= "";
 			for (Producte e: floristeriaActual.getArticles()) {
 				if(e.getNom().matches(productNom)) {
 					index= floristeriaActual.getArticles().indexOf(e);
-					//nom=productNom;
 				}else {
 					continue;
 				}
 			}	
-			//double preu = floristeriaActual.getArticles().get(index).getPreu();
 			Producte producto = floristeriaActual.getArticles().get(index);
-			//Producte productoElegido = new Producte(nom, preu );
-			compra.compraActual.add(producto);
+			compra.compra.add(producto);
 			floristeriaActual.getArticles().remove(index);
 			floristeriaActual.setDineroTotalGanado(producto.getPreu());
 			Floristeria.contadorArticulos--;
@@ -308,7 +296,14 @@ public class MenuInicial extends JFrame {
 			
 		} 
 		;
-		floristeriaActual.ticketVentaActual.add(compra);
+			if(floristeriaActual.ticketVentaActual.isEmpty()) {
+				floristeriaActual.ticketVentaActual.add(compra);
+				
+		} 	else {
+				floristeriaActual.ticketsVentaAntiguos.add(floristeriaActual.ticketVentaActual.get(0));
+				floristeriaActual.ticketVentaActual.remove(0);
+				floristeriaActual.ticketVentaActual.add(compra);
+			}
 		}
 	public void comprarSelecciona() {
 		//por solventar la selección de las opciones (no aparece el nombre, sino los atributos del objeto)
@@ -319,22 +314,26 @@ public class MenuInicial extends JFrame {
 		Object opcio = JOptionPane.showInputDialog(null,"Selecciona los artículos a comprar", "",
 				JOptionPane.QUESTION_MESSAGE,null,opcions,opcions[0]);
 		
-		compra.compraActual.add((Producte) opcio);
+		compra.compra.add((Producte) opcio);
 		floristeriaActual.getArticles().remove(opcio);
 		Floristeria.contadorArticulos--;
 		}
 		
 		floristeriaActual.ticketVentaActual.add(compra);
+		
 	}
 	public Ticket mostrarUltimaCompra() {
 		tabla.setText("");
-		Ticket mostrarCompra =floristeriaActual.ticketVentaActual.get(0);
-		tabla.append("La última compra realizada ha sido:\n");
-		//System.out.println("La última compra realizada ha sido:");
-		mostrarCompra.compraActual.stream().forEach(v-> tabla.append(v.getNom()+" "+v.getPreu()+"\n"));
-	//	mostrarCompra.compraActual.stream().forEach(v-> System.out.println(v.getNom()+" "+v.getPreu()));
-		mostrarCompra.getValorTotal();
-		return mostrarCompra;
+		if(floristeriaActual.ticketVentaActual.isEmpty()) {
+			tabla.append("\nAún no se ha realizado ninguna compra");
+			return null;
+		}else {
+			Ticket mostrarCompra =floristeriaActual.ticketVentaActual.get(0);
+			tabla.append("\nLa última compra realizada ha sido:\n");
+			mostrarCompra.compra.stream().forEach(v-> tabla.append(v.getNom()+" "+v.getPreu()+"\n"));
+			mostrarCompra.getValorTotal();
+			return mostrarCompra;
+		}
 		
 	}
 

@@ -3,8 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Ticket {
-	public ArrayList<Producte> compraActual = new ArrayList<Producte>();
-	public ArrayList<Producte> comprasAntiguas = new ArrayList<Producte>();
+	public ArrayList<Producte> compra = new ArrayList<Producte>();
 	private int numeroTicket;
 	private static int contadorTickets;
 	private double valorTotal;
@@ -14,16 +13,10 @@ public class Ticket {
 		this.numeroTicket = Ticket.contadorTickets;
 	}
 	public ArrayList<Producte> getCompraActual() {
-		return compraActual;
+		return compra;
 	}
 	public void setCompraActual(ArrayList<Producte> compraActual) {
-		this.compraActual = compraActual;
-	}
-	public ArrayList<Producte> getComprasAntiguas() {
-		return comprasAntiguas;
-	}
-	public void setComprasAntiguas(ArrayList<Producte> comprasAntiguas) {
-		this.comprasAntiguas = comprasAntiguas;
+		this.compra = compraActual;
 	}
 	public int getNumero() {
 		return numeroTicket;
@@ -32,7 +25,7 @@ public class Ticket {
 		this.numeroTicket = numero;
 	}
 	public double getValorTotal() {
-		compraActual.stream().forEach(v-> {
+		compra.stream().forEach(v-> {
 			valorTotal+=v.getPreu();
 		});
 		return valorTotal;
